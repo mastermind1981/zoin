@@ -1,0 +1,81 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile group: 'org.jboss.spec', name: 'jboss-javaee-7.0', version: '1.0.0.Final'
+	compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+	compile group: 'org.codehaus.jackson', name: 'jackson-jaxrs', version: '1.9.+'
+	testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+task buildId << {  
+	buildDir.mkdirs()
+	// generate timestamp and user for build_id
+	def build_id='B'+new Date().format('yyyyMMdd HHmm ')+System.properties.'user.name'
+ 
+	try {
+		// get git status and ref
+		def gitref="git rev-parse --short HEAD".execute().text.trim()
+		def gittag="git describe --tags --always $gitref".execute().text.trim()
+		//if(gitref!=gittag) { gitref="$gittag $gitref"}
+		def gitdirty="git status --porcelain".execute().text.isEmpty()?" ":"*"
+		build_id=" $gittag$gitdirty "+build_id;
+	}
+ 
+	catch (Exception x) {
+		println "Warning: no git executable, using simple buildId"
+	}
+	
+	println "buildId: $build_id"
+ 
+	// and write build_id to file
+	new File("$buildDir/build_id.txt").withWriter { out -> out.println build_id }
+ 
+}
+
+war {
+	metaInf {
+		from "$buildDir/build_id.txt"
+		from "$projectDir/src/main//resources/META-INF/persistence.xml"
+	}
+}
+war.dependsOn buildId
+
+task deploy(dependsOn: war, type: Copy) {
+	println "configure task deploy"
+	from('build/libs/') {
+		include '*.war'
+	}
+	into "/opt/wildfly/standalone/deployments/"
+	
+	def target="${project.name}.war"
+	def ok=new File("/opt/wildfly/standalone/deployments/${target}.deployed");
+	def nok=new File("/opt/wildfly/standalone/deployments/${target}.failed");   
+	
+	doFirst {
+		println "deploy doFirst"
+		if(ok.exists()) { ok.delete() }
+		if(nok.exists()) { nok.delete() }
+	}
+ 
+	doLast {
+		println "executing wildfly deploy..."
+		def deployed=false
+		for(def i=0;i<80;i++) {
+			if(ok.exists()) { deployed=true; break }
+			if(nok.exists()) { break }
+			sleep(500);
+		}
+		if(deployed) { println("deploy ok.") }
+		else { throw new RuntimeException("Deployment failed, see Wildfly logs!") }
+	}
+}
+
+task undeploy  << {
+	delete fileTree(dir: "/opt/wildfly/standalone/deployments", include: "*.war*")
+}
