@@ -61,10 +61,10 @@ public class Main {
 		}
 		
 		String companyName = UUID.randomUUID().toString();
-		String name = UUID.randomUUID().toString();
+		String shortName = UUID.randomUUID().toString();
 		Role role = getRandomRole();
-		buffer.append("INSERT INTO `Mission` (`id`, `companyName`, `name`, `role`, `skillSet_id`) VALUES " +
-				"('" + missionId + "', '" + companyName + "', '" + name + "', '" + role + "', '" + missionId + "');" + NEWLINE);
+		buffer.append("INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `role`, `skillSet_id`) VALUES " +
+				"('" + missionId + "', '" + companyName + "', '" + shortName + "', '" + role + "', '" + missionId + "');" + NEWLINE);
 	}
 
 	private static void appendSkills(StringBuffer buffer, int heroId,
