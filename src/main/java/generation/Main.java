@@ -3,7 +3,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.UUID;
 
 import jpa.Role;
 import jpa.Skill;
@@ -18,6 +17,8 @@ public class Main {
 	private static final int NUMBER_OF_MISSIONS = 1000;
 	private static final int HERO_OFFSET = 1000;
 	private static final int MISSION_OFFSET = 11000;
+	
+	private static final NameGenerator nameGenerator = new NameGenerator();
 
 	public static void main(String[] args) throws IOException {
 		StringBuffer buffer = new StringBuffer();
@@ -44,8 +45,8 @@ public class Main {
 			appendSkills(buffer, heroId, skill);
 		}
 		
-		String firstname = UUID.randomUUID().toString();
-		String lastname = UUID.randomUUID().toString();
+		String firstname = nameGenerator.getName();
+		String lastname = nameGenerator.getName();
 		Role role = getRandomRole();
 		buffer.append("INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `role`, `skillSet_id`) VALUES " +
 				"('" + heroId + "', '" + firstname + "', '" + lastname + "', '" + role + "', '" + heroId + "');" + NEWLINE);
@@ -60,8 +61,8 @@ public class Main {
 			appendSkills(buffer, missionId, skill);
 		}
 		
-		String companyName = UUID.randomUUID().toString();
-		String shortName = UUID.randomUUID().toString();
+		String companyName = nameGenerator.getName();
+		String shortName = nameGenerator.getName();
 		Role role = getRandomRole();
 		buffer.append("INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `role`, `skillSet_id`) VALUES " +
 				"('" + missionId + "', '" + companyName + "', '" + shortName + "', '" + role + "', '" + missionId + "');" + NEWLINE);
