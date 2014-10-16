@@ -1,6 +1,10 @@
 'use strict';
 
 /* Services */
+var Hero = $resource('/zoin/rest-prefix/helloWorld', {});
+var hero = Hero.get({}, function () {
+    console.log(hero);
+});
 
 
 // Demonstrate how to register services
