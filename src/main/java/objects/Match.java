@@ -1,5 +1,6 @@
 package objects;
 
+import jpa.Hero;
 import jpa.Mission;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -7,17 +8,17 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class Match {
 	private Mission mission;
-	private Long heroId;
+	private Hero hero;
 	private Score score;
 	private boolean wanted;
 
 	public Match() {
 	}
 
-	public Match(Score score, Mission mission, Long heroId, boolean wanted) {
+	public Match(Score score, Mission mission, Hero hero, boolean wanted) {
 		this.score = score;
 		this.mission = mission;
-		this.heroId = heroId;
+		this.hero = hero;
 		this.wanted = wanted;
 	}
 
@@ -29,8 +30,8 @@ public class Match {
 		return mission;
 	}
 
-	public Long getHeroId() {
-		return heroId;
+	public Hero getHero() {
+		return hero;
 	}
 	
 	public boolean isWanted() {

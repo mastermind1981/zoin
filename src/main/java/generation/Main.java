@@ -1,11 +1,9 @@
 package generation;
-import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
+import java.util.UUID;
 
 import jpa.Role;
 import jpa.Skill;
@@ -51,9 +49,9 @@ public class Main {
 		String firstname = nameGenerator.getName();
 		String lastname = nameGenerator.getName();
 		Role role = getRandomRole();
-		String picture = getRandomImage();
-		buffer.append("INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picture`, `role`, `skillSet_id`) VALUES " +
-				"('" + heroId + "', '" + firstname + "', '" + lastname + "', '" + picture + "', '" + role + "', '" + heroId + "');" + NEWLINE);
+		String picturePath = getRandomImagePath();
+		buffer.append("INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`) VALUES " +
+				"('" + heroId + "', '" + firstname + "', '" + lastname + "', '" + picturePath + "', '" + role + "', '" + heroId + "');" + NEWLINE);
 	}
 
 	private static void appendMission(StringBuffer buffer, int missionId) {
@@ -67,9 +65,10 @@ public class Main {
 		
 		String companyName = nameGenerator.getName();
 		String shortName = nameGenerator.getName();
+		String description = UUID.randomUUID().toString();
 		Role role = getRandomRole();
-		buffer.append("INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `role`, `skillSet_id`) VALUES " +
-				"('" + missionId + "', '" + companyName + "', '" + shortName + "', '" + role + "', '" + missionId + "');" + NEWLINE);
+		buffer.append("INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `description`, `role`, `skillSet_id`) VALUES " +
+				"('" + missionId + "', '" + companyName + "', '" + shortName + "', '" + description + "', '" + role + "', '" + missionId + "');" + NEWLINE);
 	}
 
 	private static void appendSkills(StringBuffer buffer, int heroId,
@@ -95,10 +94,8 @@ public class Main {
 		return values[i % values.length];
 	}
 	
-	private static String getRandomImage() throws IOException {
+	private static String getRandomImagePath() throws IOException {
 		int headNumber = (int) (Math.floor(Math.random() * 8) + 1);
-		BufferedImage img = ImageIO.read(new File("src/main/resources/img/Head" + headNumber + ".png"));
-        String picture = ImageUtils.encodeToString(img, "png");
-		return picture;
+		return "img/Head" + headNumber + ".png";
 	}
 }
