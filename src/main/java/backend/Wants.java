@@ -21,7 +21,6 @@ import jpa.Hero;
 import jpa.Mission;
 import jpa.Want;
 
-import objects.SomeResult;
 import objects.WantRequest;
 
 import org.codehaus.jackson.JsonGenerationException;
