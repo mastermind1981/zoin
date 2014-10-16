@@ -27,10 +27,11 @@ public class Scoring {
 
 	private Score computeScore(final Set<Skill> requestedSkills,
 			final Set<Skill> availableSkills, final boolean roleMatching) {
+		int compureScoreBySkills = compureScoreBySkills(requestedSkills,
+				availableSkills);
 		return new Score((roleMatching ? SCORE_FOR_MATCHING_ROLE : 0)
-				+ compureScoreBySkills(requestedSkills, availableSkills),
-				roleMatching, computeSkillMatches(requestedSkills,
-						availableSkills));
+				+ compureScoreBySkills, roleMatching, computeSkillMatches(
+				requestedSkills, availableSkills), compureScoreBySkills);
 	}
 
 	private Map<Skill, Boolean> computeSkillMatches(Set<Skill> requestedSkills,
