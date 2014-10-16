@@ -3,7 +3,6 @@ package integrationTests;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
-import java.util.List;
 
 import jpa.Hero;
 
@@ -21,17 +20,17 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.junit.Test;
 
-public class HeroBenchTest {
+public class HeroesTest {
 
 	@Test
-	public void firstHeroIsNamedFirstnameTest()
+	public void hero931isNamedFrankBeeh()
 	      throws ClientProtocolException, IOException{
-		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/heroBench");
+		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/heroes/931");
 		
-		//Hero hero = retrieveResourceFromResponse(httpResponse, Hero.class);
-	    List<Hero> list = retrieve(httpResponse, new TypeReference<List<Hero>>() { });
-	    assertEquals( list.get(0).getFirstName(), "FirstnameTest" );
-	    assertEquals( list.get(0).getLastName(), "LastnameTest" );
+		Hero hero = retrieveResourceFromResponse(httpResponse, Hero.class);
+		//List<Hero> list = retrieve(httpResponse, new TypeReference<List<Hero>>() { });
+	    assertEquals( "Frank", hero.getFirstName() );
+	    assertEquals( "Beeh", hero.getLastName() );
 	}
 
 	private HttpResponse sendRequest(String uri) throws IOException,
@@ -41,7 +40,7 @@ public class HeroBenchTest {
 	 
 		HttpResponse httpResponse = HttpClientBuilder.create().build().execute( request );
 	 
-		assertEquals(httpResponse.getStatusLine().getStatusCode(), HttpStatus.SC_OK);
+		assertEquals(HttpStatus.SC_OK, httpResponse.getStatusLine().getStatusCode());
 		String mimeType = ContentType.getOrDefault(httpResponse.getEntity()).getMimeType();
 		assertEquals( jsonMimeType, mimeType );
 		return httpResponse;
