@@ -1,10 +1,15 @@
-<div style="overflow:hidden;white-space:nowrap;">
-    <div ng-repeat="mission in missions" ng-click="showMission(mission)" class="missionCard" ng-class="{isActive: mission.isActive}">
-        Name: {{mission.shortName}}
-        <br />Unternehmen: {{mission.companyName}}
-        <br />Rolle: {{mission.role}}
-        <br />Description: {{mission.description}}
-        <br />Skills: <span ng-repeat="skill in mission.skillSet.skills">{{skill}}{{$last ? '' : ', '}}</span>
-        <br />
+<div class="viewport">
+    <div class="leftArrow" ng-click="moveLeft();">left</div>
+    <div class="rightArrow" ng-click="moveRight();">right</div>
+    <div class="carousel" style="margin-left:{{left}}px;">
+        <div ng-repeat="mission in missions" ng-click="showMission(mission)" class="missionCard" ng-class="{isActive: mission.isActive}">
+            Name: {{mission.shortName}}
+            <br />Unternehmen: {{mission.companyName}}
+            <br />Rolle: {{mission.role}}
+            <br />Description: {{mission.description}}
+            <br />Skills: <span ng-repeat="skill in mission.skillSet.skills">{{skill}}{{$last ? '' : ', '}}</span>
+            <br />
+        </div>
     </div>
+
 </div>
