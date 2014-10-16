@@ -59,6 +59,7 @@ task buildId << {
 
 war {
 	from 'src/main/resources'
+	from 'generated'
 	metaInf {
 		from "$buildDir/build_id.txt"
 		from "$projectDir/src/main//resources/META-INF/persistence.xml"
