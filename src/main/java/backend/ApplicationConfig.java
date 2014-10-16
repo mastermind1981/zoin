@@ -13,6 +13,7 @@ public class ApplicationConfig extends Application {
         return new HashSet<Class<?>>(Arrays.asList(
         		Missions.class,
         		Heroes.class,
-        		Matches.class));
+        		Matches.class,
+        		Wants.class));
     }
 }

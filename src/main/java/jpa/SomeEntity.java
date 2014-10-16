@@ -14,8 +14,6 @@ public class SomeEntity {
 	public SomeEntity() {
 		
 	}
-	
-	
 
 	public Long getId() {
 		return id;
