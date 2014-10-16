@@ -20,6 +20,11 @@ config(['$routeProvider',
             templateUrl: 'partials/partial2.html',
             controller: 'MyCtrl2'
         });
+        $routeProvider.when('/mission', {
+            templateUrl: 'partials/mission.html',
+            controller: 'MissionCardCtrl'
+        });
+
         $routeProvider.otherwise({
             redirectTo: '/view1'
         });
