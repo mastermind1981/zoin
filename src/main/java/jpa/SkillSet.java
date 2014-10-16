@@ -1,6 +1,6 @@
 package jpa;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -25,7 +25,7 @@ public class SkillSet {
 	}
 	
 	public SkillSet(List<Skill> skills){
-		this.skills = new HashSet<Skill>(skills);
+		this.skills = new LinkedHashSet<Skill>(skills);
 	}
 	
 	public Long getId() {
