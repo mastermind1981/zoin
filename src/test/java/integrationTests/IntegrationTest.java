@@ -35,7 +35,7 @@ public class IntegrationTest {
 	}
 
 	@Test
-	public void mission1IsNamedOldBuildSpecialist() throws ClientProtocolException, IOException{
+	public void mission1IsNamedJuniorJavaDeveloper() throws ClientProtocolException, IOException{
 		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/missions/1");
 		
 		Mission mission = retrieveResourceFromResponse(httpResponse, Mission.class);
