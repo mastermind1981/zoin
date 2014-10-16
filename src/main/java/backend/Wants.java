@@ -1,8 +1,9 @@
 package backend;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,7 +18,6 @@ import javax.ws.rs.Produces;
 import jpa.Hero;
 import jpa.Mission;
 import jpa.Want;
-
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -43,9 +43,9 @@ public class Wants {
 				Want.class);
 		List<Want> results = q1.getResultList();
 		
-		List<Long> missionIds = new ArrayList<Long>();
+		Set<Long> missionIds = new HashSet<Long>();
 		for (Want want : results) {
-			missionIds.add(want.getId());
+			missionIds.add(want.getMission().getId());
 		}
 
 		return mapper.writeValueAsString(missionIds);
