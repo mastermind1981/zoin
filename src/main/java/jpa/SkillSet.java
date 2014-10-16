@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -16,6 +18,7 @@ public class SkillSet {
 	private Long id;
 	
 	@ElementCollection
+	@Enumerated(EnumType.STRING)
 	private Set<Skill> skills;
 
 	public SkillSet() {
