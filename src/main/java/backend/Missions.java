@@ -33,17 +33,13 @@ public class Missions {
 	@GET
 	@Produces("application/json;charset=" + encoding)
 	@Path("{missionId}")
-	public String getMissions(@PathParam("missionId") String missionId) throws JsonGenerationException, JsonMappingException, IOException {
-		TypedQuery<Mission> q1 = em.createQuery("SELECT x FROM Mission x WHERE id='"+missionId+"'",
-				Mission.class);
-		Mission results = q1.getSingleResult();
-
-		return mapper.writeValueAsString(results);
+	public String getMissionAsJson(@PathParam("missionId") Long missionId) throws JsonGenerationException, JsonMappingException, IOException {
+		return mapper.writeValueAsString(getMission(missionId));
 	}
 
 	@GET
 	@Produces("application/json;charset=" + encoding)
-	public String getMissions() throws JsonGenerationException, JsonMappingException, IOException {
+	public String getMissionsAsJson() throws JsonGenerationException, JsonMappingException, IOException {
 		TypedQuery<Mission> q1 = em.createQuery("SELECT x FROM Mission x",
 				Mission.class);
 		List<Mission> results = q1.getResultList();
@@ -51,4 +47,9 @@ public class Missions {
 		return mapper.writeValueAsString(results);
 	}
 
+	private Mission getMission(Long missionId) {
+		TypedQuery<Mission> q1 = em.createQuery("SELECT x FROM Mission x WHERE id='"+missionId+"'",
+				Mission.class);
+		return q1.getSingleResult();
+	}
 }
