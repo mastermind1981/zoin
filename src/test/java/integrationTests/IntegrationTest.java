@@ -74,8 +74,6 @@ public class IntegrationTest {
 			if (match.getMissionID().equals(MISSION_JUNIOR_JAVA_DEVELOPER_ID)) {
 				assertEquals(14, match.getValue());
 				contains = true;
-			} else {
-				assertEquals(0, match.getValue());
 			}
 
 		}
@@ -97,8 +95,6 @@ public class IntegrationTest {
 			if (match.getHeroId().equals(HERO_FLORIAN_ID)) {
 				assertEquals(14, match.getValue());
 				contains = true;
-			} else {
-				assertEquals(0, match.getValue());
 			}
 		}
 		assertTrue(contains);
