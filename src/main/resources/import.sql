@@ -18,7 +18,7 @@ INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picture`, `role`, `skillSet_
 
 // Hero Matthias Bader
 INSERT INTO `SkillSet` (`id`) VALUES ('101');
-INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'DonNet');
+INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'DotNet');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'UnitTesting');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'Architektur');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'SQL');
