@@ -38,6 +38,9 @@ angular.module('myApp.controllers', [])
         }
     
     $scope.showMission = function(mission) {
+        $scope.missions.forEach(function(element) {
+               element.isActive = false;
+        });
         mission.isActive = true;
     }
     
