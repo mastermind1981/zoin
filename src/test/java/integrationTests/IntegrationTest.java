@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import jpa.Hero;
 import jpa.Mission;
@@ -100,13 +102,24 @@ public class IntegrationTest {
 				new TypeReference<List<Match>>() {
 				});
 		boolean contains = false;
+		int previousTotalScore = Integer.MAX_VALUE;
 		for (Match match : list) {
 			assertEquals(HERO_FLORIAN_ID, match.getHeroId());
+			assertTrue(match.toString(), previousTotalScore >= match.getScore()
+					.getTotalScore());
+			previousTotalScore = match.getScore().getTotalScore();
 			if (match.getMissionID().equals(MISSION_JUNIOR_JAVA_DEVELOPER_ID)) {
-				assertEquals(new Score(14, true).toString(), match.getScore().toString());
+				final Map<Skill, Boolean> expectedSkillMatching = new TreeMap<Skill, Boolean>();
+				expectedSkillMatching.put(Skill.Ant, true);
+				expectedSkillMatching.put(Skill.Gradle, false);
+				expectedSkillMatching.put(Skill.Java, true);
+				expectedSkillMatching.put(Skill.SQL, true);
+				expectedSkillMatching.put(Skill.UnitTesting, true);
+				assertEquals(
+						new Score(14, true, expectedSkillMatching).toString(),
+						match.getScore().toString());
 				contains = true;
 			}
-
 		}
 		assertTrue(contains);
 	}
@@ -121,10 +134,21 @@ public class IntegrationTest {
 				new TypeReference<List<Match>>() {
 				});
 		boolean contains = false;
+		int previousTotalScore = Integer.MAX_VALUE;
 		for (Match match : list) {
 			assertEquals(MISSION_JUNIOR_JAVA_DEVELOPER_ID, match.getMissionID());
+			assertTrue(match.toString(), previousTotalScore >= match.getScore()
+					.getTotalScore());
+			previousTotalScore = match.getScore().getTotalScore();
 			if (match.getHeroId().equals(HERO_FLORIAN_ID)) {
-				assertEquals(new Score(14, true).toString(), match.getScore().toString());
+				final Map<Skill, Boolean> expectedSkillMatching = new TreeMap<Skill, Boolean>();
+				expectedSkillMatching.put(Skill.Ant, true);
+				expectedSkillMatching.put(Skill.Java, true);
+				expectedSkillMatching.put(Skill.SQL, true);
+				expectedSkillMatching.put(Skill.UnitTesting, true);
+				assertEquals(
+						new Score(14, true, expectedSkillMatching).toString(),
+						match.getScore().toString());
 				contains = true;
 			}
 		}

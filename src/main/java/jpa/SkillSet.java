@@ -1,8 +1,8 @@
 package jpa;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -25,7 +25,7 @@ public class SkillSet {
 	}
 	
 	public SkillSet(List<Skill> skills){
-		this.skills = new HashSet<Skill>(skills);
+		this.skills = new TreeSet<Skill>(skills);
 	}
 	
 	public Long getId() {

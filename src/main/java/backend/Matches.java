@@ -2,6 +2,8 @@ package backend;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -15,7 +17,6 @@ import javax.ws.rs.QueryParam;
 
 import jpa.Hero;
 import jpa.Mission;
-
 import objects.Match;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -64,8 +65,9 @@ public class Matches {
 		final Mission mission = getMission(missionId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Hero hero : heroes) {
-			matches.add(new Match(scoring.computeScore(hero, mission), missionId, hero.getId()));
+			matches.add(new Match(scoring.computeScoreForMission(mission, hero), missionId, hero.getId()));
 		}
+		sortMatches(matches);
 		return matches;
 	}
 
@@ -74,9 +76,20 @@ public class Matches {
 		final Hero hero = getHero(heroId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Mission mission : missions) {
-			matches.add(new Match(scoring.computeScore(hero, mission), mission.getId(), heroId));
+			matches.add(new Match(scoring.computeScoreForHero(hero, mission), mission.getId(), heroId));
 		}
+		sortMatches(matches);
 		return matches;
+	}
+
+	private void sortMatches(final List<Match> matches) {
+		Collections.sort(matches, new Comparator<Match>() {
+			@Override
+			public int compare(Match match1, Match match2) {
+				int compareScore =  match2.getScore().getTotalScore() - match1.getScore().getTotalScore();
+				return compareScore;
+			}
+		});
 	}
 
 	// FIXME remove duplication to Missions.getMission()

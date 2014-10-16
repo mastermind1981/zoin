@@ -1,32 +1,53 @@
 package scoring;
 
+import java.util.Map;
 import java.util.Set;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import objects.Score;
+import java.util.TreeMap;
 
 import jpa.Hero;
 import jpa.Mission;
 import jpa.Skill;
+import objects.Score;
 
 public class Scoring {
 	private static final int SCORE_FOR_MATCHING_SKILL = 1;
 	private static final int SCORE_FOR_MATCHING_ROLE = 10;
 
-	public Score computeScore(Hero hero, Mission mission) {
-		if (!hero.getRole().equals(mission.getRole())) {
-			return new Score(0, false);
-		}
-		return new Score(SCORE_FOR_MATCHING_ROLE
-				+ compureScoreBySkills(hero, mission), true);
+	public Score computeScoreForHero(Hero hero, Mission mission) {
+		return computeScore(hero.getSkillSet().getSkills(), mission
+				.getSkillSet().getSkills(),
+				hero.getRole().equals(mission.getRole()));
 	}
 
-	private int compureScoreBySkills(Hero hero, Mission mission) {
+	public Score computeScoreForMission(Mission mission, Hero hero) {
+		return computeScore(mission.getSkillSet().getSkills(), hero
+				.getSkillSet().getSkills(),
+				hero.getRole().equals(mission.getRole()));
+	}
+
+	private Score computeScore(final Set<Skill> requestedSkills,
+			final Set<Skill> availableSkills, final boolean roleMatching) {
+		return new Score((roleMatching ? SCORE_FOR_MATCHING_ROLE : 0)
+				+ compureScoreBySkills(requestedSkills, availableSkills),
+				roleMatching, computeSkillMatches(requestedSkills,
+						availableSkills));
+	}
+
+	private Map<Skill, Boolean> computeSkillMatches(Set<Skill> requestedSkills,
+			Set<Skill> availableSkills) {
+		final Map<Skill, Boolean> skillMatches = new TreeMap<Skill, Boolean>();
+		for (Skill requestedSkill : requestedSkills) {
+			skillMatches.put(requestedSkill,
+					availableSkills.contains(requestedSkill));
+		}
+		return skillMatches;
+	}
+
+	private int compureScoreBySkills(Set<Skill> requestedSkills,
+			Set<Skill> availableSkills) {
 		int score = 0;
-		final Set<Skill> skillsOfMission = mission.getSkillSet().getSkills();
-		for (Skill skillOfHero : hero.getSkillSet().getSkills()) {
-			if (skillsOfMission.contains(skillOfHero)) {
+		for (Skill requestedSkill : requestedSkills) {
+			if (availableSkills.contains(requestedSkill)) {
 				score += SCORE_FOR_MATCHING_SKILL;
 			}
 		}

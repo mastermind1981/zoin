@@ -1,15 +1,15 @@
 package jpa;
 
 public enum Skill {
-	Java,
-	dotNet,
-	Gradle,
 	Ant,
-	Maven,
 	Architektur,
-	UnitTesting,
+	DotNet,
+	Gradle,
+	Java,
+	Maven,
+	SQL,
 	UITesting,
-	SQL
+	UnitTesting
 	// Add new skills below:
 	;
 }
