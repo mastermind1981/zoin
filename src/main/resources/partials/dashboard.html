@@ -3,6 +3,7 @@
     <div class="rightArrow" ng-click="moveRight();">right</div>
     <div class="carousel" style="margin-left:{{left}}px;">
         <div ng-repeat="match in matches" ng-click="showMission(match.mission)" class="missionCard" ng-class="{isActive: match.mission.isActive}">
+        <div class="missionCardTitle"><span>{{match.mission.shortName}}</span></div>
            <div><img class="matchBatch" src="img/match_{{match.score.skillScore}}.png" /></div>
         
         <br />Unternehmen: {{match.mission.companyName}}
