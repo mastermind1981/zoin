@@ -32,13 +32,14 @@ public class Heroes {
 	@GET
 	@Produces("application/json;charset=" + encoding)
 	@Path("{heroId}")
-	public String getHero(@PathParam("heroId") String heroId) throws JsonGenerationException,
+	public String getHeroAsJson(@PathParam("heroId") Long heroId) throws JsonGenerationException,
 			JsonMappingException, IOException {
-		TypedQuery<Hero> q1 = em.createQuery("SELECT x FROM Hero x WHERE id='"+heroId+"'",
-				Hero.class);
-		Hero results = q1.getSingleResult();
-
-		return mapper.writeValueAsString(results);
+		return mapper.writeValueAsString(getHero(heroId));
 	}
 
+	private Hero getHero(Long heroId) {
+		TypedQuery<Hero> q1 = em.createQuery("SELECT x FROM Hero x WHERE id='"+heroId+"'",
+				Hero.class);
+		return q1.getSingleResult();
+	}
 }

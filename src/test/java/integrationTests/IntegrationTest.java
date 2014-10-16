@@ -29,7 +29,7 @@ import org.junit.Test;
 public class IntegrationTest {
 	private static final Long HERO_FRANK_ID = 931l;
 	private static final Long HERO_FLORIAN_ID = 100l;
-	private static final Long MISSION_JUNIOR_JAVA_DEVELOPER_ID = 1l;
+	private static final Long MISSION_JUNIOR_JAVA_DEVELOPER_ID = 10001l;
 	private static final String MISSION_JUNIOR_JAVA_DEVELOPER_NAME = "Junior Java Developer";
 
 	@Test
@@ -71,9 +71,13 @@ public class IntegrationTest {
 		boolean contains = false;
 		for (Match match : list) {
 			assertEquals(HERO_FLORIAN_ID, match.getHeroId());
-			if (match.getMissionID() == MISSION_JUNIOR_JAVA_DEVELOPER_ID) {
+			if (match.getMissionID().equals(MISSION_JUNIOR_JAVA_DEVELOPER_ID)) {
+				assertEquals(14, match.getValue());
 				contains = true;
+			} else {
+				assertEquals(0, match.getValue());
 			}
+
 		}
 		assertTrue(contains);
 	}
@@ -90,25 +94,27 @@ public class IntegrationTest {
 		boolean contains = false;
 		for (Match match : list) {
 			assertEquals(MISSION_JUNIOR_JAVA_DEVELOPER_ID, match.getMissionID());
-			if (match.getHeroId() == HERO_FLORIAN_ID) {
+			if (match.getHeroId().equals(HERO_FLORIAN_ID)) {
+				assertEquals(14, match.getValue());
 				contains = true;
+			} else {
+				assertEquals(0, match.getValue());
 			}
 		}
 		assertTrue(contains);
 	}
-	
 	@Test
 	public void setAndReadWant()
 			throws ClientProtocolException, IOException {
-		postRequest("http://localhost:8080/zoin/rest-prefix/want/100/1");
-		HttpResponse httpResponse = getRequest("http://localhost:8080/zoin/rest-prefix/want/100");
+		postRequest("http://localhost:8080/zoin/rest-prefix/want/" + HERO_FLORIAN_ID + "/" + MISSION_JUNIOR_JAVA_DEVELOPER_ID);
+		HttpResponse httpResponse = getRequest("http://localhost:8080/zoin/rest-prefix/want/" + HERO_FLORIAN_ID);
 
 		List<Long> list = retrieve(httpResponse,
 				new TypeReference<List<Long>>() {
 				});
 		boolean contains = false;
 		for (Long match : list) {
-			if (match == 1) {
+			if (MISSION_JUNIOR_JAVA_DEVELOPER_ID.equals(match)) {
 				contains = true;
 			}
 		}
@@ -120,21 +126,21 @@ public class IntegrationTest {
 			throws ClientProtocolException, IOException {
         HttpPost request = new HttpPost("http://localhost:8080/zoin/rest-prefix/want");        
 
-        request.setEntity(new StringEntity("{\"heroId\":\"100\",\"missionId\":\"1\"}", 
+        request.setEntity(new StringEntity("{\"heroId\":\"" + HERO_FLORIAN_ID + "\",\"missionId\":\"" + MISSION_JUNIOR_JAVA_DEVELOPER_ID + "\"}", 
                          ContentType.create("application/json")));
 
         HttpResponse r = HttpClientBuilder.create().build().execute(request);
 		assertEquals(HttpStatus.SC_NO_CONTENT, r.getStatusLine()
 				.getStatusCode());
 		
-		HttpResponse httpResponse = getRequest("http://localhost:8080/zoin/rest-prefix/want/100");
+		HttpResponse httpResponse = getRequest("http://localhost:8080/zoin/rest-prefix/want/" + HERO_FLORIAN_ID);
 
 		List<Long> list = retrieve(httpResponse,
 				new TypeReference<List<Long>>() {
 				});
 		boolean contains = false;
 		for (Long match : list) {
-			if (match == 1) {
+			if (MISSION_JUNIOR_JAVA_DEVELOPER_ID.equals(match)) {
 				contains = true;
 			}
 		}
@@ -161,7 +167,8 @@ public class IntegrationTest {
 			ClientProtocolException {
 		HttpUriRequest request = new HttpPost(uri);
 
-		HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
+		HttpResponse httpResponse = HttpClientBuilder.create().build()
+				.execute(request);
 
 		assertEquals(HttpStatus.SC_NO_CONTENT, httpResponse.getStatusLine()
 				.getStatusCode());

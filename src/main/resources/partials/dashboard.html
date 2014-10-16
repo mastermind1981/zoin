@@ -1,7 +1,9 @@
-    <wrap-owlcarousel class="owl-carousel"   
-        data-options="{autoPlay: 5000, stopOnHover: true,  
-            slideSpeed : 300, paginationSpeed : 400, singleItem : true}">  
-        <div ng-repeat="mission in missions">  
-            {{mission.name}}
-        </div>  
-    </wrap-owlcarousel> 
+<div style="overflow:hidden;white-space:nowrap;">
+    <div ng-repeat="mission in missions" style="display:inline-block; border: 1px black solid;">
+        Name: {{mission.name}}
+        <br />Unternehmen: {{mission.companyName}}
+        <br />Rolle: {{mission.role}}
+        <br />Skilly: <span ng-repeat="skill in mission.skillSet.skills">{{skill}}{{$last ? '' : ', '}}</span>
+        <br />
+    </div>
+</div>
