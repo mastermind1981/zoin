@@ -104,7 +104,7 @@ public class IntegrationTest {
 		boolean contains = false;
 		int previousTotalScore = Integer.MAX_VALUE;
 		for (Match match : list) {
-			assertEquals(HERO_FLORIAN_ID, match.getHeroId());
+			assertEquals(HERO_FLORIAN_ID, match.getHero().getId());
 			assertTrue(match.toString(), previousTotalScore >= match.getScore()
 					.getTotalScore());
 			previousTotalScore = match.getScore().getTotalScore();
@@ -143,7 +143,7 @@ public class IntegrationTest {
 			assertTrue(match.toString(), previousTotalScore >= match.getScore()
 					.getTotalScore());
 			previousTotalScore = match.getScore().getTotalScore();
-			if (match.getHeroId().equals(HERO_FLORIAN_ID)) {
+			if (match.getHero().getId().equals(HERO_FLORIAN_ID)) {
 				final Map<Skill, Boolean> expectedSkillMatching = new TreeMap<Skill, Boolean>();
 				expectedSkillMatching.put(Skill.Ant, true);
 				expectedSkillMatching.put(Skill.Java, true);
