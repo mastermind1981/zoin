@@ -20,9 +20,6 @@ public class SkillSet {
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
 	private Set<Skill> skills;
-	
-	public SkillSet(){
-	}
 
 	public SkillSet() {
 	}

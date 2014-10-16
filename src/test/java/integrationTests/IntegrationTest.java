@@ -25,34 +25,43 @@ import org.codehaus.jackson.type.TypeReference;
 import org.junit.Test;
 
 public class IntegrationTest {
+	private static final Long HERO_FRANK_ID = 931l;
+	private static final Long HERO_FLORIAN_ID = 100l;
+	private static final Long MISSION_JUNIOR_JAVA_DEVELOPER_ID = 1l;
+	private static final String MISSION_JUNIOR_JAVA_DEVELOPER_NAME = "Junior Java Developer";
 
 	@Test
-	public void hero931IsNamedFrankBeeh() throws ClientProtocolException, IOException{
-		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/heroes/931");
-		
-		Hero hero = retrieveResourceFromResponse(httpResponse, Hero.class);
-		//List<Hero> list = retrieve(httpResponse, new TypeReference<List<Hero>>() { });
-	    assertEquals( "Frank", hero.getFirstName() );
-	    assertEquals( "Beeh", hero.getLastName() );
+	public void heroFrankBeeh() throws ClientProtocolException, IOException {
+		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/heroes/"
+				+ HERO_FRANK_ID);
+
+		final Hero hero = retrieveResourceFromResponse(httpResponse, Hero.class);
+		assertEquals("Frank", hero.getFirstName());
+		assertEquals("Beeh", hero.getLastName());
 	}
 
 	@Test
-	public void mission1IsNamedJuniorJavaDeveloper() throws ClientProtocolException, IOException{
-		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/missions/1");
-		
-		Mission mission = retrieveResourceFromResponse(httpResponse, Mission.class);
-		//List<Hero> list = retrieve(httpResponse, new TypeReference<List<Hero>>() { });
-	    assertEquals( "Junior Java Developer", mission.getName() );
+	public void missionJuniorJavaDeveloper() throws ClientProtocolException,
+			IOException {
+		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/missions/"
+				+ MISSION_JUNIOR_JAVA_DEVELOPER_ID);
+
+		Mission mission = retrieveResourceFromResponse(httpResponse,
+				Mission.class);
+		assertEquals(MISSION_JUNIOR_JAVA_DEVELOPER_NAME, mission.getName());
 	}
 
 	@Test
-	public void missionCatalogContainsJuniorJavaDeveloper() throws ClientProtocolException, IOException{
+	public void missionCatalogContainsJuniorJavaDeveloper()
+			throws ClientProtocolException, IOException {
 		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/missions");
-		
-		List<Mission> list = retrieve(httpResponse, new TypeReference<List<Mission>>() { });
+
+		List<Mission> list = retrieve(httpResponse,
+				new TypeReference<List<Mission>>() {
+				});
 		boolean contains = false;
 		for (Mission mission : list) {
-			if (mission.getName().contains("Junior Java Developer")) {
+			if (mission.getName().contains(MISSION_JUNIOR_JAVA_DEVELOPER_NAME)) {
 				contains = true;
 			}
 		}
@@ -60,13 +69,18 @@ public class IntegrationTest {
 	}
 
 	@Test
-	public void matchesForFlorianBesserContainJuniorJavaDeveloper() throws ClientProtocolException, IOException{
-		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/matches?heroId=100");
-		
-		List<Match> list = retrieve(httpResponse, new TypeReference<List<Match>>() { });
+	public void matchesForFlorianBesserContainJuniorJavaDeveloper()
+			throws ClientProtocolException, IOException {
+		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/matches?heroId="
+				+ HERO_FLORIAN_ID);
+
+		List<Match> list = retrieve(httpResponse,
+				new TypeReference<List<Match>>() {
+				});
 		boolean contains = false;
 		for (Match match : list) {
-			if (match.getMissionID() == 1) {
+			assertEquals(HERO_FLORIAN_ID, match.getHeroId());
+			if (match.getMissionID() == MISSION_JUNIOR_JAVA_DEVELOPER_ID) {
 				contains = true;
 			}
 		}
@@ -74,13 +88,18 @@ public class IntegrationTest {
 	}
 
 	@Test
-	public void matchesForJuniorJavaDeveloperContainFlorianBesser() throws ClientProtocolException, IOException{
-		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/matches?missionId=1");
-		
-		List<Match> list = retrieve(httpResponse, new TypeReference<List<Match>>() { });
+	public void matchesForJuniorJavaDeveloperContainFlorianBesser()
+			throws ClientProtocolException, IOException {
+		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/matches?missionId="
+				+ MISSION_JUNIOR_JAVA_DEVELOPER_ID);
+
+		List<Match> list = retrieve(httpResponse,
+				new TypeReference<List<Match>>() {
+				});
 		boolean contains = false;
 		for (Match match : list) {
-			if (match.getHeroId() == 100) {
+			assertEquals(MISSION_JUNIOR_JAVA_DEVELOPER_ID, match.getMissionID());
+			if (match.getHeroId() == HERO_FLORIAN_ID) {
 				contains = true;
 			}
 		}
@@ -90,27 +109,33 @@ public class IntegrationTest {
 	private HttpResponse sendRequest(String uri) throws IOException,
 			ClientProtocolException {
 		String jsonMimeType = "application/json";
-		HttpUriRequest request = new HttpGet( uri );
-	 
-		HttpResponse httpResponse = HttpClientBuilder.create().build().execute( request );
-	 
-		assertEquals(HttpStatus.SC_OK, httpResponse.getStatusLine().getStatusCode());
-		String mimeType = ContentType.getOrDefault(httpResponse.getEntity()).getMimeType();
-		assertEquals( jsonMimeType, mimeType );
+		HttpUriRequest request = new HttpGet(uri);
+
+		HttpResponse httpResponse = HttpClientBuilder.create().build()
+				.execute(request);
+
+		assertEquals(HttpStatus.SC_OK, httpResponse.getStatusLine()
+				.getStatusCode());
+		String mimeType = ContentType.getOrDefault(httpResponse.getEntity())
+				.getMimeType();
+		assertEquals(jsonMimeType, mimeType);
 		return httpResponse;
 	}
 
-	private static <T> T retrieve(HttpResponse httpResponse, TypeReference<T> valueTypeRef) throws IOException,
+	private static <T> T retrieve(HttpResponse httpResponse,
+			TypeReference<T> valueTypeRef) throws IOException,
 			JsonParseException, JsonMappingException {
-		String jsonFromResponse = EntityUtils.toString(httpResponse.getEntity());
-	    ObjectMapper mapper = new ObjectMapper();
+		String jsonFromResponse = EntityUtils
+				.toString(httpResponse.getEntity());
+		ObjectMapper mapper = new ObjectMapper();
 		return mapper.readValue(jsonFromResponse, valueTypeRef);
 	}
-	
-	private static <T> T retrieveResourceFromResponse(HttpResponse response, Class<T> clazz) throws IOException {
-	    String jsonFromResponse = EntityUtils.toString(response.getEntity());
-	    ObjectMapper mapper = new ObjectMapper();
-	    return mapper.readValue(jsonFromResponse, clazz);
+
+	private static <T> T retrieveResourceFromResponse(HttpResponse response,
+			Class<T> clazz) throws IOException {
+		String jsonFromResponse = EntityUtils.toString(response.getEntity());
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.readValue(jsonFromResponse, clazz);
 	}
-	
+
 }
