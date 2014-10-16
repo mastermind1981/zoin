@@ -1,0 +1,37 @@
+.header {
+    background-color: #212121;
+}
+
+.header .avatar, .header .logo {
+    padding: 20px 5px;
+}
+
+.header .avatar img {
+    display: inline-block;
+    border-radius: 50%;
+    border: 2px solid white;
+    width: 100px;
+    margin-right: 20px;
+    vertical-align: top;
+}
+
+.header .avatar .avatar-text {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.header .avatar .avatar-text h2, .header .avatar .avatar-text h3 {
+    margin-top: 10px;
+    color: white;
+}
+
+.header .logo {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.header .logo img {
+    width: 100px;
+}
