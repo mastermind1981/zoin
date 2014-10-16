@@ -55,7 +55,7 @@ public class Matches {
 					missionId, q1.getResultList()));
 		} else {
 			throw new RuntimeException(
-					"At least one parameter 'hero' or 'mission' is required!");
+					"Parameter 'heroId' or 'missionId' is required!");
 		}
 	}
 

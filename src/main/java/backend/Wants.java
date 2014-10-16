@@ -29,7 +29,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 @PersistenceContext(name = "MySQL")
 @Transactional
-@Path("want")
+@Path("wants")
 public class Wants {
 
 	private static final String encoding = "UTF-8";

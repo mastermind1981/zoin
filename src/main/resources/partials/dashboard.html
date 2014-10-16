@@ -1,5 +1,5 @@
 <div style="overflow:hidden;white-space:nowrap;">
-    <div ng-repeat="mission in missions" style="display:inline-block; border: 1px black solid;">
+    <div ng-repeat="mission in missions" ng-click="showMission(mission)" class="missionCard" ng-class="{isActive: mission.isActive}">
         Name: {{mission.name}}
         <br />Unternehmen: {{mission.companyName}}
         <br />Rolle: {{mission.role}}

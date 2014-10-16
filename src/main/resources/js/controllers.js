@@ -35,6 +35,9 @@ angular.module('myApp.controllers', [])
     
     
     
+    $scope.showMission = function(mission) {
+        mission.isActive = true;
+    }
 })
 
 .controller('ApiCtrl', function ($scope) {
