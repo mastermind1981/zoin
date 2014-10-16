@@ -67,7 +67,7 @@ public class Matches {
 		for (Hero hero : heroes) {
 			matches.add(new Match(
 					scoring.computeScoreForMission(mission, hero), mission,
-					hero.getId(), isWanted(hero, mission)));
+					hero, isWanted(hero, mission)));
 		}
 		sortMatches(matches);
 		return matches;
@@ -79,7 +79,7 @@ public class Matches {
 		final List<Match> matches = new ArrayList<Match>();
 		for (Mission mission : missions) {
 			matches.add(new Match(scoring.computeScoreForHero(hero, mission),
-					mission, heroId, isWanted(hero, mission)));
+					mission, hero, isWanted(hero, mission)));
 		}
 		sortMatches(matches);
 		return matches;
