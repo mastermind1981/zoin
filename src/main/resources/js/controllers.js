@@ -9,7 +9,7 @@ angular.module('myApp.controllers', [])
 })
 
 .controller('MissionCardCtrl', function ($scope, zoinAPIService) {
-    $scope.mission = zoinAPIService.Mission.get({"id": "567"});
+    $scope.mission = zoinAPIService.Mission.get({"missionId": "1"});
     console.log($scope.mission);
 })
 
