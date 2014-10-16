@@ -21,8 +21,7 @@ public class SkillSet {
 	@Enumerated(EnumType.STRING)
 	private Set<Skill> skills;
 
-	public SkillSet(Set<Skill> set) {
-		this.skills = set;
+	public SkillSet() {
 	}
 	
 	public SkillSet(List<Skill> skills){
