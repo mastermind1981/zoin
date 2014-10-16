@@ -64,7 +64,7 @@ public class Matches {
 		final Mission mission = getMission(missionId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Hero hero : heroes) {
-			matches.add(new Match(scoring.computeScore(hero, mission), missionId, hero.getId()));
+			matches.add(new Match(scoring.computeScoreForMission(mission, hero), missionId, hero.getId()));
 		}
 		return matches;
 	}
@@ -74,7 +74,7 @@ public class Matches {
 		final Hero hero = getHero(heroId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Mission mission : missions) {
-			matches.add(new Match(scoring.computeScore(hero, mission), mission.getId(), heroId));
+			matches.add(new Match(scoring.computeScoreForHero(hero, mission), mission.getId(), heroId));
 		}
 		return matches;
 	}

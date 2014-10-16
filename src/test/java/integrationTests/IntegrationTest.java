@@ -5,8 +5,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import jpa.Hero;
 import jpa.Mission;
@@ -103,7 +106,15 @@ public class IntegrationTest {
 		for (Match match : list) {
 			assertEquals(HERO_FLORIAN_ID, match.getHeroId());
 			if (match.getMissionID().equals(MISSION_JUNIOR_JAVA_DEVELOPER_ID)) {
-				assertEquals(new Score(14, true).toString(), match.getScore().toString());
+				final Map<Skill, Boolean> expectedSkillMatching = new LinkedHashMap<Skill, Boolean>();
+				expectedSkillMatching.put(Skill.UnitTesting, true);
+				expectedSkillMatching.put(Skill.Ant, true);
+				expectedSkillMatching.put(Skill.Gradle, false);
+				expectedSkillMatching.put(Skill.SQL, true);
+				expectedSkillMatching.put(Skill.Java, true);
+				assertEquals(
+						new Score(14, true, expectedSkillMatching).toString(),
+						match.getScore().toString());
 				contains = true;
 			}
 
@@ -124,7 +135,14 @@ public class IntegrationTest {
 		for (Match match : list) {
 			assertEquals(MISSION_JUNIOR_JAVA_DEVELOPER_ID, match.getMissionID());
 			if (match.getHeroId().equals(HERO_FLORIAN_ID)) {
-				assertEquals(new Score(14, true).toString(), match.getScore().toString());
+				final Map<Skill, Boolean> expectedSkillMatching = new LinkedHashMap<Skill, Boolean>();
+				expectedSkillMatching.put(Skill.UnitTesting, true);
+				expectedSkillMatching.put(Skill.Ant, true);
+				expectedSkillMatching.put(Skill.SQL, true);
+				expectedSkillMatching.put(Skill.Java, true);
+				assertEquals(
+						new Score(14, true, expectedSkillMatching).toString(),
+						match.getScore().toString());
 				contains = true;
 			}
 		}
