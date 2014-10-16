@@ -23,8 +23,7 @@ import org.junit.Test;
 public class HeroesTest {
 
 	@Test
-	public void hero931isNamedFrankBeeh()
-	      throws ClientProtocolException, IOException{
+	public void hero931isNamedFrankBeeh() throws ClientProtocolException, IOException{
 		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/heroes/931");
 		
 		Hero hero = retrieveResourceFromResponse(httpResponse, Hero.class);
