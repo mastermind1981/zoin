@@ -9,15 +9,20 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import jpa.Hero;
 import jpa.Mission;
 import jpa.Want;
+
+import objects.SomeResult;
+import objects.WantRequest;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -54,12 +59,29 @@ public class Wants {
 	@POST
 	@Produces("application/json;charset=" + encoding)
 	@Path("{heroId}/{missionId}")
-	public void getMissions(@PathParam("heroId") String heroId, @PathParam("missionId") String missionId) throws JsonGenerationException, JsonMappingException, IOException {
+	public void postMission(@PathParam("heroId") String heroId, @PathParam("missionId") String missionId) throws JsonGenerationException, JsonMappingException, IOException {
 		TypedQuery<Hero> q1 = em.createQuery("SELECT x FROM Hero x WHERE id='"+heroId+"'",
 				Hero.class);
 		Hero hero = q1.getSingleResult();
 		
 		TypedQuery<Mission> q2 = em.createQuery("SELECT x FROM Mission x WHERE id='"+missionId+"'",
+				Mission.class);
+		Mission mission = q2.getSingleResult();
+		
+		Want want = new Want(hero, mission);
+		em.persist(want);
+	}
+
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces("application/json;charset=" + encoding)
+	@Path("")
+	public void postMission(WantRequest request) throws JsonGenerationException, JsonMappingException, IOException {
+		TypedQuery<Hero> q1 = em.createQuery("SELECT x FROM Hero x WHERE id='"+request.getHeroId()+"'",
+				Hero.class);
+		Hero hero = q1.getSingleResult();
+		
+		TypedQuery<Mission> q2 = em.createQuery("SELECT x FROM Mission x WHERE id='"+request.getMissionId()+"'",
 				Mission.class);
 		Mission mission = q2.getSingleResult();
 		

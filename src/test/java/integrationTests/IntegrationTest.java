@@ -1,13 +1,13 @@
 package integrationTests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.List;
 
 import jpa.Hero;
 import jpa.Mission;
-
 import objects.Match;
 
 import org.apache.http.HttpResponse;
@@ -17,6 +17,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.codehaus.jackson.JsonParseException;
@@ -26,9 +27,9 @@ import org.codehaus.jackson.type.TypeReference;
 import org.junit.Test;
 
 public class IntegrationTest {
-	private static final int HERO_FRANK_ID = 931;
-	private static final int HERO_FLORIAN_ID = 100;
-	private static final int MISSION_JUNIOR_JAVA_DEVELOPER_ID = 1;
+	private static final Long HERO_FRANK_ID = 931l;
+	private static final Long HERO_FLORIAN_ID = 100l;
+	private static final Long MISSION_JUNIOR_JAVA_DEVELOPER_ID = 1l;
 	private static final String MISSION_JUNIOR_JAVA_DEVELOPER_NAME = "Junior Java Developer";
 
 	@Test
@@ -97,9 +98,35 @@ public class IntegrationTest {
 	}
 	
 	@Test
-	public void like()
+	public void setAndReadWant()
 			throws ClientProtocolException, IOException {
 		postRequest("http://localhost:8080/zoin/rest-prefix/want/100/1");
+		HttpResponse httpResponse = getRequest("http://localhost:8080/zoin/rest-prefix/want/100");
+
+		List<Long> list = retrieve(httpResponse,
+				new TypeReference<List<Long>>() {
+				});
+		boolean contains = false;
+		for (Long match : list) {
+			if (match == 1) {
+				contains = true;
+			}
+		}
+		assertTrue(contains);
+	}
+
+	@Test
+	public void setAndReadWantJSON()
+			throws ClientProtocolException, IOException {
+        HttpPost request = new HttpPost("http://localhost:8080/zoin/rest-prefix/want");        
+
+        request.setEntity(new StringEntity("{\"heroId\":\"100\",\"missionId\":\"1\"}", 
+                         ContentType.create("application/json")));
+
+        HttpResponse r = HttpClientBuilder.create().build().execute(request);
+		assertEquals(HttpStatus.SC_NO_CONTENT, r.getStatusLine()
+				.getStatusCode());
+		
 		HttpResponse httpResponse = getRequest("http://localhost:8080/zoin/rest-prefix/want/100");
 
 		List<Long> list = retrieve(httpResponse,

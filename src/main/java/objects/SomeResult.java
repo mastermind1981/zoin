@@ -5,6 +5,9 @@ public class SomeResult {
 	private int count;
 	private String comment = "# of objects in DB";
 	
+	public SomeResult() {
+	}
+	
 	public SomeResult(int c) {
 		count = c;
 	}
