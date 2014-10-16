@@ -4,7 +4,7 @@
 
 angular.module('myApp.controllers', [])
 .run(function($rootScope) {
-    $rootScope.heroId = "931";
+    $rootScope.heroId = 931;
 })
 
 .controller('HeroCardCtrl', function ($scope, $rootScope, zoinAPIService) { 
@@ -19,7 +19,7 @@ angular.module('myApp.controllers', [])
 })
 
 .controller('MissionCardCtrl', function ($scope, $rootScope, zoinAPIService) {
-    $scope.mission = zoinAPIService.Mission.get({"missionId": "1"});
+    $scope.mission = zoinAPIService.Mission.get({"missionId": 1});
 })
 
 .controller('DashboardCtrl', function ($scope, $rootScope, zoinAPIService) {
