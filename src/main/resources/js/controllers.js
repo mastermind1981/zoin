@@ -31,9 +31,10 @@ angular.module('myApp.controllers', [])
     $scope.init();    
      $scope.$watch('heroId', function() {
        $scope.init();
-   });
-    
-    
+    });
+    $scope.join = function(mission){
+            zoinAPIService.Want.save({"missionId":mission.id, "heroId": $rootScope.heroId});
+        }
     
     $scope.showMission = function(mission) {
         mission.isActive = true;
