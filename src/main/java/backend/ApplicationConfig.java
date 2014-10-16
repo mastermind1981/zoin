@@ -14,6 +14,7 @@ public class ApplicationConfig extends Application {
         		EchoBean.class,
         		HelloWorldSql.class, 
         		Missions.class,
-        		Heroes.class));
+        		Heroes.class,
+        		Matches.class));
     }
 }
