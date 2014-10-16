@@ -1,6 +1,15 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'de.obqo.gradle:gradle-lesscss-plugin:1.0-1.3.3'
+    }
+}
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse'
+apply plugin: 'lesscss'
 
 repositories {
 	mavenCentral()
@@ -13,6 +22,14 @@ dependencies {
 	compile group: 'org.codehaus.jackson', name: 'jackson-jaxrs', version: '1.9.+'
 	testCompile group: 'junit', name: 'junit', version: '4.+'
 	testCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.+'
+}
+
+lesscss {
+    source = fileTree('src/main/less') {
+        include '*.less'
+    }
+    dest = 'generated/css'
+    compress = false
 }
 
 task buildId << {  
@@ -46,6 +63,7 @@ war {
 		from "$buildDir/build_id.txt"
 		from "$projectDir/src/main//resources/META-INF/persistence.xml"
 	}
+	dependsOn 'lesscss'
 }
 war.dependsOn buildId
 
