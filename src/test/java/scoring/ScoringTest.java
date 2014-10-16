@@ -3,8 +3,8 @@ package scoring;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import jpa.Hero;
 import jpa.Mission;
@@ -25,7 +25,7 @@ public class ScoringTest {
 
 	@Test
 	public void computeScoreForHero_bestMatch() {
-		final Map<Skill, Boolean> expectedSkillMatches = new LinkedHashMap<Skill, Boolean>();
+		final Map<Skill, Boolean> expectedSkillMatches = new TreeMap<Skill, Boolean>();
 		expectedSkillMatches.put(Skill.Ant, true);
 		expectedSkillMatches.put(Skill.Java, false);
 		expectedSkillMatches.put(Skill.SQL, true);
@@ -37,7 +37,7 @@ public class ScoringTest {
 
 	@Test
 	public void computeScoreForHero_worstMatch() {
-		final Map<Skill, Boolean> expectedSkillMatches = new LinkedHashMap<Skill, Boolean>();
+		final Map<Skill, Boolean> expectedSkillMatches = new TreeMap<Skill, Boolean>();
 		expectedSkillMatches.put(Skill.Ant, true);
 		expectedSkillMatches.put(Skill.Java, false);
 		expectedSkillMatches.put(Skill.SQL, true);
@@ -49,7 +49,7 @@ public class ScoringTest {
 
 	@Test
 	public void computeScoreForMission_bestMatch() {
-		final Map<Skill, Boolean> expectedSkillMatches = new LinkedHashMap<Skill, Boolean>();
+		final Map<Skill, Boolean> expectedSkillMatches = new TreeMap<Skill, Boolean>();
 		expectedSkillMatches.put(Skill.Ant, true);
 		expectedSkillMatches.put(Skill.SQL, true);
 		expectedSkillMatches.put(Skill.Architektur, true);
@@ -61,7 +61,7 @@ public class ScoringTest {
 
 	@Test
 	public void computeScoreForMission_worstMatch() {
-		final Map<Skill, Boolean> expectedSkillMatches = new LinkedHashMap<Skill, Boolean>();
+		final Map<Skill, Boolean> expectedSkillMatches = new TreeMap<Skill, Boolean>();
 		expectedSkillMatches.put(Skill.Ant, true);
 		expectedSkillMatches.put(Skill.SQL, true);
 		expectedSkillMatches.put(Skill.Architektur, false);
