@@ -30,7 +30,7 @@ public class ScoringTest {
 		expectedSkillMatches.put(Skill.Java, false);
 		expectedSkillMatches.put(Skill.SQL, true);
 		expectedSkillMatches.put(Skill.Architektur, true);
-		assertEquals(new Score(13, true, expectedSkillMatches).toString(),
+		assertEquals(new Score(13, true, expectedSkillMatches, 3).toString(),
 				scoring.computeScoreForHero(bestMatchingHero, mission)
 						.toString());
 	}
@@ -41,11 +41,10 @@ public class ScoringTest {
 		expectedSkillMatches.put(Skill.Ant, true);
 		expectedSkillMatches.put(Skill.Java, false);
 		expectedSkillMatches.put(Skill.SQL, true);
-		assertEquals(new Score(2, false, expectedSkillMatches).toString(),
+		assertEquals(new Score(2, false, expectedSkillMatches, 2).toString(),
 				scoring.computeScoreForHero(worstMatchingHero, mission)
 						.toString());
 	}
-
 
 	@Test
 	public void computeScoreForMission_bestMatch() {
@@ -54,7 +53,7 @@ public class ScoringTest {
 		expectedSkillMatches.put(Skill.SQL, true);
 		expectedSkillMatches.put(Skill.Architektur, true);
 		expectedSkillMatches.put(Skill.UITesting, false);
-		assertEquals(new Score(13, true, expectedSkillMatches).toString(),
+		assertEquals(new Score(13, true, expectedSkillMatches, 3).toString(),
 				scoring.computeScoreForMission(mission, bestMatchingHero)
 						.toString());
 	}
@@ -66,11 +65,11 @@ public class ScoringTest {
 		expectedSkillMatches.put(Skill.SQL, true);
 		expectedSkillMatches.put(Skill.Architektur, false);
 		expectedSkillMatches.put(Skill.UITesting, false);
-		assertEquals(new Score(2, false, expectedSkillMatches).toString(),
+		assertEquals(new Score(2, false, expectedSkillMatches, 2).toString(),
 				scoring.computeScoreForMission(mission, worstMatchingHero)
 						.toString());
 	}
-	
+
 	@Before
 	public void setUp() {
 		scoring = new Scoring();
