@@ -38,8 +38,8 @@ angular.module('myApp.controllers', [])
         }
     
     $scope.showMission = function(mission) {
-        $scope.missions.forEach(function(element) {
-               element.isActive = false;
+        $scope.matches.forEach(function(element) {
+               element.mission.isActive = false;
         });
         mission.isActive = true;
     }
