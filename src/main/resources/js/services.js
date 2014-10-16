@@ -1,31 +1,15 @@
 'use strict';
 
 /* Services */
-var Hero = $resource('/zoin/rest-prefix/helloWorld', {});
-var hero = Hero.get({}, function () {
-    console.log(hero);
-});
+
 
 
 // Demonstrate how to register services
-angular.module('myApp.services', []).
-factory('recycleAPIservice', function ($http) {
+angular.module('myApp.services', []).factory('zoinAPIService', function ($resource) {
 
-    var recycleAPI = {};
+    var zoinAPI = {};
 
-    recycleAPI.getCities = function (searchQuery) {
-        var urlAPI = 'http://localhost:8080/api/cities';
-        if (searchQuery) {
-            urlAPI = 'http://localhost:8080/api/cities?searchName=' + searchQuery;
-        }
-        return $http({
-            method: 'GET',
-            url: urlAPI,
-            withCredentials: true,
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            }
-        });
-    }
-    return recycleAPI;
+    zoinAPI.Hero = $resource('/zoin/rest-prefix/helloWorld', {});
+
+    return zoinAPI;
 });
