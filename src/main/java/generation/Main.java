@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
@@ -67,9 +68,10 @@ public class Main {
 		
 		String companyName = nameGenerator.getName();
 		String shortName = nameGenerator.getName();
+		String description = UUID.randomUUID().toString();
 		Role role = getRandomRole();
-		buffer.append("INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `role`, `skillSet_id`) VALUES " +
-				"('" + missionId + "', '" + companyName + "', '" + shortName + "', '" + role + "', '" + missionId + "');" + NEWLINE);
+		buffer.append("INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `description`, `role`, `skillSet_id`) VALUES " +
+				"('" + missionId + "', '" + companyName + "', '" + shortName + "', '" + description + "', '" + role + "', '" + missionId + "');" + NEWLINE);
 	}
 
 	private static void appendSkills(StringBuffer buffer, int heroId,
