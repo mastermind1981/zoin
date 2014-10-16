@@ -1,10 +1,7 @@
     <wrap-owlcarousel class="owl-carousel"   
         data-options="{autoPlay: 5000, stopOnHover: true,  
             slideSpeed : 300, paginationSpeed : 400, singleItem : true}">  
-        <div>  
-            Mission1  
-        </div>  
-        <div>  
-            Mission2 
+        <div ng-repeat="mission in missions">  
+            {{mission.name}}
         </div>  
     </wrap-owlcarousel> 
