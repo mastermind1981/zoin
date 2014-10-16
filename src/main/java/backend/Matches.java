@@ -17,7 +17,6 @@ import javax.ws.rs.QueryParam;
 
 import jpa.Hero;
 import jpa.Mission;
-import jpa.Want;
 import objects.Match;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -67,7 +66,7 @@ public class Matches {
 		final List<Match> matches = new ArrayList<Match>();
 		for (Hero hero : heroes) {
 			matches.add(new Match(
-					scoring.computeScoreForMission(mission, hero), missionId,
+					scoring.computeScoreForMission(mission, hero), mission,
 					hero.getId(), isWanted(hero, mission)));
 		}
 		sortMatches(matches);
@@ -80,7 +79,7 @@ public class Matches {
 		final List<Match> matches = new ArrayList<Match>();
 		for (Mission mission : missions) {
 			matches.add(new Match(scoring.computeScoreForHero(hero, mission),
-					mission.getId(), heroId, isWanted(hero, mission)));
+					mission, heroId, isWanted(hero, mission)));
 		}
 		sortMatches(matches);
 		return matches;

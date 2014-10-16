@@ -108,7 +108,7 @@ public class IntegrationTest {
 			assertTrue(match.toString(), previousTotalScore >= match.getScore()
 					.getTotalScore());
 			previousTotalScore = match.getScore().getTotalScore();
-			if (match.getMissionID().equals(MISSION_JUNIOR_JAVA_DEVELOPER_ID)) {
+			if (match.getMission().getId().equals(MISSION_JUNIOR_JAVA_DEVELOPER_ID)) {
 				final Map<Skill, Boolean> expectedSkillMatching = new TreeMap<Skill, Boolean>();
 				expectedSkillMatching.put(Skill.Ant, true);
 				expectedSkillMatching.put(Skill.Gradle, false);
@@ -136,7 +136,7 @@ public class IntegrationTest {
 		boolean contains = false;
 		int previousTotalScore = Integer.MAX_VALUE;
 		for (Match match : list) {
-			assertEquals(MISSION_JUNIOR_JAVA_DEVELOPER_ID, match.getMissionID());
+			assertEquals(MISSION_JUNIOR_JAVA_DEVELOPER_ID, match.getMission().getId());
 			assertTrue(match.toString(), previousTotalScore >= match.getScore()
 					.getTotalScore());
 			previousTotalScore = match.getScore().getTotalScore();
