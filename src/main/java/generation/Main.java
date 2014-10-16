@@ -1,8 +1,11 @@
 package generation;
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import jpa.Role;
 import jpa.Skill;
@@ -13,8 +16,8 @@ public class Main {
 	private static final int MAX_MISSION_SKILLS = 5;
 	private static final int MAX_HERO_SKILLS = 5;
 	private static final String NEWLINE = "\n";
-	private static final int NUMBER_OF_HEROES = 1000;
-	private static final int NUMBER_OF_MISSIONS = 1000;
+	private static final int NUMBER_OF_HEROES = 100;
+	private static final int NUMBER_OF_MISSIONS = 100;
 	private static final int HERO_OFFSET = 1000;
 	private static final int MISSION_OFFSET = 11000;
 	
@@ -36,7 +39,7 @@ public class Main {
         bwr.close();
 	}
 
-	private static void appendHero(StringBuffer buffer, int heroId) {
+	private static void appendHero(StringBuffer buffer, int heroId) throws IOException {
 		appendSkillSet(buffer, heroId);
 
 		int numberOfSkills = (int) (Math.floor(Math.random() * MAX_HERO_SKILLS) + 1);
@@ -48,8 +51,9 @@ public class Main {
 		String firstname = nameGenerator.getName();
 		String lastname = nameGenerator.getName();
 		Role role = getRandomRole();
-		buffer.append("INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `role`, `skillSet_id`) VALUES " +
-				"('" + heroId + "', '" + firstname + "', '" + lastname + "', '" + role + "', '" + heroId + "');" + NEWLINE);
+		String picture = getRandomImage();
+		buffer.append("INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picture`, `role`, `skillSet_id`) VALUES " +
+				"('" + heroId + "', '" + firstname + "', '" + lastname + "', '" + picture + "', '" + role + "', '" + heroId + "');" + NEWLINE);
 	}
 
 	private static void appendMission(StringBuffer buffer, int missionId) {
@@ -89,5 +93,12 @@ public class Main {
 		int i = (int) (Math.random() * 1000);
 		Role[] values = Role.values();
 		return values[i % values.length];
+	}
+	
+	private static String getRandomImage() throws IOException {
+		int headNumber = (int) (Math.floor(Math.random() * 8) + 1);
+		BufferedImage img = ImageIO.read(new File("src/main/resources/img/Head" + headNumber + ".png"));
+        String picture = ImageUtils.encodeToString(img, "png");
+		return picture;
 	}
 }
