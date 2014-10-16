@@ -35,3 +35,16 @@
 .header .logo img {
     width: 100px;
 }
+
+.missionCard {
+    display:inline-block;
+    border: 1px black solid;
+    transition: width 0.5s ease, height 0.5s ease;
+    height: 200px;
+    width:200px;
+}
+
+.isActive {
+    width: 700px;
+    height: 500px;
+}
