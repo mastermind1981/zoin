@@ -36,26 +36,27 @@ public class Matches {
 
 	@GET
 	@Produces("application/json;charset=" + encoding)
-	public String getMatches(@QueryParam("heroId") Long heroId, @QueryParam("missionId") Long missionId)
+	public String getMatches(@QueryParam("heroId") Long heroId,
+			@QueryParam("missionId") Long missionId)
 			throws JsonGenerationException, JsonMappingException, IOException {
-		 if (heroId != null) {
-		final TypedQuery<Mission> q1 = em.createQuery(
-				"SELECT x FROM Mission x", Mission.class);
-		final List<Mission> missions = q1.getResultList();
-		return mapper.writeValueAsString(createMatchingMissionsForHero(heroId,
-				missions));
+		if (heroId != null) {
+			final TypedQuery<Mission> q1 = em.createQuery(
+					"SELECT x FROM Mission x", Mission.class);
+			return mapper.writeValueAsString(createMatchingMissionsForHero(
+					heroId, q1.getResultList()));
 		} else if (missionId != null) {
-			TypedQuery<Hero> q1 = em.createQuery("SELECT x FROM Hero x",
+			final TypedQuery<Hero> q1 = em.createQuery("SELECT x FROM Hero x",
 					Hero.class);
-			final List<Hero> heroes = q1.getResultList();
-			return mapper.writeValueAsString(createMatchingHeroesForMission(missionId, heroes));
+			return mapper.writeValueAsString(createMatchingHeroesForMission(
+					missionId, q1.getResultList()));
 		} else {
 			throw new RuntimeException(
 					"At least one parameter 'hero' or 'mission' is required!");
 		}
 	}
 
-	private List<Match> createMatchingHeroesForMission(Long missionId, final List<Hero> heroes) {
+	private List<Match> createMatchingHeroesForMission(Long missionId,
+			final List<Hero> heroes) {
 		final List<Match> matches = new ArrayList<Match>();
 		for (Hero hero : heroes) {
 			matches.add(new Match(100, missionId, hero.getId()));
