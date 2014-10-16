@@ -3,15 +3,23 @@
     <div class="rightArrow" ng-click="moveRight();">right</div>
     <div class="carousel" style="margin-left:{{left}}px;">
         <div ng-repeat="match in matches" ng-click="showMission(match.mission)" class="missionCard" ng-class="{isActive: match.mission.isActive}">
-        <div class="missionCardTitle"><span>{{match.mission.shortName}}</span></div>
-           <div><img class="matchBatch" src="img/match_{{match.score.skillScore}}.png" /></div>
-        
-        <br />Unternehmen: {{match.mission.companyName}}
-        <br />Rolle: {{match.mission.role}}
-        <br />Description: {{match.mission.description}}
-        <br />Skills: <span ng-repeat="skill in match.score.skillMatches">{{skill}}{{$last ? '' : ', '}}</span>
-        <br />
-        <button ng-click="join(match.mission)">Join</button>
-    </div>
+            <div class="missionCardTitle">
+                <h2>{{match.mission.shortName}}</h2><span>{{match.mission.companyName}}</span>
+            </div>
+            <div>
+                <div class="missionRole">{{match.mission.role}}</div>
+                <img class="matchBatch" src="img/match_{{match.score.skillScore}}.png" />
+            </div>
+            <div>
+                <div class="missionDetails">
+                    <h3>Projektbeschreibung</h3>
+                    <p>{{match.mission.description}}</p>
+                     <br />Skills: <span ng-repeat="skill in match.score.skillMatches">{{skill}}{{$last ? '' : ', '}}</span>
+                <br />
+                <hr />
+                <button ng-click="join(match.mission)">Join</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
