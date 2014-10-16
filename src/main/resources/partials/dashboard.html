@@ -1,9 +1,10 @@
 <div style="overflow:hidden;white-space:nowrap;">
     <div ng-repeat="mission in missions" ng-click="showMission(mission)" class="missionCard" ng-class="{isActive: mission.isActive}">
-        Name: {{mission.name}}
+        Name: {{mission.shortName}}
         <br />Unternehmen: {{mission.companyName}}
         <br />Rolle: {{mission.role}}
-        <br />Skilly: <span ng-repeat="skill in mission.skillSet.skills">{{skill}}{{$last ? '' : ', '}}</span>
+        <br />Description: {{mission.description}}
+        <br />Skills: <span ng-repeat="skill in mission.skillSet.skills">{{skill}}{{$last ? '' : ', '}}</span>
         <br />
     </div>
 </div>
