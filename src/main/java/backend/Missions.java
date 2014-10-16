@@ -10,9 +10,9 @@ import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
-import jpa.Hero;
-import jpa.Role;
+import jpa.Mission;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -20,8 +20,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 @PersistenceContext(name = "MySQL")
 @Transactional
-@Path("heroBench")
-public class HeroBench {
+@Path("missions")
+public class Missions {
 
 	private static final String encoding = "UTF-8";
 
@@ -32,16 +32,12 @@ public class HeroBench {
 
 	@GET
 	@Produces("text/plain;charset=" + encoding)
-	public String getClichedMessage() throws JsonGenerationException,
+	public String getMissions(@QueryParam("hero") int heroId) throws JsonGenerationException,
 			JsonMappingException, IOException {
-
-		// FIXME do not create another entity
-		Hero entity = new Hero("Hans","Muster",Role.LeadSoftwareArchitect, null);
-		em.persist(entity);
-		
-		TypedQuery<Hero> q1 = em.createQuery("SELECT x FROM Hero x",
-				Hero.class);
-		List<Hero> results = q1.getResultList();
+		TypedQuery<Mission> q1 = em.createQuery("SELECT x FROM Mission x",
+				Mission.class);
+		// FIXME Filter by match for Hero
+		List<Mission> results = q1.getResultList();
 
 		return mapper.writeValueAsString(results);
 	}

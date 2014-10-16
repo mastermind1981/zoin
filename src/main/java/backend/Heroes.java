@@ -1,9 +1,6 @@
 package backend;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,10 +8,10 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import jpa.Mission;
-import jpa.Role;
+import jpa.Hero;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -22,8 +19,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 @PersistenceContext(name = "MySQL")
 @Transactional
-@Path("missionControl")
-public class MissionControl {
+@Path("heroes")
+public class Heroes {
 
 	private static final String encoding = "UTF-8";
 
@@ -34,18 +31,13 @@ public class MissionControl {
 
 	@GET
 	@Produces("text/plain;charset=" + encoding)
-	public String getClichedMessage() throws JsonGenerationException,
+	@Path("{heroId}")
+	public String getHero(@PathParam("heroId") String heroId) throws JsonGenerationException,
 			JsonMappingException, IOException {
 
-		// FIXME: Do not create a new entity every time
-		Mission entity = new Mission("Mission 1", "Swisscom",
-				Role.SeniorSoftwareEngineer, null);
-
-		em.persist(entity);
-
-		TypedQuery<Mission> q1 = em.createQuery("SELECT x FROM Mission x",
-				Mission.class);
-		List<Mission> results = q1.getResultList();
+		TypedQuery<Hero> q1 = em.createQuery("SELECT x FROM Hero x WHERE id='"+heroId+"'",
+				Hero.class);
+		Hero results = q1.getSingleResult();
 
 		return mapper.writeValueAsString(results);
 	}
