@@ -26,9 +26,9 @@ import org.codehaus.jackson.type.TypeReference;
 import org.junit.Test;
 
 public class IntegrationTest {
-	private static final int HERO_FRANK_ID = 931;
-	private static final int HERO_FLORIAN_ID = 100;
-	private static final int MISSION_JUNIOR_JAVA_DEVELOPER_ID = 1;
+	private static final Long HERO_FRANK_ID = 931l;
+	private static final Long HERO_FLORIAN_ID = 100l;
+	private static final Long MISSION_JUNIOR_JAVA_DEVELOPER_ID = 1l;
 	private static final String MISSION_JUNIOR_JAVA_DEVELOPER_NAME = "Junior Java Developer";
 
 	@Test
@@ -71,8 +71,12 @@ public class IntegrationTest {
 		for (Match match : list) {
 			assertEquals(HERO_FLORIAN_ID, match.getHeroId());
 			if (match.getMissionID() == MISSION_JUNIOR_JAVA_DEVELOPER_ID) {
+				assertEquals(10, match.getValue());
 				contains = true;
+			} else {
+				assertEquals(0, match.getValue());
 			}
+
 		}
 		assertTrue(contains);
 	}
@@ -90,7 +94,10 @@ public class IntegrationTest {
 		for (Match match : list) {
 			assertEquals(MISSION_JUNIOR_JAVA_DEVELOPER_ID, match.getMissionID());
 			if (match.getHeroId() == HERO_FLORIAN_ID) {
+				assertEquals(10, match.getValue());
 				contains = true;
+			} else {
+				assertEquals(0, match.getValue());
 			}
 		}
 		assertTrue(contains);

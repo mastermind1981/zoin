@@ -22,6 +22,8 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
+import scoring.Scoring;
+
 @PersistenceContext(name = "MySQL")
 @Transactional
 @Path("matches")
@@ -33,6 +35,8 @@ public class Matches {
 	EntityManager em;
 
 	private static ObjectMapper mapper = new ObjectMapper();
+
+	private Scoring scoring = new Scoring();
 
 	@GET
 	@Produces("application/json;charset=" + encoding)
@@ -57,20 +61,35 @@ public class Matches {
 
 	private List<Match> createMatchingHeroesForMission(Long missionId,
 			final List<Hero> heroes) {
+		final Mission mission = getMission(missionId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Hero hero : heroes) {
-			matches.add(new Match(100, missionId, hero.getId()));
+			matches.add(new Match(scoring.computeScore(hero, mission), missionId, hero.getId()));
 		}
 		return matches;
 	}
 
 	private List<Match> createMatchingMissionsForHero(Long heroId,
 			final List<Mission> missions) {
+		final Hero hero = getHero(heroId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Mission mission : missions) {
-			matches.add(new Match(100, mission.getId(), heroId));
+			matches.add(new Match(scoring.computeScore(hero, mission), mission.getId(), heroId));
 		}
 		return matches;
 	}
 
+	// FIXME remove duplication to Missions.getMission()
+	private Mission getMission(Long missionId) {
+		TypedQuery<Mission> q1 = em.createQuery("SELECT x FROM Mission x WHERE id='"+missionId+"'",
+				Mission.class);
+		return q1.getSingleResult();
+	}
+	
+	// FIXME remove duplication to Heroes.getHero()
+	private Hero getHero(Long heroId) {
+		TypedQuery<Hero> q1 = em.createQuery("SELECT x FROM Hero x WHERE id='"+heroId+"'",
+				Hero.class);
+		return q1.getSingleResult();
+	}
 }
