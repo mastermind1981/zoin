@@ -26,29 +26,19 @@ import org.codehaus.jackson.type.TypeReference;
 import org.junit.Test;
 
 public class IntegrationTest {
+	private static final int HERO_FRANK_ID = 931;
+	private static final int HERO_FLORIAN_ID = 100;
+	private static final int MISSION_JUNIOR_JAVA_DEVELOPER_ID = 1;
+	private static final String MISSION_JUNIOR_JAVA_DEVELOPER_NAME = "Junior Java Developer";
 
 	@Test
-	public void hero931IsNamedFrankBeeh() throws ClientProtocolException,
-			IOException {
-		HttpResponse httpResponse = getRequest("http://localhost:8080/zoin/rest-prefix/heroes/931");
+	public void heroFrankBeeh() throws ClientProtocolException, IOException {
+		HttpResponse httpResponse = getRequest("http://localhost:8080/zoin/rest-prefix/heroes/"
+				+ HERO_FRANK_ID);
 
-		Hero hero = retrieveResourceFromResponse(httpResponse, Hero.class);
-		// List<Hero> list = retrieve(httpResponse, new
-		// TypeReference<List<Hero>>() { });
+		final Hero hero = retrieveResourceFromResponse(httpResponse, Hero.class);
 		assertEquals("Frank", hero.getFirstName());
 		assertEquals("Beeh", hero.getLastName());
-	}
-
-	@Test
-	public void mission1IsNamedJuniorJavaDeveloper()
-			throws ClientProtocolException, IOException {
-		HttpResponse httpResponse = getRequest("http://localhost:8080/zoin/rest-prefix/missions/1");
-
-		Mission mission = retrieveResourceFromResponse(httpResponse,
-				Mission.class);
-		// List<Hero> list = retrieve(httpResponse, new
-		// TypeReference<List<Hero>>() { });
-		assertEquals("Junior Java Developer", mission.getName());
 	}
 
 	@Test
@@ -61,7 +51,7 @@ public class IntegrationTest {
 				});
 		boolean contains = false;
 		for (Mission mission : list) {
-			if (mission.getName().contains("Junior Java Developer")) {
+			if (mission.getName().contains(MISSION_JUNIOR_JAVA_DEVELOPER_NAME)) {
 				contains = true;
 			}
 		}
@@ -71,14 +61,16 @@ public class IntegrationTest {
 	@Test
 	public void matchesForFlorianBesserContainJuniorJavaDeveloper()
 			throws ClientProtocolException, IOException {
-		HttpResponse httpResponse = getRequest("http://localhost:8080/zoin/rest-prefix/matches?heroId=100");
+		HttpResponse httpResponse = getRequest("http://localhost:8080/zoin/rest-prefix/matches?heroId="
+				+ HERO_FLORIAN_ID);
 
 		List<Match> list = retrieve(httpResponse,
 				new TypeReference<List<Match>>() {
 				});
 		boolean contains = false;
 		for (Match match : list) {
-			if (match.getMissionID() == 1) {
+			assertEquals(HERO_FLORIAN_ID, match.getHeroId());
+			if (match.getMissionID() == MISSION_JUNIOR_JAVA_DEVELOPER_ID) {
 				contains = true;
 			}
 		}
@@ -88,14 +80,16 @@ public class IntegrationTest {
 	@Test
 	public void matchesForJuniorJavaDeveloperContainFlorianBesser()
 			throws ClientProtocolException, IOException {
-		HttpResponse httpResponse = getRequest("http://localhost:8080/zoin/rest-prefix/matches?missionId=1");
+		HttpResponse httpResponse = getRequest("http://localhost:8080/zoin/rest-prefix/matches?missionId="
+				+ MISSION_JUNIOR_JAVA_DEVELOPER_ID);
 
 		List<Match> list = retrieve(httpResponse,
 				new TypeReference<List<Match>>() {
 				});
 		boolean contains = false;
 		for (Match match : list) {
-			if (match.getHeroId() == 100) {
+			assertEquals(MISSION_JUNIOR_JAVA_DEVELOPER_ID, match.getMissionID());
+			if (match.getHeroId() == HERO_FLORIAN_ID) {
 				contains = true;
 			}
 		}
