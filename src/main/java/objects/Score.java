@@ -1,6 +1,7 @@
 package objects;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 import jpa.Skill;
 
@@ -19,7 +20,7 @@ public class Score {
 			Map<Skill, Boolean> skillMatches) {
 		this.totalScore = totalScore;
 		this.roleMatching = roleMatching;
-		this.skillMatches = skillMatches;
+		this.skillMatches = new TreeMap<Skill, Boolean>(skillMatches);
 	}
 
 	public int getTotalScore() {
