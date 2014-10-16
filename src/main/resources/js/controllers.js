@@ -14,9 +14,9 @@ angular.module('myApp.controllers', [])
 })
 
 .controller('DashboardCtrl', function ($scope, zoinAPIService) {
-  
+    $scope.match = zoinAPIService.Mission.get({"heroId": "931"});
 })
 
 .controller('ApiCtrl', function ($scope) {
-  
+    
 });
