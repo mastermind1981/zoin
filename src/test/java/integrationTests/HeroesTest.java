@@ -3,8 +3,10 @@ package integrationTests;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.List;
 
 import jpa.Hero;
+import jpa.Mission;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -23,7 +25,7 @@ import org.junit.Test;
 public class HeroesTest {
 
 	@Test
-	public void hero931isNamedFrankBeeh() throws ClientProtocolException, IOException{
+	public void hero931IsNamedFrankBeeh() throws ClientProtocolException, IOException{
 		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/heroes/931");
 		
 		Hero hero = retrieveResourceFromResponse(httpResponse, Hero.class);
@@ -31,6 +33,41 @@ public class HeroesTest {
 	    assertEquals( "Frank", hero.getFirstName() );
 	    assertEquals( "Beeh", hero.getLastName() );
 	}
+
+	@Test
+	public void mission1IsNamedOldBuildSpecialist() throws ClientProtocolException, IOException{
+		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/missions/1");
+		
+		Mission mission = retrieveResourceFromResponse(httpResponse, Mission.class);
+		//List<Hero> list = retrieve(httpResponse, new TypeReference<List<Hero>>() { });
+	    assertEquals( "Old Build Specialist", mission.getName() );
+	}
+
+	/*@Test
+	public void matchesForFrankBeehContainOldBuildSpecialist() throws ClientProtocolException, IOException{
+		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/matches?hero=931");
+		
+		List<Match> list = retrieve(httpResponse, new TypeReference<List<Match>>() { });
+		boolean contains = false;
+		for (Match match : list) {
+			//TODO
+		}
+		assertTrue(contains);
+	}
+	
+	@Test
+	public void matchesForOldBuildSpecialistContainFrankBeeh() throws ClientProtocolException, IOException{
+		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/matches?mission=1");
+		
+		List<Mission> list = retrieve(httpResponse, new TypeReference<List<Mission>>() { });
+		boolean contains = false;
+		for (Mission mission : list) {
+			if (mission.getName().equals("Old Build Specialist")) {
+				contains = true;
+			}
+		}
+		assertTrue(contains);
+	}*/
 
 	private HttpResponse sendRequest(String uri) throws IOException,
 			ClientProtocolException {
