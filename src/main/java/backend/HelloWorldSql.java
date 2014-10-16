@@ -28,7 +28,7 @@ private static final String encoding  = "UTF-8";
 	
 	@PersistenceContext
 	EntityManager em;
-	
+		
 	private static ObjectMapper mapper = new ObjectMapper();
 
 	@GET
