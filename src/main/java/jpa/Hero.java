@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Character {
+public class Hero {
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -23,7 +23,7 @@ public class Character {
 	@ManyToOne
 	private SkillSet skillSet;
 	
-	public Character(){
+	public Hero(){
 	}
 	
 	public Long getId() {
