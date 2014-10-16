@@ -26,6 +26,13 @@ public class Mission {
 	public Mission(){
 	}
 	
+	public Mission(String name, String companyName, Role role, SkillSet skillSet) {
+		this.name = name;
+		this.companyName = companyName;
+		this.role = role;
+		this.skillSet = skillSet;
+	}
+
 	public Long getId() {
 		return id;
 	}
