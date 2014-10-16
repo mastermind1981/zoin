@@ -31,7 +31,7 @@ public class Missions {
 	private static ObjectMapper mapper = new ObjectMapper();
 
 	@GET
-	@Produces("text/plain;charset=" + encoding)
+	@Produces("application/json;charset=" + encoding)
 	public String getMissions(@QueryParam("hero") int heroId) throws JsonGenerationException,
 			JsonMappingException, IOException {
 		TypedQuery<Mission> q1 = em.createQuery("SELECT x FROM Mission x",
