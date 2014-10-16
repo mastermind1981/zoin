@@ -6,6 +6,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -22,6 +23,9 @@ public class Hero {
 	private Role role;
 	@ManyToOne
 	private SkillSet skillSet;
+	@Basic
+	@Lob
+	private String picture;
 	
 	public Hero(){
 	}
@@ -53,4 +57,8 @@ public class Hero {
 	public SkillSet getSkillSet() {
 		return skillSet;
 	}
+
+	public String getPicture() {
+		return picture;
+	}	
 }
