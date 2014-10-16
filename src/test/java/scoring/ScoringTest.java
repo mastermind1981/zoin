@@ -11,6 +11,8 @@ import jpa.Role;
 import jpa.Skill;
 import jpa.SkillSet;
 
+import objects.Score;
+
 import org.junit.Test;
 
 public class ScoringTest {
@@ -22,7 +24,7 @@ public class ScoringTest {
 				new SkillSet(new ArrayList<Skill>()));
 		final Mission mission = new Mission(null, null, null, Role.JuniorSoftwareEngineer,
 				new SkillSet(new ArrayList<Skill>()));
-		assertEquals(10, scoring.computeScore(hero, mission));
+		assertEquals(new Score(10, true).toString(), scoring.computeScore(hero, mission).toString());
 	}
 	
 	@Test
@@ -32,7 +34,7 @@ public class ScoringTest {
 				new SkillSet(Arrays.asList(Skill.Ant, Skill.Java, Skill.SQL)));
 		final Mission mission = new Mission(null, null, null, Role.JuniorSoftwareEngineer,
 				new SkillSet(Arrays.asList(Skill.Ant, Skill.SQL, Skill.dotNet)));
-		assertEquals(12, scoring.computeScore(hero, mission));
+		assertEquals(new Score(12, true).toString(), scoring.computeScore(hero, mission).toString());
 	}
 
 	@Test
@@ -42,6 +44,6 @@ public class ScoringTest {
 				new SkillSet());
 		final Mission mission = new Mission(null, null, null, Role.LeadSoftwareArchitect,
 				new SkillSet());
-		assertEquals(0, scoring.computeScore(hero, mission));
+		assertEquals(new Score(0, false).toString(), scoring.computeScore(hero, mission).toString());
 	}
 }

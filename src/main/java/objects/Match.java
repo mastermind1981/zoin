@@ -1,26 +1,26 @@
 package objects;
 
 public class Match {
-	
-	private int value;
 	private Long missionID;
 	private Long heroId;
+	private Score score;
+
+	public Match(){}
 	
-	public Match(){
-	}
-	
-	public Match(int value, Long missionID, Long heroId) {
-		this.value = value;
-		this.missionID = missionID;
+	public Match(Score score, Long missionId, Long heroId) {
+		this.score = score;
+		this.missionID = missionId;
 		this.heroId = heroId;
 	}
 
-	public int getValue() {
-		return value;
+	public Score getScore() {
+		return score;
 	}
+
 	public Long getMissionID() {
 		return missionID;
 	}
+
 	public Long getHeroId() {
 		return heroId;
 	}

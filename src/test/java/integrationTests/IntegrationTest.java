@@ -13,6 +13,7 @@ import jpa.Mission;
 import jpa.Role;
 import jpa.Skill;
 import objects.Match;
+import objects.Score;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -102,7 +103,7 @@ public class IntegrationTest {
 		for (Match match : list) {
 			assertEquals(HERO_FLORIAN_ID, match.getHeroId());
 			if (match.getMissionID().equals(MISSION_JUNIOR_JAVA_DEVELOPER_ID)) {
-				assertEquals(14, match.getValue());
+				assertEquals(new Score(14, true).toString(), match.getScore().toString());
 				contains = true;
 			}
 
@@ -123,7 +124,7 @@ public class IntegrationTest {
 		for (Match match : list) {
 			assertEquals(MISSION_JUNIOR_JAVA_DEVELOPER_ID, match.getMissionID());
 			if (match.getHeroId().equals(HERO_FLORIAN_ID)) {
-				assertEquals(14, match.getValue());
+				assertEquals(new Score(14, true).toString(), match.getScore().toString());
 				contains = true;
 			}
 		}
