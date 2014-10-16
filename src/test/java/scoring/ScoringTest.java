@@ -3,8 +3,8 @@ package scoring;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import jpa.Hero;
 import jpa.Mission;
@@ -25,52 +25,51 @@ public class ScoringTest {
 
 	@Test
 	public void computeScoreForHero_bestMatch() {
-		final Map<Skill, Boolean> expectedSkillMatches = new LinkedHashMap<Skill, Boolean>();
+		final Map<Skill, Boolean> expectedSkillMatches = new TreeMap<Skill, Boolean>();
 		expectedSkillMatches.put(Skill.Ant, true);
 		expectedSkillMatches.put(Skill.Java, false);
 		expectedSkillMatches.put(Skill.SQL, true);
 		expectedSkillMatches.put(Skill.Architektur, true);
-		assertEquals(new Score(13, true, expectedSkillMatches).toString(),
+		assertEquals(new Score(13, true, expectedSkillMatches, 3).toString(),
 				scoring.computeScoreForHero(bestMatchingHero, mission)
 						.toString());
 	}
 
 	@Test
 	public void computeScoreForHero_worstMatch() {
-		final Map<Skill, Boolean> expectedSkillMatches = new LinkedHashMap<Skill, Boolean>();
+		final Map<Skill, Boolean> expectedSkillMatches = new TreeMap<Skill, Boolean>();
 		expectedSkillMatches.put(Skill.Ant, true);
 		expectedSkillMatches.put(Skill.Java, false);
 		expectedSkillMatches.put(Skill.SQL, true);
-		assertEquals(new Score(2, false, expectedSkillMatches).toString(),
+		assertEquals(new Score(2, false, expectedSkillMatches, 2).toString(),
 				scoring.computeScoreForHero(worstMatchingHero, mission)
 						.toString());
 	}
 
-
 	@Test
 	public void computeScoreForMission_bestMatch() {
-		final Map<Skill, Boolean> expectedSkillMatches = new LinkedHashMap<Skill, Boolean>();
+		final Map<Skill, Boolean> expectedSkillMatches = new TreeMap<Skill, Boolean>();
 		expectedSkillMatches.put(Skill.Ant, true);
 		expectedSkillMatches.put(Skill.SQL, true);
 		expectedSkillMatches.put(Skill.Architektur, true);
 		expectedSkillMatches.put(Skill.UITesting, false);
-		assertEquals(new Score(13, true, expectedSkillMatches).toString(),
+		assertEquals(new Score(13, true, expectedSkillMatches, 3).toString(),
 				scoring.computeScoreForMission(mission, bestMatchingHero)
 						.toString());
 	}
 
 	@Test
 	public void computeScoreForMission_worstMatch() {
-		final Map<Skill, Boolean> expectedSkillMatches = new LinkedHashMap<Skill, Boolean>();
+		final Map<Skill, Boolean> expectedSkillMatches = new TreeMap<Skill, Boolean>();
 		expectedSkillMatches.put(Skill.Ant, true);
 		expectedSkillMatches.put(Skill.SQL, true);
 		expectedSkillMatches.put(Skill.Architektur, false);
 		expectedSkillMatches.put(Skill.UITesting, false);
-		assertEquals(new Score(2, false, expectedSkillMatches).toString(),
+		assertEquals(new Score(2, false, expectedSkillMatches, 2).toString(),
 				scoring.computeScoreForMission(mission, worstMatchingHero)
 						.toString());
 	}
-	
+
 	@Before
 	public void setUp() {
 		scoring = new Scoring();

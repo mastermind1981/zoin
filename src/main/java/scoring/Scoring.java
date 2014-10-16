@@ -1,8 +1,8 @@
 package scoring;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import jpa.Hero;
 import jpa.Mission;
@@ -27,15 +27,16 @@ public class Scoring {
 
 	private Score computeScore(final Set<Skill> requestedSkills,
 			final Set<Skill> availableSkills, final boolean roleMatching) {
+		int compureScoreBySkills = compureScoreBySkills(requestedSkills,
+				availableSkills);
 		return new Score((roleMatching ? SCORE_FOR_MATCHING_ROLE : 0)
-				+ compureScoreBySkills(requestedSkills, availableSkills),
-				roleMatching, computeSkillMatches(requestedSkills,
-						availableSkills));
+				+ compureScoreBySkills, roleMatching, computeSkillMatches(
+				requestedSkills, availableSkills), compureScoreBySkills);
 	}
 
 	private Map<Skill, Boolean> computeSkillMatches(Set<Skill> requestedSkills,
 			Set<Skill> availableSkills) {
-		final Map<Skill, Boolean> skillMatches = new LinkedHashMap<Skill, Boolean>();
+		final Map<Skill, Boolean> skillMatches = new TreeMap<Skill, Boolean>();
 		for (Skill requestedSkill : requestedSkills) {
 			skillMatches.put(requestedSkill,
 					availableSkills.contains(requestedSkill));

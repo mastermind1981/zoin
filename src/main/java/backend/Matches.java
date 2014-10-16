@@ -2,6 +2,8 @@ package backend;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -15,7 +17,6 @@ import javax.ws.rs.QueryParam;
 
 import jpa.Hero;
 import jpa.Mission;
-
 import objects.Match;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -64,8 +65,11 @@ public class Matches {
 		final Mission mission = getMission(missionId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Hero hero : heroes) {
-			matches.add(new Match(scoring.computeScoreForMission(mission, hero), missionId, hero.getId()));
+			matches.add(new Match(
+					scoring.computeScoreForMission(mission, hero), mission,
+					hero.getId(), isWanted(hero, mission)));
 		}
+		sortMatches(matches);
 		return matches;
 	}
 
@@ -74,22 +78,44 @@ public class Matches {
 		final Hero hero = getHero(heroId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Mission mission : missions) {
-			matches.add(new Match(scoring.computeScoreForHero(hero, mission), mission.getId(), heroId));
+			matches.add(new Match(scoring.computeScoreForHero(hero, mission),
+					mission, heroId, isWanted(hero, mission)));
 		}
+		sortMatches(matches);
 		return matches;
+	}
+
+	private boolean isWanted(Hero hero, Mission mission) {
+		int q1 = ((Long) em.createQuery(
+				"SELECT count(*) FROM Want x WHERE hero_id='" + hero.getId()
+						+ "' AND mission_id='" + mission.getId() + "'")
+				.getSingleResult()).intValue();
+		return q1 > 0;
+	}
+
+	private void sortMatches(final List<Match> matches) {
+		Collections.sort(matches, new Comparator<Match>() {
+			@Override
+			public int compare(Match match1, Match match2) {
+				int compareScore = match2.getScore().getTotalScore()
+						- match1.getScore().getTotalScore();
+				return compareScore;
+			}
+		});
 	}
 
 	// FIXME remove duplication to Missions.getMission()
 	private Mission getMission(Long missionId) {
-		TypedQuery<Mission> q1 = em.createQuery("SELECT x FROM Mission x WHERE id='"+missionId+"'",
+		TypedQuery<Mission> q1 = em.createQuery(
+				"SELECT x FROM Mission x WHERE id='" + missionId + "'",
 				Mission.class);
 		return q1.getSingleResult();
 	}
-	
+
 	// FIXME remove duplication to Heroes.getHero()
 	private Hero getHero(Long heroId) {
-		TypedQuery<Hero> q1 = em.createQuery("SELECT x FROM Hero x WHERE id='"+heroId+"'",
-				Hero.class);
+		TypedQuery<Hero> q1 = em.createQuery("SELECT x FROM Hero x WHERE id='"
+				+ heroId + "'", Hero.class);
 		return q1.getSingleResult();
 	}
 }

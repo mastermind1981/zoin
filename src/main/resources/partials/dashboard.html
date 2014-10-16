@@ -9,6 +9,7 @@
             <br />Description: {{mission.description}}
             <br />Skills: <span ng-repeat="skill in mission.skillSet.skills">{{skill}}{{$last ? '' : ', '}}</span>
             <br />
+	 <button ng-click="join(mission)">Join</button>
         </div>
     </div>
 
