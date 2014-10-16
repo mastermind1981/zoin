@@ -7,14 +7,16 @@ public class Match {
 	private Long missionID;
 	private Long heroId;
 	private Score score;
+	private boolean wanted;
 
 	public Match() {
 	}
 
-	public Match(Score score, Long missionId, Long heroId) {
+	public Match(Score score, Long missionId, Long heroId, boolean wanted) {
 		this.score = score;
 		this.missionID = missionId;
 		this.heroId = heroId;
+		this.wanted = wanted;
 	}
 
 	public Score getScore() {
@@ -27,6 +29,10 @@ public class Match {
 
 	public Long getHeroId() {
 		return heroId;
+	}
+	
+	public boolean isWanted() {
+		return wanted;
 	}
 
 	@Override
