@@ -31,7 +31,7 @@ public class MissionControl {
 	private static ObjectMapper mapper = new ObjectMapper();
 
 	@GET
-	@Produces("text/plain;charset=" + encoding)
+	@Produces("application/json;charset=" + encoding)
 	public String getClichedMessage() throws JsonGenerationException,
 			JsonMappingException, IOException {
 
