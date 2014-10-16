@@ -24,8 +24,7 @@ public class SkillSet {
 	public SkillSet(){
 	}
 
-	public SkillSet(Set<Skill> set) {
-		this.skills = set;
+	public SkillSet() {
 	}
 	
 	public SkillSet(List<Skill> skills){

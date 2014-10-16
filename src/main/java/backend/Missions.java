@@ -1,6 +1,7 @@
 package backend;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,11 +33,20 @@ public class Missions {
 	@GET
 	@Produces("application/json;charset=" + encoding)
 	@Path("{missionId}")
-	public String getMissions(@PathParam("missionId") String missionId) throws JsonGenerationException,
-			JsonMappingException, IOException {
+	public String getMissions(@PathParam("missionId") String missionId) throws JsonGenerationException, JsonMappingException, IOException {
 		TypedQuery<Mission> q1 = em.createQuery("SELECT x FROM Mission x WHERE id='"+missionId+"'",
 				Mission.class);
 		Mission results = q1.getSingleResult();
+
+		return mapper.writeValueAsString(results);
+	}
+
+	@GET
+	@Produces("application/json;charset=" + encoding)
+	public String getMissions() throws JsonGenerationException, JsonMappingException, IOException {
+		TypedQuery<Mission> q1 = em.createQuery("SELECT x FROM Mission x",
+				Mission.class);
+		List<Mission> results = q1.getResultList();
 
 		return mapper.writeValueAsString(results);
 	}

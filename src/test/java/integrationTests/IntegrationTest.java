@@ -46,6 +46,20 @@ public class IntegrationTest {
 	}
 
 	@Test
+	public void missionCatalogContainsJuniorJavaDeveloper() throws ClientProtocolException, IOException{
+		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/missions");
+		
+		List<Mission> list = retrieve(httpResponse, new TypeReference<List<Mission>>() { });
+		boolean contains = false;
+		for (Mission mission : list) {
+			if (mission.getName().contains("Junior Java Developer")) {
+				contains = true;
+			}
+		}
+		assertTrue(contains);
+	}
+
+	@Test
 	public void matchesForFlorianBesserContainJuniorJavaDeveloper() throws ClientProtocolException, IOException{
 		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/matches?heroId=100");
 		
