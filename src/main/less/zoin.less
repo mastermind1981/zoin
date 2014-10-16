@@ -43,26 +43,57 @@
 }
 
 .missionCard {
-  display:inline-block;
-  border: 1px black solid;
-  transition: width 0.5s ease, height 0.5s ease, transform 0.5s ease;
-  height: 200px;
-  width:200px;
+    display: inline-block;
+    border: 1px black solid;
+    transition: width 0.5s ease, height 0.5s ease;
+    height: 200px;
+    width: 200px;
+    margin: 20px;
+    background: red;
     .missionCardTitle{
         background-color: #69A786;
         color: #FFFFFF;
-        font-weight: bold;
-        
+        font-weight: bold;        
         padding: 10px;
         margin-bottom: 10px;
     }
 }
-
 .isActive {
-  transform: rotate(360deg);
-  width: 700px;
-  height: 500px;
+    /*transform: scale(2);*/
+    width:400px;
+    height:400px;
 }
+.carousel {
+    white-space: nowrap;
+    position: relative;
+    margin-left: 0px;
+    transition: margin-left 0.5 ease;
+}
+.viewport {
+    position: relative;
+    border: 1px solid black;
+    width: 1500px;
+    overflow: hidden;
+    height: 600px;
+    padding-top:150px;
+}
+.leftArrow {
+    position: absolute;
+    background: blue;
+    width: 50px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+}
+.rightArrow {
+    position: absolute;
+    background: green;
+    width: 50px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
 
 
 .matchBatch{
