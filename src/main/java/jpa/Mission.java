@@ -15,9 +15,11 @@ public class Mission {
 	private Long id;
 	
 	@Basic
-	private String name;
+	private String shortName;
 	@Basic
 	private String companyName;
+	@Basic
+	private String description;
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	@ManyToOne
@@ -26,9 +28,10 @@ public class Mission {
 	public Mission(){
 	}
 	
-	public Mission(String name, String companyName, Role role, SkillSet skillSet) {
-		this.name = name;
+	public Mission(String name, String companyName, String description, Role role, SkillSet skillSet) {
+		this.shortName = name;
 		this.companyName = companyName;
+		this.description = description;
 		this.role = role;
 		this.skillSet = skillSet;
 	}
@@ -37,12 +40,16 @@ public class Mission {
 		return id;
 	}
 	
-	public String getName() {
-		return name;
+	public String getShortName() {
+		return shortName;
 	}
 	
 	public String getCompanyName() {
 		return companyName;
+	}
+	
+	public String getDescription() {
+		return description;
 	}
 	
 	public Role getRole() {

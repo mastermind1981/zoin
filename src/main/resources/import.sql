@@ -22,7 +22,7 @@ INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10001', 'Java')
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10001', 'Ant');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10001', 'UnitTesting');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10001', 'SQL');
-INSERT INTO `Mission` (`id`, `companyName`, `name`, `role`, `skillSet_id`) VALUES ('10001', 'Swisscom', 'Junior Java Developer', 'JuniorSoftwareEngineer', '10001');
+INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `description`, `role`, `skillSet_id`) VALUES ('10001', 'Swisscom', 'Junior Java Developer', 'Einfache Java-Entwicklung im SAM-Team.', 'JuniorSoftwareEngineer', '10001');
 
 INSERT INTO `SkillSet` (`id`) VALUES ('10002');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10002', 'Java');
@@ -31,4 +31,4 @@ INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10002', 'Archit
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10002', 'UnitTesting');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10002', 'UITesting');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10002', 'SQL');
-INSERT INTO `Mission` (`id`, `companyName`, `name`, `role`, `skillSet_id`) VALUES ('10002', 'Swisscom', 'Java Architect', 'LeadSoftwareArchitect', '10002');
+INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `description`, `role`, `skillSet_id`) VALUES ('10002', 'Swisscom', 'Java Architect', 'Architekt für SAM-Team.', 'LeadSoftwareArchitect', '10002');
