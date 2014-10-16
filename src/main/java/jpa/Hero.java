@@ -26,6 +26,14 @@ public class Hero {
 	public Hero(){
 	}
 	
+	public Hero(String firstName, String lastName, Role role, SkillSet skillSet) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.role = role;
+		this.skillSet = skillSet;
+	}
+
 	public Long getId() {
 		return id;
 	}

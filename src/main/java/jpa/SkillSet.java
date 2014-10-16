@@ -1,5 +1,7 @@
 package jpa;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.ElementCollection;
@@ -17,6 +19,10 @@ public class SkillSet {
 	private Set<Skill> skills;
 
 	public SkillSet() {
+	}
+	
+	public SkillSet(List<Skill> skills){
+		this.skills = new HashSet<Skill>(skills);
 	}
 	
 	public Long getId() {
