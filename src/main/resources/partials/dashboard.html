@@ -1,8 +1,9 @@
-<div style="overflow:hidden;white-space:nowrap;">
-    <div ng-repeat="match in matches" ng-click="showMission(match.mission)" class="missionCard" ng-class="{isActive: match.mission.isActive}">
-        <div class="missionCardTitle"><span>{{match.mission.shortName}}</span></div>
-        
-        <div><img class="matchBatch" src="img/match_{{match.score.skillScore}}.png" /></div>
+<div class="viewport">
+    <div class="leftArrow" ng-click="moveLeft();">left</div>
+    <div class="rightArrow" ng-click="moveRight();">right</div>
+    <div class="carousel" style="margin-left:{{left}}px;">
+        <div ng-repeat="match in matches" ng-click="showMission(match.mission)" class="missionCard" ng-class="{isActive: match.mission.isActive}">
+           <div><img class="matchBatch" src="img/match_{{match.score.skillScore}}.png" /></div>
         
         <br />Unternehmen: {{match.mission.companyName}}
         <br />Rolle: {{match.mission.role}}
@@ -10,5 +11,6 @@
         <br />Skills: <span ng-repeat="skill in match.score.skillMatches">{{skill}}{{$last ? '' : ', '}}</span>
         <br />
         <button ng-click="join(match.mission)">Join</button>
+    </div>
     </div>
 </div>
