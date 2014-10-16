@@ -30,7 +30,7 @@ public class Heroes {
 	private static ObjectMapper mapper = new ObjectMapper();
 
 	@GET
-	@Produces("text/plain;charset=" + encoding)
+	@Produces("application/json;charset=" + encoding)
 	@Path("{heroId}")
 	public String getHero(@PathParam("heroId") String heroId) throws JsonGenerationException,
 			JsonMappingException, IOException {
