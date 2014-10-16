@@ -20,6 +20,9 @@ public class SkillSet {
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
 	private Set<Skill> skills;
+	
+	public SkillSet(){
+	}
 
 	public SkillSet(Set<Skill> set) {
 		this.skills = set;
