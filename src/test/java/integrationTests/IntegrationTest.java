@@ -22,7 +22,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.junit.Test;
 
-public class HeroesTest {
+public class IntegrationTest {
 
 	@Test
 	public void hero931IsNamedFrankBeeh() throws ClientProtocolException, IOException{
@@ -40,7 +40,7 @@ public class HeroesTest {
 		
 		Mission mission = retrieveResourceFromResponse(httpResponse, Mission.class);
 		//List<Hero> list = retrieve(httpResponse, new TypeReference<List<Hero>>() { });
-	    assertEquals( "Old Build Specialist", mission.getName() );
+	    assertEquals( "Junior Java Developer", mission.getName() );
 	}
 
 	/*@Test

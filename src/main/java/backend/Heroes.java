@@ -34,7 +34,6 @@ public class Heroes {
 	@Path("{heroId}")
 	public String getHero(@PathParam("heroId") String heroId) throws JsonGenerationException,
 			JsonMappingException, IOException {
-
 		TypedQuery<Hero> q1 = em.createQuery("SELECT x FROM Hero x WHERE id='"+heroId+"'",
 				Hero.class);
 		Hero results = q1.getSingleResult();

@@ -1,7 +1,6 @@
 package backend;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,8 +8,8 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 
 import jpa.Mission;
 
@@ -32,12 +31,12 @@ public class Missions {
 
 	@GET
 	@Produces("application/json;charset=" + encoding)
-	public String getMissions(@QueryParam("hero") int heroId) throws JsonGenerationException,
+	@Path("{missionId}")
+	public String getMissions(@PathParam("missionId") String missionId) throws JsonGenerationException,
 			JsonMappingException, IOException {
-		TypedQuery<Mission> q1 = em.createQuery("SELECT x FROM Mission x",
+		TypedQuery<Mission> q1 = em.createQuery("SELECT x FROM Mission x WHERE id='"+missionId+"'",
 				Mission.class);
-		// FIXME Filter by match for Hero
-		List<Mission> results = q1.getResultList();
+		Mission results = q1.getSingleResult();
 
 		return mapper.writeValueAsString(results);
 	}
