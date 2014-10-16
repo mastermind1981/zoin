@@ -8,6 +8,8 @@ import java.util.List;
 import jpa.Hero;
 import jpa.Mission;
 
+import objects.Match;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
@@ -43,31 +45,33 @@ public class IntegrationTest {
 	    assertEquals( "Junior Java Developer", mission.getName() );
 	}
 
-	/*@Test
-	public void matchesForFrankBeehContainOldBuildSpecialist() throws ClientProtocolException, IOException{
-		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/matches?hero=931");
+	@Test
+	public void matchesForFlorianBesserContainJuniorJavaDeveloper() throws ClientProtocolException, IOException{
+		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/matches?heroId=100");
 		
 		List<Match> list = retrieve(httpResponse, new TypeReference<List<Match>>() { });
 		boolean contains = false;
 		for (Match match : list) {
-			//TODO
-		}
-		assertTrue(contains);
-	}
-	
-	@Test
-	public void matchesForOldBuildSpecialistContainFrankBeeh() throws ClientProtocolException, IOException{
-		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/matches?mission=1");
-		
-		List<Mission> list = retrieve(httpResponse, new TypeReference<List<Mission>>() { });
-		boolean contains = false;
-		for (Mission mission : list) {
-			if (mission.getName().equals("Old Build Specialist")) {
+			if (match.getMissionID() == 1) {
 				contains = true;
 			}
 		}
 		assertTrue(contains);
-	}*/
+	}
+
+	@Test
+	public void matchesForJuniorJavaDeveloperContainFlorianBesser() throws ClientProtocolException, IOException{
+		HttpResponse httpResponse = sendRequest("http://localhost:8080/zoin/rest-prefix/matches?missionId=1");
+		
+		List<Match> list = retrieve(httpResponse, new TypeReference<List<Match>>() { });
+		boolean contains = false;
+		for (Match match : list) {
+			if (match.getHeroId() == 100) {
+				contains = true;
+			}
+		}
+		assertTrue(contains);
+	}
 
 	private HttpResponse sendRequest(String uri) throws IOException,
 			ClientProtocolException {

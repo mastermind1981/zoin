@@ -7,6 +7,15 @@ INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('1', '6');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('1', '7');
 INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `role`, `skillSet_id`) VALUES ('931', 'Frank', 'Beeh', 'PrincipalConsultant', '1');
 
+// Hero Florian
+INSERT INTO `SkillSet` (`id`) VALUES ('2');
+INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('2', '0');
+INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('2', '2');
+INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('2', '3');
+INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('2', '6');
+INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('2', '8');
+INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `role`, `skillSet_id`) VALUES ('100', 'Florian', 'Besser', 'JuniorSoftwareEngineer', '2');
+
 //Missions
 INSERT INTO `SkillSet` (`id`) VALUES ('1001');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('1001', '0');
