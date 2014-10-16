@@ -6,5 +6,10 @@ public enum Skill {
 	Gradle,
 	Ant,
 	Maven,
-	Architektur;
+	Architektur,
+	UnitTesting,
+	UITesting,
+	SQL
+	// Add new skills below:
+	;
 }
