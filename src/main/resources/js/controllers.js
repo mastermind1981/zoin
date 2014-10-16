@@ -25,12 +25,8 @@ angular.module('myApp.controllers', [])
 .controller('DashboardCtrl', function ($scope, $rootScope, zoinAPIService) {
     $scope.init = function() {
         $scope.missions = zoinAPIService.Mission.query();
-<<<<<<< HEAD
         $scope.matches = zoinAPIService.Match.query({"heroId": $rootScope.heroId});
-=======
-        $scope.match = zoinAPIService.Match.query({"heroId": $rootScope.heroId});
         $scope.left = 0;
->>>>>>> e9094a68e381e534e0b4632a6c604981cbb00a99
     }
     
     $scope.init();    
