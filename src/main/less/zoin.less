@@ -211,35 +211,39 @@
   -moz-user-select: none;
 }
 
-.leftArrow {
+.leftArrow, .rightArrow {
   position: absolute;
-  width: 150px;
-  height: 600px;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  background-image: url('../img/arrowleft.png');
-  background-size: 60px 200px;
-  background-color: white;
-  background-repeat: no-repeat;
-  background-position: center;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
 
+  top: 50%;
+  margin-top: -35px;
+  z-index: 1;
+  cursor: pointer;
+
+  background-color: rgba(200, 200, 200, 0.9);
+  text-align: center;
+  font-size: 36px;
+  border: 1px solid #FFF;
+  border-radius: 50%;
+
+  span.glyphicon {
+    top: 0;
+    line-height: inherit;
+  }
+}
+
+.leftArrow {
+  left: 20px;
+
+  span.glyphicon {
+    margin-left: -5px;
+  }
 }
 
 .rightArrow {
-  position: absolute;
-  width: 150px;
-  height: 600px;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  background-image: url('../img/arrowright.png');
-  background-size: 60px 200px;
-  background-color: white;
-  background-repeat: no-repeat;
-  background-position: center;
+  right: 20px;
 }
 
 .matchBatch {
