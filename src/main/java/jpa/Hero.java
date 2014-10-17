@@ -23,6 +23,8 @@ public class Hero {
 	private String lastName;
 	@Enumerated(EnumType.STRING)
 	private Role role;
+	@Basic
+	private Integer zoins;
 	@ManyToOne
 	private SkillSet skillSet;
 	@ManyToMany
@@ -36,12 +38,13 @@ public class Hero {
 	public Hero(){
 	}
 	
-	public Hero(String firstName, String lastName, Role role, SkillSet skillSet) {
+	public Hero(String firstName, String lastName, Role role, SkillSet skillSet, Integer zoins) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.role = role;
 		this.skillSet = skillSet;
+		this.zoins = zoins;
 	}
 
 	public Long getId() {
@@ -78,5 +81,9 @@ public class Hero {
 	
 	public Skill getEducationTarget() {
 		return educationTarget;
+	}
+	
+	public Integer getZoins() {
+		return zoins;
 	}
 }

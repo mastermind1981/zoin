@@ -83,17 +83,22 @@ angular.module('myApp.controllers', [])
             "lcuId": $rootScope.lcu
         });
 
-        $scope.matches = zoinAPIService.Match.query({
-            "missionId": 10001
-        }, function () {
-            /*if ($scope.matches.length > 0){
-            $scope.matches[0].mission.isActive = true;
-         }*/
-        });
-
         $scope.left = 180;
         $scope.leftHero = 180;
 
+    }
+    
+    $scope.updateHeroes = function(missionId) {
+        $scope.matches = zoinAPIService.Match.query({
+            "missionId": missionId
+        });
+        $scope.missions.forEach(function (element) {
+            if(element.id == missionId) {
+                element.isActive = true;
+            }else{
+                element.isActive = false;
+            }
+        });
     }
 
     $scope.init();
