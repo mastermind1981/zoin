@@ -3,12 +3,12 @@ package jpa;
 import java.util.Set;
 
 import javax.persistence.Basic;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -25,7 +25,7 @@ public class Hero {
 	private Role role;
 	@ManyToOne
 	private SkillSet skillSet;
-	@ElementCollection
+	@ManyToMany
 	private Set<Medal> medals;
 	@Basic
 	@Enumerated(EnumType.STRING)

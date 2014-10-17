@@ -44,6 +44,7 @@ INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `description`, `role`, 
 //Medals
 INSERT INTO `Medal` (`id`, `comment`, `imagePath`) VALUES ('1', 'SQL Expert', 'img/sql.png');
 INSERT INTO `Medal` (`id`, `comment`, `imagePath`) VALUES ('2', 'Social Expert', 'img/social.png');
+INSERT INTO `Medal` (`id`, `comment`, `imagePath`) VALUES ('3', 'Other stuff', 'img/other.png');
 
 //Medals to Heroes
 INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('100', '1');
