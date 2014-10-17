@@ -4,7 +4,7 @@ INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('931', 'Java');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('931', 'Ant');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('931', 'Architektur');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('931', 'UITesting');
-INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`) VALUES ('931', 'Frank', 'Beeh', 'img/Head6.png', 'PrincipalConsultant', '931', 'SQL');
+INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`, `zoins`) VALUES ('931', 'Frank', 'Beeh', 'img/Head6.png', 'PrincipalConsultant', '931', 'SQL', 3);
 
 // Hero Florian
 INSERT INTO `SkillSet` (`id`) VALUES ('100');
@@ -13,14 +13,14 @@ INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('100', 'Gradle')
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('100', 'Ant');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('100', 'UnitTesting');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('100', 'SQL');
-INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`) VALUES ('100', 'Florian', 'Besser', 'img/Head1.png', 'JuniorSoftwareEngineer', '100', 'Architektur');
+INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`, `zoins`) VALUES ('100', 'Florian', 'Besser', 'img/Head1.png', 'JuniorSoftwareEngineer', '100', 'Architektur', 2);
 
 // Hero Matthias Bader (kommt nicht in Frage)
 INSERT INTO `SkillSet` (`id`) VALUES ('101');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'DotNet');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'UnitTesting');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'SQL');
-INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`) VALUES ('101', 'Matthias', 'Baader', 'img/Head7.png', 'SeniorSoftwareEngineer', '101', 'UITesting');
+INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`, `zoins`) VALUES ('101', 'Matthias', 'Baader', 'img/Head7.png', 'SeniorSoftwareEngineer', '101', 'UITesting', 4);
 
 // Hero Thomas Hederer (schlechter geeignet, aber interessiert)
 INSERT INTO `SkillSet` (`id`) VALUES ('102');

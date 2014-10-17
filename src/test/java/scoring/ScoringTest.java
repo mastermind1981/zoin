@@ -28,11 +28,12 @@ public class ScoringTest {
 	public void setUp() {
 		scoring = new Scoring();
 		worstMatchingHero = new Hero(null, null, Role.JuniorSoftwareEngineer,
-				new SkillSet(Arrays.asList(Skill.Ant, Skill.Java, Skill.SQL)));
+				new SkillSet(Arrays.asList(Skill.Ant, Skill.Java, Skill.SQL)),
+				3);
 		worstMatchingHero.setEducationTarget(Skill.UnitTesting);
 		bestMatchingHero = new Hero(null, null, Role.LeadSoftwareArchitect,
 				new SkillSet(Arrays.asList(Skill.Ant, Skill.Java, Skill.SQL,
-						Skill.Architektur)));
+						Skill.Architektur)), 2);
 		bestMatchingHero.setEducationTarget(Skill.UITesting);
 		mission = new Mission(null, null, null, Role.LeadSoftwareArchitect,
 				new SkillSet(Arrays.asList(Skill.Ant, Skill.SQL,

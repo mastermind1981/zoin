@@ -53,8 +53,9 @@ public class IntegrationTest {
 		assertEquals(Role.PrincipalConsultant, hero.getRole());
 		assertEquals(
 				new HashSet<Skill>(Arrays.asList(Skill.Java, Skill.Ant,
-						Skill.Architektur, Skill.UITesting, Skill.UnitTesting)),
+						Skill.Architektur, Skill.UITesting)),
 				hero.getSkillSet().getSkills());
+		assertEquals(Integer.valueOf(3), hero.getZoins());
 	}
 
 	@Test
@@ -228,7 +229,7 @@ public class IntegrationTest {
 			if (MISSION_JUNIOR_JAVA_DEVELOPER_ID.equals(match.getMission()
 					.getId())) {
 				assertEquals(Integer.valueOf(zoins), match.getZoins());
-				assertEquals(5 + zoins, match.getScore().getTotalScore());
+				assertEquals(4 + zoins, match.getScore().getTotalScore());
 				contains = true;
 			}
 		}
