@@ -28,7 +28,7 @@ INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('102', 'Java');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('102', 'UnitTesting');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('102', 'Architektur');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('102', 'Gradle');
-INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`) VALUES ('102', 'Thomas', 'Hederer', 'img/Head9.png', 'SeniorSoftwareEngineer', '102', 'UITesting');
+INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`, `zoins`) VALUES ('102', 'Thomas', 'Hederer', 'img/Head9.png', 'SeniorSoftwareEngineer', '102', 'UITesting', 2);
 
 // Hero Alexandro Wermer (besser geeignet, aber nicht interessiert)
 INSERT INTO `SkillSet` (`id`) VALUES ('103');
@@ -37,7 +37,7 @@ INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('103', 'UnitTest
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('103', 'Architektur');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('103', 'Ant');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('103', 'Maven');
-INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`) VALUES ('103', 'Alexandro', 'Wermer', 'img/Head13.png', 'SeniorSoftwareEngineer', '103', 'UITesting');
+INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`, `zoins`) VALUES ('103', 'Alexandro', 'Wermer', 'img/Head13.png', 'SeniorSoftwareEngineer', '103', 'UITesting', 2);
 
 //LCUs
 INSERT INTO `LCU` (`id`, `firstName`, `lastName`) VALUES ('1', 'Wolfgang', 'Giersche');
