@@ -4,8 +4,9 @@
 
 angular.module('myApp.controllers', [])
     .run(function ($rootScope) {
-        $rootScope.heroId = 931;
+        $rootScope.heroId = 100;
         $rootScope.missionId = 10001;
+        $rootScope.lcu = 1;
     })
 
 .controller('HeroCardCtrl', function ($scope, $rootScope, zoinAPIService) {
@@ -72,11 +73,15 @@ angular.module('myApp.controllers', [])
 
 })
 
-.controller('MissionsCtrl', function ($scope, $rootScope, zoinAPIService) {
+.controller('MissionsCtrl', function ($scope, $rootScope, $routeParams, zoinAPIService) {
     
     
     $scope.init = function () {
-        $scope.missions = zoinAPIService.Mission.query();
+        $rootScope.lcu = Number($routeParams.lcu);
+
+        $scope.missions = zoinAPIService.MissionByLcu.query({
+            "lcuId": $rootScope.lcu
+        });
 
         $scope.matches = zoinAPIService.Match.query({
             "missionId": 10001

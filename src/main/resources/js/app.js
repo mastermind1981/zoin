@@ -12,7 +12,7 @@ angular.module('myApp', [
 ]).
 config(['$routeProvider',
     function ($routeProvider) {
-        $routeProvider.when('/missions', {
+        $routeProvider.when('/missions/:lcu', {
            templateUrl: 'partials/missions.html',
             controller: 'MissionsCtrl'
         });
