@@ -37,7 +37,7 @@ INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('103', 'UnitTest
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('103', 'Architektur');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('103', 'Ant');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('103', 'Maven');
-INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`) VALUES ('103', 'Alexandro', 'Wermer', 'img/Head13.png', 'SeniorSoftwareEngineer', '103', 'UITesting');
+INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`, `zoins`) VALUES ('103', 'Alexandro', 'Wermer', 'img/Head13.png', 'SeniorSoftwareEngineer', '103', 'UITesting', 4);
 
 //LCUs
 INSERT INTO `LCU` (`id`, `firstName`, `lastName`) VALUES ('1', 'Wolfgang', 'Giersche');
