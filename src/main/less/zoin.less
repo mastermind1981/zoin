@@ -194,7 +194,53 @@
 }
 
 .missionCard {
+  display: inline-block;
+  border: 1px black solid;
+  transition: width 0.5s ease, height 0.5s ease;
+  height: 400px;
+  width: 500px;
+  margin: 20px;
+  overflow: hidden;
+  background: #F3F3F3;
+  vertical-align: middle;
 
+  .missionCardTitle {
+    background-color: #69A786;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 20px 15px;
+    margin-bottom: 10px;
+
+    h2 {
+      margin: 0 0px 10px 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .missionRole {
+    text-align: center;
+  }
+
+  button {
+    background-color: #ef8229;
+    border: medium none;
+    height: 35px;
+    width: 49%;
+
+    &.joinButton {
+      margin-left: 3px;
+    }
+  }
+
+  h3 {
+    text-align: center;
+    width: 100%;
+  }
+
+  p {
+    text-align: center;
+  }
 }
 
 .isActive {
