@@ -13,12 +13,29 @@
         </div>
     </div>
 
+    <div class="col-sm-4 hidden-xs logo">
+        <img class="pull-right" src="img/logo.png" />
+    </div>
+    <div class="row avatarDetails">
     <div class="row subHeader">
         <div class="col-sm-6">
-            &nbsp;
+            Skills:<br />
+            <ul>
+                <li ng-repeat="skill in hero.skillSet.skills">
+                    {{skill}}
+                </li>
+            </ul>
         </div>
         <div class="col-sm-6">
-            &nbsp;
+            Ziel:<br />
+             <ul>
+                <li>
+                    {{hero.educationSkill}}
+                </li>
+            </ul>
+            <div class="avatarMedals">
+            <span ng-repeat="medal in hero.medals"><img src={{medal.imagePath}} alt={{medal.comment}} title={{medal.comment}} /></span> 
+            </div>
         </div>
         <a href="#" class="expandIcon" ng-click="toggleSubHeader(this, $event)">
             <span class="glyphicon glyphicon-chevron-down"></span>

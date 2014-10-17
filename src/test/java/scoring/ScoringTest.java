@@ -25,49 +25,58 @@ public class ScoringTest {
 
 	@Test
 	public void computeScoreForHero_bestMatch() {
+		final int zoins = 3;
 		final Map<Skill, Boolean> expectedSkillMatches = new TreeMap<Skill, Boolean>();
 		expectedSkillMatches.put(Skill.Ant, true);
 		expectedSkillMatches.put(Skill.Java, false);
 		expectedSkillMatches.put(Skill.SQL, true);
 		expectedSkillMatches.put(Skill.Architektur, true);
-		assertEquals(new Score(13, true, expectedSkillMatches, 3).toString(),
-				scoring.computeScoreForHero(bestMatchingHero, mission)
+		assertEquals(
+				new Score(13 + zoins, true, expectedSkillMatches, zoins)
+						.toString(),
+				scoring.computeScoreForHero(bestMatchingHero, mission, zoins)
 						.toString());
 	}
 
 	@Test
 	public void computeScoreForHero_worstMatch() {
+		final int zoins = 0;
 		final Map<Skill, Boolean> expectedSkillMatches = new TreeMap<Skill, Boolean>();
 		expectedSkillMatches.put(Skill.Ant, true);
 		expectedSkillMatches.put(Skill.Java, false);
 		expectedSkillMatches.put(Skill.SQL, true);
-		assertEquals(new Score(2, false, expectedSkillMatches, 2).toString(),
-				scoring.computeScoreForHero(worstMatchingHero, mission)
+		assertEquals(new Score(2 + zoins, false, expectedSkillMatches, 2)
+				.toString(),
+				scoring.computeScoreForHero(worstMatchingHero, mission, zoins)
 						.toString());
 	}
 
 	@Test
 	public void computeScoreForMission_bestMatch() {
+		final int zoins = 2;
 		final Map<Skill, Boolean> expectedSkillMatches = new TreeMap<Skill, Boolean>();
 		expectedSkillMatches.put(Skill.Ant, true);
 		expectedSkillMatches.put(Skill.SQL, true);
 		expectedSkillMatches.put(Skill.Architektur, true);
 		expectedSkillMatches.put(Skill.UITesting, false);
-		assertEquals(new Score(13, true, expectedSkillMatches, 3).toString(),
-				scoring.computeScoreForMission(mission, bestMatchingHero)
+		assertEquals(
+				new Score(13 + zoins, true, expectedSkillMatches, 3).toString(),
+				scoring.computeScoreForMission(mission, bestMatchingHero, zoins)
 						.toString());
 	}
 
 	@Test
 	public void computeScoreForMission_worstMatch() {
+		final int zoins = 1;
 		final Map<Skill, Boolean> expectedSkillMatches = new TreeMap<Skill, Boolean>();
 		expectedSkillMatches.put(Skill.Ant, true);
 		expectedSkillMatches.put(Skill.SQL, true);
 		expectedSkillMatches.put(Skill.Architektur, false);
 		expectedSkillMatches.put(Skill.UITesting, false);
-		assertEquals(new Score(2, false, expectedSkillMatches, 2).toString(),
-				scoring.computeScoreForMission(mission, worstMatchingHero)
-						.toString());
+		assertEquals(
+				new Score(2 + zoins, false, expectedSkillMatches, 2).toString(),
+				scoring.computeScoreForMission(mission, worstMatchingHero,
+						zoins).toString());
 	}
 
 	@Before

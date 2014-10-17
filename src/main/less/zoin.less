@@ -1,30 +1,43 @@
 .header {
-  background-color: rgba(33, 33, 33, 0.96);
+    background-color: rgba(33, 33, 33, 0.96);
 
-  .avatar, .logo {
-      padding: 20px 5px;
-  }
+    .avatar, .logo {
+        padding: 20px 5px;
+    }
 
-  .avatar {
-      img {
-          display: inline-block;
-          border-radius: 50%;
-          border: 2px solid white;
-          width: 100px;
-          margin-right: 20px;
-          vertical-align: top;
-      }
-      .avatar-text {
-          display: inline-block;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          h2, h3 {
-              margin-top: 10px;
-              color: white;
-          }
-      }
-  }
+    ul{
+        list-style: none;
+    }
+
+    .avatar {
+        img {
+            display: inline-block;
+            border-radius: 50%;
+            border: 2px solid white;
+            width: 100px;
+            margin-right: 20px;
+            vertical-align: top;
+        }
+        .avatar-text {
+            display: inline-block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            h2, h3 {
+                margin-top: 10px;
+                color: white;
+            }
+        }
+    }
+
+    .avatarDetails{
+        color: #FFFFFF;
+        .avatarMedals{
+            span img{
+                height: 60px;
+            }
+        }
+    }
 
   .logo {
     display: inline-block;
@@ -74,6 +87,7 @@
     margin: 20px;
     overflow: hidden;
     background: #F3F3F3;
+    vertical-align: middle;
     .missionCardTitle{
         background-color: #69A786;
         color: #FFFFFF;
@@ -84,11 +98,33 @@
     .missionRole{
         text-align: center;
     }
+    
+    button {
+        background-color: #ef8229;
+        border: medium none;
+        height: 44px;
+        width: 49%;   
+        
+        &.joinButton {
+            margin-left:3px;
+        }
+    }
+    
+    h3 {
+        text-align: center;
+        width:100%;  
+    }
+    
+    p {
+        text-align: center; 
+    }
+    
+    
 }
 .isActive {
-    /*transform: scale(2);*/
-    width: 400px;
-    height: 400px;
+    transform: rotate(360deg);
+    width: 550px;
+    height: 500px;
 }
 .carousel {
     white-space: nowrap;
@@ -98,29 +134,36 @@
 }
 .viewport {
     position: relative;
-    border: 1px solid black;
     width: 1500px;
     overflow: hidden;
     height: 600px;
-    padding-top: 150px;
 }
 .leftArrow {
     position: absolute;
-    background: blue;
-    width: 50px;
+    width: 100px;
     left: 0;
     top: 0;
     bottom: 0;
     z-index: 1;
+    background-image: url('../img/arrowleft.png');
+    background-size: 60px 200px;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center;
+
 }
 .rightArrow {
     position: absolute;
-    background: green;
-    width: 50px;
+    width: 100px;
     right: 0;
     top: 0;
     bottom: 0;
     z-index: 1;
+    background-image: url('../img/arrowright.png');
+    background-size: 60px 200px;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 
@@ -129,4 +172,12 @@
     margin-left: auto;
     margin-right: auto;
     height: 150px;
+}
+
+.invisible {
+    display: none;   
+}
+
+.matchingSkills {
+    text-align: center;
 }

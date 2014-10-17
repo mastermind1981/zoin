@@ -160,22 +160,27 @@ public class IntegrationTest {
 	}
 
 	@Test
-	public void setAndReadWant() throws ClientProtocolException, IOException {
-		postRequest(getWantsUrl() + "/" + HERO_FLORIAN_ID + "/"
-				+ MISSION_JUNIOR_JAVA_DEVELOPER_ID);
-		HttpResponse httpResponse = getRequest(getWantsUrl() + "/"
+	public void setAndReadEducationTarget() throws ClientProtocolException,
+			IOException {
+		HttpPost request = new HttpPost(getHeroesUrl());
+
+		request.setEntity(new StringEntity("{\"heroId\":\"" + HERO_FLORIAN_ID
+				+ "\",\"educationSkill\":\"Architektur\"}", ContentType
+				.create("application/json")));
+
+		HttpResponse r = HttpClientBuilder.create().build().execute(request);
+		assertEquals(HttpStatus.SC_NO_CONTENT, r.getStatusLine()
+				.getStatusCode());
+
+		HttpResponse httpResponse = getRequest(getHeroesUrl() + "/"
 				+ HERO_FLORIAN_ID);
 
-		List<Long> list = retrieve(httpResponse,
-				new TypeReference<List<Long>>() {
-				});
-		boolean contains = false;
-		for (Long match : list) {
-			if (MISSION_JUNIOR_JAVA_DEVELOPER_ID.equals(match)) {
-				contains = true;
-			}
-		}
-		assertTrue(contains);
+		final Hero hero = retrieveResourceFromResponse(httpResponse, Hero.class);
+		assertEquals("Florian", hero.getFirstName());
+		assertEquals("Besser", hero.getLastName());
+		assertEquals(Role.JuniorSoftwareEngineer, hero.getRole());
+		assertEquals(Skill.Architektur, hero.getEducationTarget());
+
 	}
 
 	private String getWantsUrl() {
@@ -197,25 +202,31 @@ public class IntegrationTest {
 	@Test
 	public void setAndReadWantJSON() throws ClientProtocolException,
 			IOException {
+		final int zoins = 2;
+
 		HttpPost request = new HttpPost(getWantsUrl());
 
-		request.setEntity(new StringEntity("{\"heroId\":\"" + HERO_FLORIAN_ID
+		request.setEntity(new StringEntity("{\"heroId\":\"" + HERO_FRANK_ID
 				+ "\",\"missionId\":\"" + MISSION_JUNIOR_JAVA_DEVELOPER_ID
-				+ "\"}", ContentType.create("application/json")));
+				+ "\",\"zoins\":\"" + zoins + "\"}", ContentType
+				.create("application/json")));
 
 		HttpResponse r = HttpClientBuilder.create().build().execute(request);
 		assertEquals(HttpStatus.SC_NO_CONTENT, r.getStatusLine()
 				.getStatusCode());
 
-		HttpResponse httpResponse = getRequest(getWantsUrl() + "/"
-				+ HERO_FLORIAN_ID);
+		HttpResponse httpResponse = getRequest(getMatchesUrl() + "?heroId="
+				+ HERO_FRANK_ID);
 
-		List<Long> list = retrieve(httpResponse,
-				new TypeReference<List<Long>>() {
+		List<Match> list = retrieve(httpResponse,
+				new TypeReference<List<Match>>() {
 				});
 		boolean contains = false;
-		for (Long match : list) {
-			if (MISSION_JUNIOR_JAVA_DEVELOPER_ID.equals(match)) {
+		for (Match match : list) {
+			if (MISSION_JUNIOR_JAVA_DEVELOPER_ID.equals(match.getMission()
+					.getId())) {
+				assertEquals(zoins, match.getZoins());
+				assertEquals(3 + zoins, match.getScore().getTotalScore());
 				contains = true;
 			}
 		}
@@ -236,17 +247,6 @@ public class IntegrationTest {
 				.getMimeType();
 		assertEquals(jsonMimeType, mimeType);
 		return httpResponse;
-	}
-
-	private void postRequest(String uri) throws IOException,
-			ClientProtocolException {
-		HttpUriRequest request = new HttpPost(uri);
-
-		HttpResponse httpResponse = HttpClientBuilder.create().build()
-				.execute(request);
-
-		assertEquals(HttpStatus.SC_NO_CONTENT, httpResponse.getStatusLine()
-				.getStatusCode());
 	}
 
 	private static <T> T retrieve(HttpResponse httpResponse,

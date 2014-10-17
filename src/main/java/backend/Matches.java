@@ -17,7 +17,9 @@ import javax.ws.rs.QueryParam;
 
 import jpa.Hero;
 import jpa.Mission;
+import jpa.Want;
 import objects.Match;
+import objects.Score;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -65,9 +67,12 @@ public class Matches {
 		final Mission mission = getMission(missionId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Hero hero : heroes) {
-			matches.add(new Match(
-					scoring.computeScoreForMission(mission, hero), mission,
-					hero, isWanted(hero, mission)));
+			final int zoins = getZoins(hero, mission);
+			final Score score = scoring.computeScoreForMission(mission,
+					hero, zoins);
+			if (score.getSkillScore() > 0) {
+				matches.add(new Match(score, mission, hero, zoins));
+			}
 		}
 		sortMatches(matches);
 		return matches;
@@ -78,19 +83,26 @@ public class Matches {
 		final Hero hero = getHero(heroId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Mission mission : missions) {
-			matches.add(new Match(scoring.computeScoreForHero(hero, mission),
-					mission, hero, isWanted(hero, mission)));
+			final int zoins = getZoins(hero, mission);
+			final Score score = scoring.computeScoreForHero(hero, mission,
+					zoins);
+			if (score.getSkillScore() > 0) {
+				matches.add(new Match(score, mission, hero, zoins));
+			}
 		}
 		sortMatches(matches);
 		return matches;
 	}
 
-	private boolean isWanted(Hero hero, Mission mission) {
-		int q1 = ((Long) em.createQuery(
-				"SELECT count(*) FROM Want x WHERE hero_id='" + hero.getId()
-						+ "' AND mission_id='" + mission.getId() + "'")
-				.getSingleResult()).intValue();
-		return q1 > 0;
+	private int getZoins(Hero hero, Mission mission) {
+		final List<Want> wants = em.createQuery(
+				"SELECT x FROM Want x WHERE hero_id='" + hero.getId()
+						+ "' AND mission_id='" + mission.getId() + "'",
+				Want.class).getResultList();
+		if (wants.isEmpty()) {
+			return 0;
+		}
+		return wants.get(0).getZoins();
 	}
 
 	private void sortMatches(final List<Match> matches) {

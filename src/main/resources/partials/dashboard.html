@@ -1,6 +1,6 @@
 <div class="viewport">
-    <div class="leftArrow" ng-click="moveLeft();">left</div>
-    <div class="rightArrow" ng-click="moveRight();">right</div>
+    <div class="leftArrow" ng-click="moveLeft();"></div>
+    <div class="rightArrow" ng-click="moveRight();"></div>
     <div class="carousel" style="transform:translateX({{left}}px);">
         <div ng-repeat="match in matches" ng-click="showMission(match.mission)" class="missionCard" ng-class="{isActive: match.mission.isActive}">
             <div class="missionCardTitle">
@@ -14,10 +14,11 @@
                 <div class="missionDetails">
                     <h3>Projektbeschreibung</h3>
                     <p>{{match.mission.description}}</p>
-                     <br />Skills: <span ng-repeat="skill in match.score.skillMatches">{{skill}}{{$last ? '' : ', '}}</span>
-                <br />
-                <hr />
-                <button ng-click="join(match.mission)">Join</button>
+                     <p>Matching Skills: <span ng-repeat="(skill, show) in match.score.skillMatches">{{skill}}{{$last ? '' : '  '}}</span></p>
+                    <br />
+                    <hr />
+                    <button class="joinButton" ng-click="join(match.mission, 0)">Join</button>
+                    <button class="zoinButton" ng-click="join(match.mission, 1)">1 Zoin</button>
                 </div>
             </div>
         </div>
