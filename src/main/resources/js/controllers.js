@@ -22,7 +22,7 @@ angular.module('myApp.controllers', [])
     $scope.mission = zoinAPIService.Mission.get({"missionId": 1});
 })
 
-.controller('DashboardCtrl', function ($scope, $rootScope, zoinAPIService) {
+.controller('DashboardCtrl', function ($scope, $rootScope, $routeParams, zoinAPIService) {
     $scope.init = function() {
         $scope.missions = zoinAPIService.Mission.query();
         $scope.matches = zoinAPIService.Match.query({"heroId": $rootScope.heroId}, function() {
@@ -31,6 +31,8 @@ angular.module('myApp.controllers', [])
         $scope.left = 180;
         
     }
+
+    $rootScope.heroId = Number($routeParams.heroId);
     
     $scope.init();    
      $scope.$watch('heroId', function() {
