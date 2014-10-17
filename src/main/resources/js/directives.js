@@ -19,7 +19,7 @@ angular.module('myApp.directives', [])
             $scope.init = function() {
                 $scope.isMissionsPath = window.location.hash.contains('missions');
                 $scope.hero = zoinAPIService.Hero.get({"heroId": $scope.heroId});
-                $scope.lcu = zoinAPIService.Lcu.get({"lcuId": $scope.lcuId});
+                $scope.lcuExpanded = zoinAPIService.Lcu.get({"lcuId": $scope.lcu});
             }
 
             $scope.toggleSubHeader = function(element, $event) {

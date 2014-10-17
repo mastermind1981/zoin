@@ -3,7 +3,6 @@ INSERT INTO `SkillSet` (`id`) VALUES ('931');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('931', 'Java');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('931', 'Ant');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('931', 'Architektur');
-INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('931', 'UnitTesting');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('931', 'UITesting');
 INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`) VALUES ('931', 'Frank', 'Beeh', 'img/Head6.png', 'PrincipalConsultant', '931', 'SQL');
 

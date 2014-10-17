@@ -16,6 +16,7 @@ import jpa.Role;
 import jpa.Skill;
 import objects.Match;
 import objects.Score;
+import objects.SkillMatch;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -111,11 +112,11 @@ public class IntegrationTest {
 			previousTotalScore = match.getScore().getTotalScore();
 			if (match.getMission().getId()
 					.equals(MISSION_JUNIOR_JAVA_DEVELOPER_ID)) {
-				final Map<Skill, Boolean> expectedSkillMatching = new TreeMap<Skill, Boolean>();
-				expectedSkillMatching.put(Skill.Java, true);
-				expectedSkillMatching.put(Skill.Ant, true);
-				expectedSkillMatching.put(Skill.UnitTesting, true);
-				expectedSkillMatching.put(Skill.SQL, true);
+				final Map<Skill, SkillMatch> expectedSkillMatching = new TreeMap<Skill, SkillMatch>();
+				expectedSkillMatching.put(Skill.Java, SkillMatch.Yes);
+				expectedSkillMatching.put(Skill.Ant, SkillMatch.Yes);
+				expectedSkillMatching.put(Skill.UnitTesting, SkillMatch.Yes);
+				expectedSkillMatching.put(Skill.SQL, SkillMatch.Yes);
 				assertEquals(
 						new Score(14, true, expectedSkillMatching, 4)
 								.toString(),
@@ -144,12 +145,12 @@ public class IntegrationTest {
 					.getTotalScore());
 			previousTotalScore = match.getScore().getTotalScore();
 			if (match.getHero().getId().equals(HERO_FLORIAN_ID)) {
-				final Map<Skill, Boolean> expectedSkillMatching = new TreeMap<Skill, Boolean>();
-				expectedSkillMatching.put(Skill.Java, true);
-				expectedSkillMatching.put(Skill.Gradle, false);
-				expectedSkillMatching.put(Skill.Ant, true);
-				expectedSkillMatching.put(Skill.UnitTesting, true);
-				expectedSkillMatching.put(Skill.SQL, true);
+				final Map<Skill, SkillMatch> expectedSkillMatching = new TreeMap<Skill, SkillMatch>();
+				expectedSkillMatching.put(Skill.Java, SkillMatch.Yes);
+				expectedSkillMatching.put(Skill.Gradle, SkillMatch.No);
+				expectedSkillMatching.put(Skill.Ant, SkillMatch.Yes);
+				expectedSkillMatching.put(Skill.UnitTesting, SkillMatch.Yes);
+				expectedSkillMatching.put(Skill.SQL, SkillMatch.Yes);
 				assertEquals(
 						new Score(14, true, expectedSkillMatching, 4)
 								.toString(),

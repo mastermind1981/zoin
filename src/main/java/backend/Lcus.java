@@ -10,7 +10,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import jpa.Hero;
 import jpa.LCU;
 
 import org.codehaus.jackson.JsonGenerationException;
