@@ -5,6 +5,7 @@
 angular.module('myApp.controllers', [])
 .run(function($rootScope) {
     $rootScope.heroId = 931;
+    $rootScope.missionId = 10001;
 })
 
 .controller('HeroCardCtrl', function ($scope, $rootScope, zoinAPIService) { 
@@ -25,10 +26,10 @@ angular.module('myApp.controllers', [])
 .controller('DashboardCtrl', function ($scope, $rootScope, $routeParams, zoinAPIService) {
     $scope.init = function() {
         $rootScope.heroId = Number($routeParams.heroId);
-
-        $scope.missions = zoinAPIService.Mission.query();
         $scope.matches = zoinAPIService.Match.query({"heroId": $rootScope.heroId}, function() {
-            $scope.matches[0].mission.isActive = true;
+            if ($scope.matches.length > 0){
+                $scope.matches[0].mission.isActive = true;
+            }
         });
         $scope.left = 180;
         
@@ -59,6 +60,6 @@ angular.module('myApp.controllers', [])
     }
 })
 
-.controller('ApiCtrl', function ($scope) {
-    
+.controller('MissionsCtrl', function ($scope, $rootScope, zoinAPIService) {
+    $scope.missions = zoinAPIService.Mission.query();
 });

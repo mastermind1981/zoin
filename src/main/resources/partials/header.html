@@ -1,7 +1,7 @@
 <div class="container-fluid header">
     <div class="row">
         <div class="col-sm-8 avatar">
-            <img src="{{hero.picturePath}}" />
+            <img ng-src="{{hero.picturePath}}" />
             <div class="avatar-text">
                 <h2>{{hero.firstName}} {{hero.lastName}}</h2>
                 <h3>{{hero.role}}</h3>
@@ -33,7 +33,7 @@
         <div class="col-sm-4">
             <span class="title">Achievements</span><br />
             <div class="avatarMedals">
-            <span ng-repeat="medal in hero.medals"><img src={{medal.imagePath}} alt={{medal.comment}} title={{medal.comment}} /></span> 
+            <span ng-repeat="medal in hero.medals"><img ng-src={{medal.imagePath}} alt={{medal.comment}} title={{medal.comment}} /></span> 
             </div>
         </div>
         <a href="javascript:void(0)" class="expandIcon" ng-click="toggleSubHeader(this, $event)">
