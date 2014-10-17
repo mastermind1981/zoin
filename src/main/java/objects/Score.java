@@ -12,16 +12,16 @@ public class Score {
 	private int totalScore;
 	private boolean roleMatching;
 	private int skillScore;
-	private Map<Skill, Boolean> skillMatches;
+	private Map<Skill, SkillMatch> skillMatches;
 
 	public Score() {
 	}
 
 	public Score(int totalScore, boolean roleMatching,
-			Map<Skill, Boolean> skillMatches, int skillScore) {
+			Map<Skill, SkillMatch> skillMatches, int skillScore) {
 		this.totalScore = totalScore;
 		this.roleMatching = roleMatching;
-		this.skillMatches = new TreeMap<Skill, Boolean>(skillMatches);
+		this.skillMatches = new TreeMap<Skill, SkillMatch>(skillMatches);
 		this.skillScore = skillScore;
 	}
 
@@ -37,7 +37,7 @@ public class Score {
 		return roleMatching;
 	}
 
-	public Map<Skill, Boolean> getSkillMatches() {
+	public Map<Skill, SkillMatch> getSkillMatches() {
 		return skillMatches;
 	}
 
