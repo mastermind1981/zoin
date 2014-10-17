@@ -2,54 +2,54 @@
   background-color: rgba(33, 33, 33, 0.96);
 
   .row:first-child {
-      padding: 20px 5px;
+    padding: 20px 5px;
   }
 
-  ul{
-      list-style: none;
+  ul {
+    list-style: none;
   }
 
   .avatar {
-      img {
-          display: inline-block;
-          border-radius: 50%;
-          border: 2px solid white;
-          width: 100px;
-          margin-right: 20px;
-          vertical-align: top;
-      }
-      .avatar-text {
-          display: inline-block;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
+    img {
+      display: inline-block;
+      border-radius: 50%;
+      border: 2px solid white;
+      width: 100px;
+      margin-right: 20px;
+      vertical-align: top;
+    }
+    .avatar-text {
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
 
-          h2, h3 {
-              margin-top: 10px;
-              color: white;
-          }
+      h2, h3 {
+        margin-top: 10px;
+        color: white;
       }
+    }
   }
 
-  .avatarDetails{      
-      color: #FFFFFF;
-      font-size: 26px;
-          .title{
-              font-size: larger;
-          }
-      ul{
-          white-space: nowrap;
-          li{
-              text-overflow: ellipsis;
-              overflow: hidden;
-          }
+  .avatarDetails {
+    color: #FFFFFF;
+    font-size: 26px;
+    .title {
+      font-size: larger;
+    }
+    ul {
+      white-space: nowrap;
+      li {
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
-      .avatarMedals{
-          padding-left: 40px;
-          span img{
-              height: 100px;
-          }
+    }
+    .avatarMedals {
+      padding-left: 40px;
+      span img {
+        height: 100px;
       }
+    }
   }
 
   .subHeader {
@@ -62,13 +62,12 @@
       transition: transform 0.5s ease;
       transform: translateY(300px);
       border-right: 1px solid #ffffff;
-      height:90%;
+      height: 90%;
       padding: 0 80px 0 100px;
-        &:last-of-type{
-            border-right: none;
-        }
+      &:last-of-type {
+        border-right: none;
+      }
     }
-    
 
     a.expandIcon {
       position: absolute;
@@ -114,129 +113,132 @@
 }
 
 .missionCard {
-    
-    &.joined {
-        border: solid 4px #ef8229;
+
+  &.joined {
+    border: solid 4px #ef8229;
+  }
+
+  &.noRoleMatch {
+    opacity: 0.5;
+  }
+
+  display: inline-block;
+  border: 1px black solid;
+  transition: width 0.5s ease, height 0.5s ease;
+  height: 300px;
+  width: 200px;
+  margin: 20px;
+  overflow: hidden;
+  background: #F3F3F3;
+  vertical-align: middle;
+
+  .missionCardTitle {
+    background-color: #69A786;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 20px 15px;
+    margin-bottom: 10px;
+
+    h2 {
+      margin: 0 0px 10px 0;
     }
-    
-    &.noRoleMatch {
-        opacity: 0.5;
+  }
+  .missionRole {
+    text-align: center;
+  }
+
+  button {
+    background-color: #ef8229;
+    border: medium none;
+    height: 35px;
+    width: 49%;
+
+    &.joinButton {
+      margin-left: 3px;
     }
-    
-    display: inline-block;
-    border: 1px black solid;
-    transition: width 0.5s ease, height 0.5s ease;
-    height: 300px;
-    width: 200px;
-    margin: 20px;
-    overflow: hidden;
-    background: #F3F3F3;
-    vertical-align: middle;
-    .missionCardTitle{
-        background-color: #69A786;
-        color: #FFFFFF;
-        font-weight: bold;        
-        padding: 20px 15px;
-        margin-bottom: 10px;
-        h2{
-            margin: 0 0px 10px 0;
-        }
-    }
-    .missionRole{
-        text-align: center;
-    }
-    
-    button {
-        background-color: #ef8229;
-        border: medium none;
-        height: 35px;
-        width: 49%;   
-        
-        &.joinButton {
-            margin-left:3px;
-        }
-    }
-    
-    h3 {
-        text-align: center;
-        width:100%;  
-    }
-    
-    p {
-        text-align: center; 
-    }
-    
-    
+  }
+
+  h3 {
+    text-align: center;
+    width: 100%;
+  }
+
+  p {
+    text-align: center;
+  }
+
 }
+
 .isActive {
-    transform: rotate(360deg);
-    width: 550px;
-    height: 500px;
+  transform: rotate(360deg);
+  width: 550px;
+  height: 500px;
 }
+
 .carousel {
-    white-space: nowrap;
-    position: relative;
-    margin-left: 0px;
-    transition: transform 1s ease;
+  white-space: nowrap;
+  position: relative;
+  margin-left: 0px;
+  transition: transform 1s ease;
 }
+
 .viewport {
-    position: relative;
-    width: 1500px;
-    overflow: hidden;
-    height: 600px;
-    -moz-user-select: none;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 600px;
+  -moz-user-select: none;
 }
+
 .leftArrow {
-    position: absolute;
-    width: 150px;
-    height: 600px;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 1;
-    background-image: url('../img/arrowleft.png');
-    background-size: 60px 200px;
-    background-color: white;
-    background-repeat: no-repeat;
-    background-position: center;
+  position: absolute;
+  width: 150px;
+  height: 600px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  background-image: url('../img/arrowleft.png');
+  background-size: 60px 200px;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: center;
 
 }
+
 .rightArrow {
-    position: absolute;
-    width: 150px;
-    height: 600px;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 1;
-    background-image: url('../img/arrowright.png');
-    background-size: 60px 200px;
-    background-color: white;
-    background-repeat: no-repeat;
-    background-position: center;
+  position: absolute;
+  width: 150px;
+  height: 600px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  background-image: url('../img/arrowright.png');
+  background-size: 60px 200px;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-
-.matchBatch{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 150px;
+.matchBatch {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 150px;
 }
 
 .invisible {
-    display: none;   
+  display: none;
 }
 
 .matchingSkills {
-    text-align: center;
+  text-align: center;
 }
 
-
-
-.noSkill span{
-    color:grey;
-    text-decoration: line-through;
+.noSkill span {
+  color: grey;
+  text-decoration: line-through;
 }
 
 
