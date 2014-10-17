@@ -1,6 +1,9 @@
 package jpa;
 
+import java.util.Set;
+
 import javax.persistence.Basic;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,6 +25,8 @@ public class Hero {
 	private Role role;
 	@ManyToOne
 	private SkillSet skillSet;
+	@ElementCollection
+	private Set<Medal> medals;
 	@Basic
 	@Enumerated(EnumType.STRING)
 	private Skill educationTarget;
@@ -57,6 +62,10 @@ public class Hero {
 	
 	public SkillSet getSkillSet() {
 		return skillSet;
+	}
+
+	public Set<Medal> getMedals() {
+		return medals;
 	}
 
 	public String getPicturePath() {

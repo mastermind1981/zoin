@@ -1,5 +1,6 @@
 package jpa;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,13 +17,17 @@ public class Want {
 	
 	@ManyToOne
 	private Hero hero;
+	
+	@Basic
+	private int zoins;
 
 	public Want() {
 	}
 	
-	public Want(Hero h, Mission m) {
-		mission = m;
-		hero = h;
+	public Want(Hero h, Mission m, int zoins) {
+		this.mission = m;
+		this.hero = h;
+		this.zoins = zoins;
 	}
 
 	public Long getId() {
@@ -35,5 +40,9 @@ public class Want {
 
 	public Hero getHero() {
 		return hero;
+	}
+	
+	public int getZoins() {
+		return zoins;
 	}
 }

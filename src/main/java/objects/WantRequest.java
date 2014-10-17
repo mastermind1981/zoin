@@ -2,16 +2,21 @@ package objects;
 
 public class WantRequest {
 
-	private int heroId;
-	private int missionId;
+	private Long heroId;
+	private Long missionId;
+	private int zoins;
 	
 	public WantRequest() {
 	}
 
-	public int getHeroId() {
+	public Long getHeroId() {
 		return heroId;
 	}
-	public int getMissionId() {
+	public Long getMissionId() {
 		return missionId;
+	}
+	
+	public int getZoins() {
+		return zoins;
 	}
 }

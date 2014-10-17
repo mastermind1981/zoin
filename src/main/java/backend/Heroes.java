@@ -55,7 +55,7 @@ public class Heroes {
 				Hero.class);
 		Hero hero = q1.getSingleResult();
 		
-		hero.setEducationTarget(request.getSkill());
+		hero.setEducationTarget(request.getEducationSkill());
 		em.persist(hero);
 	}
 }

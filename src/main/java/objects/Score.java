@@ -20,9 +20,9 @@ public class Score {
 	public Score(int totalScore, boolean roleMatching,
 			Map<Skill, Boolean> skillMatches, int skillScore) {
 		this.totalScore = totalScore;
-		this.skillScore = skillScore;
 		this.roleMatching = roleMatching;
 		this.skillMatches = new TreeMap<Skill, Boolean>(skillMatches);
+		this.skillScore = skillScore;
 	}
 
 	public int getTotalScore() {
