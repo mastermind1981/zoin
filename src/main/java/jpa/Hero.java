@@ -23,6 +23,9 @@ public class Hero {
 	@ManyToOne
 	private SkillSet skillSet;
 	@Basic
+	@Enumerated(EnumType.STRING)
+	private Skill educationTarget;
+	@Basic
 	private String picturePath;
 	
 	public Hero(){
@@ -58,5 +61,13 @@ public class Hero {
 
 	public String getPicturePath() {
 		return picturePath;
+	}
+
+	public void setEducationTarget(Skill skill) {
+		educationTarget = skill;
 	}	
+	
+	public Skill getEducationTarget() {
+		return educationTarget;
+	}
 }
