@@ -1,5 +1,5 @@
 <div class="container-fluid header">
-    <div class="row">
+    <div ng-hide="isMissionsPath" class="row">
         <div class="col-sm-8 avatar">
             <img ng-src="{{hero.picturePath}}" />
             <div class="avatar-text">
@@ -13,7 +13,20 @@
         </div>
     </div>
 
-    <div class="row avatarDetails subHeader">
+    <div ng-hide="!isMissionsPath" class="row">
+        <div class="col-sm-8 avatar">
+            <!--<img ng-src="{{hero.picturePath}}" />-->
+            <div class="avatar-text">
+                <h2>{{lcuExpanded.firstName}} {{lcuExpanded.lastName}}</h2>
+            </div>
+        </div>
+
+        <div class="col-sm-4 hidden-xs logo">
+            <img class="pull-right" src="img/logo.png" />
+        </div>
+    </div>
+
+    <div ng-hide="isMissionsPath" class="row avatarDetails subHeader">
         <div class="col-sm-4">
             <span class="avatarDetailsIcon avatarDetailsSkills"></span><span class="title">Skills</span><br />
             <ul>

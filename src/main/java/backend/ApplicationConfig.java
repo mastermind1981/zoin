@@ -14,6 +14,7 @@ public class ApplicationConfig extends Application {
         		Missions.class,
         		Heroes.class,
         		Matches.class,
+        		Lcus.class,
         		Wants.class));
     }
 }
