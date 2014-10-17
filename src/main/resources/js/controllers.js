@@ -92,6 +92,13 @@ angular.module('myApp.controllers', [])
         $scope.matches = zoinAPIService.Match.query({
             "missionId": missionId
         });
+        $scope.missions.forEach(function (element) {
+            if(element.id == missionId) {
+                element.isActive = true;
+            }else{
+                element.isActive = false;
+            }
+        });
     }
 
     $scope.init();

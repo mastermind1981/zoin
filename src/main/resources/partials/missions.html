@@ -7,7 +7,7 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </div>
         <div class="carousel" style="transform:translateX({{left}}px);">
-            <div ng-repeat="mission in missions" class="missionCard" ng-click="updateHeroes(mission.id);">
+            <div ng-repeat="mission in missions" class="missionCard" ng-click="updateHeroes(mission.id);" ng-class="{isActive: mission.isActive}">
                 <div class="missionCardTitle">
                     <h2>{{mission.companyName}}</h2><span>{{mission.description}}</span>
                 </div>
