@@ -36,70 +36,37 @@
     </div>
 
     
-    <div class="viewport" style="user-select:none;">
-    <div class="leftArrow" ng-click="moveLeftHero();">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-    </div>
-    <div class="rightArrow" ng-click="moveRightHero();">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-    </div>
-    <div class="carousel" style="transform:translateX({{left}}px);">
-        <div ng-repeat="match in matches" ng-click="showMission(match.mission)" class="matchCard" ng-class="{isActive: match.mission.isActive, joined: match.zoins != null, noRoleMatch: !match.score.roleMatching}">
-            <div class="matchCardTitle avatar">
-                 <img class="avatar2" ng-src="{{match.hero.picturePath}}" />
-                <h2>{{match.hero.firstName}} {{match.hero.lastName}}</h2>
-            </div>
-            <div>
-                <div class="matchRole">{{match.hero.role}}</div>
-                <img class="matchBatch" ng-src="img/match_{{match.score.skillScore}}.png" />
-            </div>
-            <div>
-                <div class="matchDetails">
-                    <h3>Projektbeschreibung</h3>
-                    <p></p>
-                     <p><span ng-repeat="(skill, skillMatch) in match.score.skillMatches" ng-class="{noSkill: skillMatch == 'No', educationTarget: skillMatch == 'EducationTarget' }"><span>{{skill}}</span>{{$last ? '' : ','}} </span></p>
-                    
-                </div>
-            </div>
-        </div>
-        <div style="height:500px;"></div>
-    </div>
-</div>
-
-    <!--<div class="viewport" style="user-select:none;">
+    <div class="viewport matchesCarousel" style="user-select:none;">
         <div class="leftArrow" ng-click="moveLeftHero();">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </div>
         <div class="rightArrow" ng-click="moveRightHero();">
             <span class="glyphicon glyphicon-chevron-right"></span>
         </div>
-        <div class="carousel" style="transform:translateX({{leftHero}}px);">
-            <div ng-repeat="match in matches" class="missionCard">
-                <div class="missionCardTitle avatar">
-                    <img ng-src="{{match.hero.picturePath}}" />
-                    <h2>{{match.hero.firstName}} {{match.hero.lastName}}</h2><span></span>
+        <div class="carousel" style="transform:translateX({{left}}px);">
+            <div ng-repeat="match in matches" ng-click="showMission(match.mission)" class="matchCard" ng-class="{isActive: match.mission.isActive, joined: match.zoins != null, noRoleMatch: !match.score.roleMatching}">
+                <div class="matchCardTitle avatar">
+                     <img ng-src="{{match.hero.picturePath}}" />
+                    <h2>{{match.hero.firstName}} {{match.hero.lastName}}</h2>
                 </div>
                 <div>
-                    <div class="missionRole">{{match.hero.role}}</div>
-                    
+                    <div class="matchRole">{{match.hero.role}}</div>
+                    <img class="matchBatch" ng-src="img/match_{{match.score.skillScore}}.png" />
                 </div>
                 <div>
-                    <div class="missionDetails">
-                        <h3>Bevorzugte Skills</h3>
-                        <ul>
-                            <li ng-repeat="skill in match.hero.skillSet.skills">
-                                {{skill}}
-                            </li>
-                        </ul>
-                        <hr />
-                        <p>
-                            {{match.hero.educationTarget}}
-                        </p>
+                    <div class="matchDetails">
+                        <h3>Projektbeschreibung</h3>
+                        <p></p>
+                         <p><span ng-repeat="(skill, skillMatch) in match.score.skillMatches" ng-class="{noSkill: skillMatch == 'No', educationTarget: skillMatch == 'EducationTarget' }"><span>{{skill}}</span>{{$last ? '' : ','}} </span></p>
+
                     </div>
                 </div>
             </div>
             <div style="height:500px;"></div>
         </div>
-    </div>-->
-    
+    </div>
+
+    <div class="container">
+        <div class="row">&nbsp;</div>
+    </div>
 </div>

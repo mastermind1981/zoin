@@ -29,13 +29,22 @@ angular.module('myApp.controllers', [])
 })
 
 .controller('DashboardCtrl', function ($scope, $rootScope, $routeParams, zoinAPIService) {
-    $scope.init = function () {
+    $scope.init = function (selectedMission) {
         $rootScope.heroId =  Number($routeParams.heroId);
         $scope.matches = zoinAPIService.Match.query({
             "heroId": $rootScope.heroId
         }, function () {
             if ($scope.matches.length > 0) {
-                $scope.matches[0].mission.isActive = true;
+                if (selectedMission){
+                    $scope.matches.forEach(function (element) {
+                        if (element.mission.id == selectedMission.id){
+                            element.mission.isActive = true;
+                        }
+                    });
+                }
+                else{
+                    $scope.matches[0].mission.isActive = true;
+                }
             }
         });
         $scope.left = 180;
@@ -56,7 +65,7 @@ angular.module('myApp.controllers', [])
             $scope.init();
             var id = $rootScope.heroId;
             $rootScope.heroId = undefined;
-        });        
+        });       
     }
 
     $scope.showMission = function (mission) {
