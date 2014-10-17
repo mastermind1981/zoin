@@ -41,9 +41,14 @@
 
   .subHeader {
     position: relative;
-    height: 20px;
+    height: 30px;
     transition: height 0.5s ease;
     overflow: hidden;
+
+    > div {
+      transition: transform 0.5s ease;
+      transform: translateY(100%);
+    }
 
     a.expandIcon {
       position: absolute;
@@ -55,13 +60,22 @@
 
       text-align: center;
       color: white;
+      font-size: 24px;
 
       transform: rotate(0deg);
       transition: transform 0.5s ease;
+
+      &:link, &:visited, &:active {
+        outline: none;
+      }
     }
 
     &.open {
       height: 500px;
+
+      > div {
+        transform: translateY(0%);
+      }
 
       a.expandIcon {
         transform: rotate(180deg);
