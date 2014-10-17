@@ -30,6 +30,9 @@ angular.module('myApp.directives', [])
             $scope.$watch('heroId', function() {
                 $scope.init();
             });
+            $scope.$watch('pagereload', function() {
+                $scope.init();
+            });
         }
     }
  });

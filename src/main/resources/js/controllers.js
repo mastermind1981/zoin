@@ -7,6 +7,7 @@ angular.module('myApp.controllers', [])
         $rootScope.heroId = 100;
         $rootScope.missionId = 10001;
         $rootScope.lcu = 1;
+        $rootScope.pagereload = true;
     })
 
 .controller('HeroCardCtrl', function ($scope, $rootScope, zoinAPIService) {
@@ -30,8 +31,9 @@ angular.module('myApp.controllers', [])
 
 .controller('DashboardCtrl', function ($scope, $rootScope, $routeParams, zoinAPIService) {
     $scope.init = function () {
-        $rootScope.heroId =  Number($routeParams.heroId);
-        $scope.matches = zoinAPIService.Match.query({
+    $rootScope.heroId =  Number($routeParams.heroId);
+    $rootScope.pagereload = !$rootScope.pagereload;
+      $scope.matches = zoinAPIService.Match.query({
             "heroId": $rootScope.heroId
         }, function () {
             if ($scope.matches.length > 0) {
@@ -77,6 +79,7 @@ angular.module('myApp.controllers', [])
     
     $scope.init = function () {
         $rootScope.lcu = Number($routeParams.lcu);
+        $rootScope.pagereload = !$rootScope.pagereload;
 
         $scope.missions = zoinAPIService.MissionByLcu.query({
             "lcuId": $rootScope.lcu
