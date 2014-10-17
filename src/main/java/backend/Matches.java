@@ -67,7 +67,7 @@ public class Matches {
 		final Mission mission = getMission(missionId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Hero hero : heroes) {
-			final int zoins = getZoins(hero, mission);
+			final Integer zoins = getZoins(hero, mission);
 			final Score score = scoring.computeScoreForMission(mission,
 					hero, zoins);
 			if (score.getSkillScore() > 0) {
@@ -83,7 +83,7 @@ public class Matches {
 		final Hero hero = getHero(heroId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Mission mission : missions) {
-			final int zoins = getZoins(hero, mission);
+			final Integer zoins = getZoins(hero, mission);
 			final Score score = scoring.computeScoreForHero(hero, mission,
 					zoins);
 			if (score.getSkillScore() > 0) {
@@ -94,13 +94,13 @@ public class Matches {
 		return matches;
 	}
 
-	private int getZoins(Hero hero, Mission mission) {
+	private Integer getZoins(Hero hero, Mission mission) {
 		final List<Want> wants = em.createQuery(
 				"SELECT x FROM Want x WHERE hero_id='" + hero.getId()
 						+ "' AND mission_id='" + mission.getId() + "'",
 				Want.class).getResultList();
 		if (wants.isEmpty()) {
-			return 0;
+			return null;
 		}
 		return wants.get(0).getZoins();
 	}
