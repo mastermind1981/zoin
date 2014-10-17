@@ -45,23 +45,25 @@
         </div>
         <div class="carousel" style="transform:translateX({{leftHero}}px);">
             <div ng-repeat="match in matches" class="missionCard">
-                <div class="missionCardTitle">
-                    <h2>{{match.hero.name}}</h2><span></span>
+                <div class="missionCardTitle avatar">
+                    <img ng-src="{{match.hero.picturePath}}" />
+                    <h2>{{match.hero.firstName}} {{match.hero.lastName}}</h2><span></span>
                 </div>
                 <div>
-                    <div class="missionRole">{{heroe.role}}</div>
+                    <div class="missionRole">{{match.hero.role}}</div>
+                    
                 </div>
                 <div>
                     <div class="missionDetails">
                         <h3>Bevorzugte Skills</h3>
                         <ul>
-                            <li ng-repeat="skill in mission.skillSet.skills">
+                            <li ng-repeat="skill in match.hero.skillSet.skills">
                                 {{skill}}
                             </li>
                         </ul>
                         <hr />
                         <p>
-                            {{heroe.description}}
+                            {{match.hero.educationTarget}}
                         </p>
                     </div>
                 </div>
