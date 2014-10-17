@@ -33,8 +33,15 @@ public class Missions {
 	@GET
 	@Produces("application/json;charset=" + encoding)
 	@Path("{missionId}")
-	public String getMissionAsJson(@PathParam("missionId") Long missionId) throws JsonGenerationException, JsonMappingException, IOException {
-		return mapper.writeValueAsString(getMission(missionId));
+	public String getMission(@PathParam("missionId") Long missionId) throws JsonGenerationException, JsonMappingException, IOException {
+		return mapper.writeValueAsString(queryMission(missionId));
+	}
+
+	@GET
+	@Produces("application/json;charset=" + encoding)
+	@Path("lcu/{lcuId}")
+	public String getMissionForLcu(@PathParam("lcuId") Long lcuId) throws JsonGenerationException, JsonMappingException, IOException {
+		return mapper.writeValueAsString(queryMissionForLcu(lcuId));
 	}
 
 	@GET
@@ -47,9 +54,14 @@ public class Missions {
 		return mapper.writeValueAsString(results);
 	}
 
-	private Mission getMission(Long missionId) {
+	private Mission queryMission(Long missionId) {
 		TypedQuery<Mission> q1 = em.createQuery("SELECT x FROM Mission x WHERE id='"+missionId+"'",
 				Mission.class);
 		return q1.getSingleResult();
+	}
+	private List<Mission> queryMissionForLcu(Long lcuId) {
+		TypedQuery<Mission> q1 = em.createQuery("SELECT x FROM Mission x WHERE lcu_id='"+lcuId+"'",
+				Mission.class);
+		return q1.getResultList();
 	}
 }

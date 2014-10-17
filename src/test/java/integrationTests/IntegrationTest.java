@@ -37,6 +37,7 @@ public class IntegrationTest {
 	private static final String REST_PREFIX = "http://localhost:8080/zoin/rest-prefix/";
 	private static final Long HERO_FRANK_ID = 931l;
 	private static final Long HERO_FLORIAN_ID = 100l;
+	private static final Long LCU_WOLFGANG_ID = 1l;
 	private static final Long MISSION_JUNIOR_JAVA_DEVELOPER_ID = 10001l;
 	private static final String MISSION_JUNIOR_JAVA_DEVELOPER_NAME = "Junior Java Developer";
 
@@ -227,6 +228,24 @@ public class IntegrationTest {
 					.getId())) {
 				assertEquals(Integer.valueOf(zoins), match.getZoins());
 				assertEquals(5 + zoins, match.getScore().getTotalScore());
+				contains = true;
+			}
+		}
+		assertTrue(contains);
+	}
+
+	@Test
+	public void missionsByWolfgangContainJuniorJavaDeveloper()
+			throws ClientProtocolException, IOException {
+		HttpResponse httpResponse = getRequest(getMissionsUrl() + "/lcu/" + LCU_WOLFGANG_ID);
+
+		List<Mission> list = retrieve(httpResponse,
+				new TypeReference<List<Mission>>() {
+				});
+		boolean contains = false;
+		for (Mission mission : list) {
+			if (mission.getShortName().contains(
+					MISSION_JUNIOR_JAVA_DEVELOPER_NAME)) {
 				contains = true;
 			}
 		}
