@@ -9,28 +9,6 @@
     list-style: none;
   }
 
-  .avatar {
-    img {
-      display: inline-block;
-      border-radius: 50%;
-      border: 2px solid white;
-      width: 100px;
-      margin-right: 20px;
-      vertical-align: top;
-    }
-    .avatar-text {
-      display: inline-block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      h2, h3 {
-        margin-top: 10px;
-        color: white;
-      }
-    }
-  }
-
   .avatarDetails {
     color: #FFFFFF;
     font-size: 26px;
@@ -133,7 +111,29 @@
 
 }
 
-.missionCard {
+.avatar {
+    img {
+      display: inline-block;
+      border-radius: 50%;
+      border: 2px solid white;
+      width: 100px;
+      margin-right: 20px;
+      vertical-align: top;
+    }
+    .avatar-text {
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      h2, h3 {
+        margin-top: 10px;
+        color: white;
+      }
+    }
+}
+
+.matchCard {
 
   &.joined {
     border: solid 4px #ef8229;
@@ -153,7 +153,7 @@
   background: #F3F3F3;
   vertical-align: middle;
 
-  .missionCardTitle {
+  .matchCardTitle {
     background-color: #69A786;
     color: #FFFFFF;
     font-weight: bold;
@@ -177,7 +177,7 @@
 
     
   }
-  .missionRole {
+  .matchRole {
     text-align: center;
   }
 
@@ -201,6 +201,64 @@
     text-align: center;
   }
 
+}
+
+.missionCard {
+  background-color: #69A786;
+  display: inline-block;
+  border: 1px black solid;
+  transition: width 0.5s ease, height 0.5s ease;
+  height: 400px;
+  width: 500px;
+  margin: 20px;
+  overflow: hidden;
+  vertical-align: middle;
+
+  .missionCardTitle {
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 20px 15px;
+    margin-bottom: 10px;
+
+    h2 {
+      margin: 0 0px 10px 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .missionDetails, .missionRole {
+    background-color: #FFF;
+  }
+
+  .missionCardDescription {
+    color: #FFFFFF;
+    padding: 20px 15px;
+  }
+
+  .missionRole {
+    text-align: center;
+  }
+
+  button {
+    background-color: #ef8229;
+    border: medium none;
+    height: 35px;
+    width: 49%;
+
+    &.joinButton {
+      margin-left: 3px;
+    }
+  }
+
+  h3 {
+    text-align: center;
+    width: 100%;
+  }
+
+  p {
+    text-align: center;
+  }
 }
 
 .isActive {
@@ -278,4 +336,8 @@
 .noSkill span {
   color: grey;
   text-decoration: line-through;
+}
+
+.educationTarget span {
+  color: #ef8229;
 }

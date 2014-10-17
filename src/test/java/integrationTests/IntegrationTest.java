@@ -16,6 +16,7 @@ import jpa.Role;
 import jpa.Skill;
 import objects.Match;
 import objects.Score;
+import objects.SkillMatch;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -37,6 +38,7 @@ public class IntegrationTest {
 	private static final String REST_PREFIX = "http://localhost:8080/zoin/rest-prefix/";
 	private static final Long HERO_FRANK_ID = 931l;
 	private static final Long HERO_FLORIAN_ID = 100l;
+	private static final Long LCU_WOLFGANG_ID = 1l;
 	private static final Long MISSION_JUNIOR_JAVA_DEVELOPER_ID = 10001l;
 	private static final String MISSION_JUNIOR_JAVA_DEVELOPER_NAME = "Junior Java Developer";
 
@@ -110,11 +112,11 @@ public class IntegrationTest {
 			previousTotalScore = match.getScore().getTotalScore();
 			if (match.getMission().getId()
 					.equals(MISSION_JUNIOR_JAVA_DEVELOPER_ID)) {
-				final Map<Skill, Boolean> expectedSkillMatching = new TreeMap<Skill, Boolean>();
-				expectedSkillMatching.put(Skill.Java, true);
-				expectedSkillMatching.put(Skill.Ant, true);
-				expectedSkillMatching.put(Skill.UnitTesting, true);
-				expectedSkillMatching.put(Skill.SQL, true);
+				final Map<Skill, SkillMatch> expectedSkillMatching = new TreeMap<Skill, SkillMatch>();
+				expectedSkillMatching.put(Skill.Java, SkillMatch.Yes);
+				expectedSkillMatching.put(Skill.Ant, SkillMatch.Yes);
+				expectedSkillMatching.put(Skill.UnitTesting, SkillMatch.Yes);
+				expectedSkillMatching.put(Skill.SQL, SkillMatch.Yes);
 				assertEquals(
 						new Score(14, true, expectedSkillMatching, 4)
 								.toString(),
@@ -143,12 +145,12 @@ public class IntegrationTest {
 					.getTotalScore());
 			previousTotalScore = match.getScore().getTotalScore();
 			if (match.getHero().getId().equals(HERO_FLORIAN_ID)) {
-				final Map<Skill, Boolean> expectedSkillMatching = new TreeMap<Skill, Boolean>();
-				expectedSkillMatching.put(Skill.Java, true);
-				expectedSkillMatching.put(Skill.Gradle, false);
-				expectedSkillMatching.put(Skill.Ant, true);
-				expectedSkillMatching.put(Skill.UnitTesting, true);
-				expectedSkillMatching.put(Skill.SQL, true);
+				final Map<Skill, SkillMatch> expectedSkillMatching = new TreeMap<Skill, SkillMatch>();
+				expectedSkillMatching.put(Skill.Java, SkillMatch.Yes);
+				expectedSkillMatching.put(Skill.Gradle, SkillMatch.No);
+				expectedSkillMatching.put(Skill.Ant, SkillMatch.Yes);
+				expectedSkillMatching.put(Skill.UnitTesting, SkillMatch.Yes);
+				expectedSkillMatching.put(Skill.SQL, SkillMatch.Yes);
 				assertEquals(
 						new Score(14, true, expectedSkillMatching, 4)
 								.toString(),
@@ -227,6 +229,24 @@ public class IntegrationTest {
 					.getId())) {
 				assertEquals(Integer.valueOf(zoins), match.getZoins());
 				assertEquals(5 + zoins, match.getScore().getTotalScore());
+				contains = true;
+			}
+		}
+		assertTrue(contains);
+	}
+
+	@Test
+	public void missionsByWolfgangContainJuniorJavaDeveloper()
+			throws ClientProtocolException, IOException {
+		HttpResponse httpResponse = getRequest(getMissionsUrl() + "/lcu/" + LCU_WOLFGANG_ID);
+
+		List<Mission> list = retrieve(httpResponse,
+				new TypeReference<List<Mission>>() {
+				});
+		boolean contains = false;
+		for (Mission mission : list) {
+			if (mission.getShortName().contains(
+					MISSION_JUNIOR_JAVA_DEVELOPER_NAME)) {
 				contains = true;
 			}
 		}

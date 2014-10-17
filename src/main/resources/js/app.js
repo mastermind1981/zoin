@@ -12,6 +12,10 @@ angular.module('myApp', [
 ]).
 config(['$routeProvider',
     function ($routeProvider) {
+        $routeProvider.when('/missions/:lcu', {
+           templateUrl: 'partials/missions.html',
+            controller: 'MissionsCtrl'
+        });
         $routeProvider.when('/dashboard/:heroId', {
             templateUrl: 'partials/dashboard.html',
             controller: 'DashboardCtrl'
