@@ -85,8 +85,10 @@ angular.module('myApp.controllers', [])
             $scope.matches[0].mission.isActive = true;
          }*/
         });
+
         $scope.left = 180;
         $scope.leftHero = 180;
+
     }
 
     $scope.init();
@@ -105,5 +107,12 @@ angular.module('myApp.controllers', [])
 
     $scope.moveRightHero = function () {
         $scope.leftHero = $scope.leftHero - 200;
+    }
+    $scope.moveLeft = function() {
+        $scope.left = $scope.left + 200;
+    }
+
+    $scope.moveRight = function() {
+        $scope.left = $scope.left - 200;
     }
 });
