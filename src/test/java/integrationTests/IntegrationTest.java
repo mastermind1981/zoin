@@ -225,7 +225,7 @@ public class IntegrationTest {
 		for (Match match : list) {
 			if (MISSION_JUNIOR_JAVA_DEVELOPER_ID.equals(match.getMission()
 					.getId())) {
-				assertEquals(zoins, match.getZoins());
+				assertEquals(Integer.valueOf(zoins), match.getZoins());
 				assertEquals(3 + zoins, match.getScore().getTotalScore());
 				contains = true;
 			}
