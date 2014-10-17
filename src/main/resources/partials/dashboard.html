@@ -1,7 +1,7 @@
 <div class="viewport">
     <div class="leftArrow" ng-click="moveLeft();">left</div>
     <div class="rightArrow" ng-click="moveRight();">right</div>
-    <div class="carousel" style="margin-left:{{left}}px;">
+    <div class="carousel" style="transform:translateX({{left}}px);">
         <div ng-repeat="match in matches" ng-click="showMission(match.mission)" class="missionCard" ng-class="{isActive: match.mission.isActive}">
             <div class="missionCardTitle">
                 <h2>{{match.mission.shortName}}</h2><span>{{match.mission.companyName}}</span>
