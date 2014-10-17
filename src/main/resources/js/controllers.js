@@ -22,8 +22,10 @@ angular.module('myApp.controllers', [])
     $scope.mission = zoinAPIService.Mission.get({"missionId": 1});
 })
 
-.controller('DashboardCtrl', function ($scope, $rootScope, zoinAPIService) {
+.controller('DashboardCtrl', function ($scope, $rootScope, $routeParams, zoinAPIService) {
     $scope.init = function() {
+        $rootScope.heroId = Number($routeParams.heroId);
+
         $scope.missions = zoinAPIService.Mission.query();
         $scope.matches = zoinAPIService.Match.query({"heroId": $rootScope.heroId}, function() {
             $scope.matches[0].mission.isActive = true;

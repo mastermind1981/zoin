@@ -111,11 +111,10 @@ public class IntegrationTest {
 			if (match.getMission().getId()
 					.equals(MISSION_JUNIOR_JAVA_DEVELOPER_ID)) {
 				final Map<Skill, Boolean> expectedSkillMatching = new TreeMap<Skill, Boolean>();
-				expectedSkillMatching.put(Skill.Ant, true);
-				expectedSkillMatching.put(Skill.Gradle, false);
 				expectedSkillMatching.put(Skill.Java, true);
-				expectedSkillMatching.put(Skill.SQL, true);
+				expectedSkillMatching.put(Skill.Ant, true);
 				expectedSkillMatching.put(Skill.UnitTesting, true);
+				expectedSkillMatching.put(Skill.SQL, true);
 				assertEquals(
 						new Score(14, true, expectedSkillMatching, 4)
 								.toString(),
@@ -145,10 +144,11 @@ public class IntegrationTest {
 			previousTotalScore = match.getScore().getTotalScore();
 			if (match.getHero().getId().equals(HERO_FLORIAN_ID)) {
 				final Map<Skill, Boolean> expectedSkillMatching = new TreeMap<Skill, Boolean>();
-				expectedSkillMatching.put(Skill.Ant, true);
 				expectedSkillMatching.put(Skill.Java, true);
-				expectedSkillMatching.put(Skill.SQL, true);
+				expectedSkillMatching.put(Skill.Gradle, false);
+				expectedSkillMatching.put(Skill.Ant, true);
 				expectedSkillMatching.put(Skill.UnitTesting, true);
+				expectedSkillMatching.put(Skill.SQL, true);
 				assertEquals(
 						new Score(14, true, expectedSkillMatching, 4)
 								.toString(),
@@ -226,7 +226,7 @@ public class IntegrationTest {
 			if (MISSION_JUNIOR_JAVA_DEVELOPER_ID.equals(match.getMission()
 					.getId())) {
 				assertEquals(Integer.valueOf(zoins), match.getZoins());
-				assertEquals(3 + zoins, match.getScore().getTotalScore());
+				assertEquals(5 + zoins, match.getScore().getTotalScore());
 				contains = true;
 			}
 		}
