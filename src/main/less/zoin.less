@@ -112,13 +112,21 @@
 }
 
 .avatar {
-    img {
+    img:first-child {
       display: inline-block;
       border-radius: 50%;
       border: 2px solid white;
       width: 100px;
       margin-right: 20px;
       vertical-align: top;
+    }
+    img.zoinIcon {
+      display: inline-block;
+      width: 40px;
+      vertical-align: top;
+    }
+    img.zoinIcon + h3 {
+      display: inline-block;
     }
     .avatar-text {
       display: inline-block;
@@ -268,13 +276,14 @@
 }
 
 .missionCard, .matchCard {
-  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.6);
+  box-shadow: 10px 10px 5px -2px rgba(0, 0, 0, 0.6);
 }
 
 .isActive {
   transform: rotate(360deg);
   width: 550px;
   height: 500px;
+  border: 2px solid #ef8229;
 }
 
 .carousel {
@@ -293,7 +302,7 @@
   -moz-user-select: none;
 
   &.missionCarousel {
-    height: 520px;
+    height: 550px;
   }
 
   &.matchesCarousel {
