@@ -33,8 +33,8 @@ angular.module('myApp.controllers', [])
      $scope.$watch('heroId', function() {
        $scope.init();
     });
-    $scope.join = function(mission){
-            zoinAPIService.Want.save({"missionId":mission.id, "heroId": $rootScope.heroId});
+    $scope.join = function(mission, zoinValue){
+            zoinAPIService.Want.save({"missionId":mission.id, "heroId": $rootScope.heroId, "zoins":zoinValue});
         }
     
     $scope.showMission = function(mission) {
