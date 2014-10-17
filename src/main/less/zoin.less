@@ -103,6 +103,15 @@
 }
 
 .missionCard {
+    
+    &.joined {
+        border: solid 4px #ef8229;
+    }
+    
+    &.noRoleMatch {
+        opacity: 0.5;
+    }
+    
     display: inline-block;
     border: 1px black solid;
     transition: width 0.5s ease, height 0.5s ease;
@@ -161,6 +170,7 @@
     width: 1500px;
     overflow: hidden;
     height: 600px;
+    -moz-user-select: none;
 }
 .leftArrow {
     position: absolute;
@@ -207,3 +217,12 @@
 .matchingSkills {
     text-align: center;
 }
+
+
+
+.noSkill span{
+    color:grey;
+    text-decoration: line-through;
+}
+
+
