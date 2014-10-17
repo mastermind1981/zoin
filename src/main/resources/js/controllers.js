@@ -61,5 +61,19 @@ angular.module('myApp.controllers', [])
 })
 
 .controller('MissionsCtrl', function ($scope, $rootScope, zoinAPIService) {
+
+    $scope.init = function() {
+        $scope.left = 180;
+
+    }
+
     $scope.missions = zoinAPIService.Mission.query();
+
+    $scope.moveLeft = function() {
+        $scope.left = $scope.left + 200;
+    }
+
+    $scope.moveRight = function() {
+        $scope.left = $scope.left - 200;
+    }
 });

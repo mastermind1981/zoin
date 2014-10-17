@@ -194,6 +194,7 @@
 }
 
 .missionCard {
+  background-color: #69A786;
   display: inline-block;
   border: 1px black solid;
   transition: width 0.5s ease, height 0.5s ease;
@@ -201,11 +202,9 @@
   width: 500px;
   margin: 20px;
   overflow: hidden;
-  background: #F3F3F3;
   vertical-align: middle;
 
   .missionCardTitle {
-    background-color: #69A786;
     color: #FFFFFF;
     font-weight: bold;
     padding: 20px 15px;
@@ -216,6 +215,15 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+  }
+
+  .missionDetails, .missionRole {
+    background-color: #FFF;
+  }
+
+  .missionCardDescription {
+    color: #FFFFFF;
+    padding: 20px 15px;
   }
 
   .missionRole {
