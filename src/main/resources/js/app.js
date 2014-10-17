@@ -12,7 +12,7 @@ angular.module('myApp', [
 ]).
 config(['$routeProvider',
     function ($routeProvider) {
-        $routeProvider.when('/dashboard', {
+        $routeProvider.when('/dashboard/:heroId', {
             templateUrl: 'partials/dashboard.html',
             controller: 'DashboardCtrl'
         });
