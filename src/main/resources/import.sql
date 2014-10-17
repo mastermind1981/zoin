@@ -46,7 +46,9 @@ INSERT INTO `Medal` (`id`, `comment`, `imagePath`) VALUES ('1', 'SQL Expert', 'i
 INSERT INTO `Medal` (`id`, `comment`, `imagePath`) VALUES ('2', 'Social Expert', 'img/social.png');
 
 //Medals to Heroes
+INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('100', '1');
 INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('100', '2');
+INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('100', '3');
 INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('931', '1');
 
 INSERT INTO `SkillSet` (`id`) VALUES ('1000');
