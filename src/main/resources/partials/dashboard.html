@@ -1,6 +1,10 @@
 <div class="viewport" style="user-select:none;">
-    <div class="leftArrow" ng-click="moveLeft();"></div>
-    <div class="rightArrow" ng-click="moveRight();"></div>
+    <div class="leftArrow" ng-click="moveLeft();">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </div>
+    <div class="rightArrow" ng-click="moveRight();">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </div>
     <div class="carousel" style="transform:translateX({{left}}px);">
         <div ng-repeat="match in matches" ng-click="showMission(match.mission)" class="missionCard" ng-class="{isActive: match.mission.isActive, joined: match.zoins != null, noRoleMatch: !match.score.roleMatching}">
             <div class="missionCardTitle">
