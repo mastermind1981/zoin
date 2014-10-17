@@ -58,7 +58,7 @@ public class Scoring {
 			if (availableSkills.contains(requestedSkill)) {
 				score += SCORE_FOR_MATCHING_SKILL;
 			}
-			if (educationTarget.equals(requestedSkill)) {
+			if (requestedSkill.equals(educationTarget)) {
 				score += SCORE_FOR_MATCHING_EDUCATION_TARGET;
 			}
 		}
