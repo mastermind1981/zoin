@@ -1,0 +1,33 @@
+<div class="viewport" style="user-select:none;">
+    <div class="leftArrow" ng-click="moveLeft();">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </div>
+    <div class="rightArrow" ng-click="moveRight();">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </div>
+    <div class="carousel" style="transform:translateX({{left}}px);">
+        <div ng-repeat="mission in missions" class="matchCard">
+            <div class="missionCardTitle">
+                <h2>{{mission.companyName}}</h2><span>{{mission.description}}</span>
+            </div>
+            <div>
+                <div class="missionRole">{{mission.role}}</div>
+            </div>
+            <div>
+                <div class="missionDetails">
+                    <h3>Bevorzugte Skills</h3>
+                    <ul>
+                        <li ng-repeat="skill in mission.skillSet.skills">
+                            {{skill}}
+                        </li>
+                    </ul>
+                    <hr />
+                    <p>
+                        {{mission.description}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div style="height:500px;"></div>
+    </div>
+</div>

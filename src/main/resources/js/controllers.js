@@ -5,6 +5,7 @@
 angular.module('myApp.controllers', [])
 .run(function($rootScope) {
     $rootScope.heroId = 931;
+    $rootScope.missionId = 10001;
 })
 
 .controller('HeroCardCtrl', function ($scope, $rootScope, zoinAPIService) { 
@@ -59,6 +60,6 @@ angular.module('myApp.controllers', [])
     }
 })
 
-.controller('ApiCtrl', function ($scope) {
-    
+.controller('MissionsCtrl', function ($scope, $rootScope, zoinAPIService) {
+    $scope.missions = zoinAPIService.Mission.query();
 });
