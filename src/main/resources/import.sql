@@ -5,7 +5,7 @@ INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('931', 'Ant');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('931', 'Architektur');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('931', 'UnitTesting');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('931', 'UITesting');
-INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`) VALUES ('931', 'Frank', 'Beeh', 'img/Head6.png', 'PrincipalConsultant', '931');
+INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`) VALUES ('931', 'Frank', 'Beeh', 'img/Head6.png', 'PrincipalConsultant', '931', 'SQL');
 
 // Hero Florian
 INSERT INTO `SkillSet` (`id`) VALUES ('100');
@@ -14,7 +14,7 @@ INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('100', 'Gradle')
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('100', 'Ant');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('100', 'UnitTesting');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('100', 'SQL');
-INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`) VALUES ('100', 'Florian', 'Besser', 'img/Head1.png', 'JuniorSoftwareEngineer', '100');
+INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`) VALUES ('100', 'Florian', 'Besser', 'img/Head1.png', 'JuniorSoftwareEngineer', '100', 'Architektur');
 
 // Hero Matthias Bader
 INSERT INTO `SkillSet` (`id`) VALUES ('101');
@@ -22,7 +22,7 @@ INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'DotNet')
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'UnitTesting');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'Architektur');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'SQL');
-INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`) VALUES ('101', 'Matthias', 'Baader', 'img/Head7.png', 'LeadSoftwareArchitect', '101');
+INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`) VALUES ('101', 'Matthias', 'Baader', 'img/Head7.png', 'LeadSoftwareArchitect', '101', 'Java');
 
 //Missions
 INSERT INTO `SkillSet` (`id`) VALUES ('10001');
