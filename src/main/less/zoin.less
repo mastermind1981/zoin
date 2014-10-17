@@ -32,10 +32,17 @@
 
   .avatarDetails{      
       color: #FFFFFF;
-      font-size: 30px;
+      font-size: 26px;
           .title{
               font-size: larger;
           }
+      ul{
+          white-space: nowrap;
+          li{
+              text-overflow: ellipsis;
+              overflow: hidden;
+          }
+      }
       .avatarMedals{              
           span img{
               height: 100px;
@@ -54,13 +61,10 @@
       transform: translateY(100%);
       border-right: 1px solid #ffffff;
       height:90%;
-      padding: 0 180px;
+      padding: 0 80px 0 100px;
         &:last-of-type{
             border-right: none;
         }
-      ul{
-          margin-left: 10px;
-      }
     }
     
 
