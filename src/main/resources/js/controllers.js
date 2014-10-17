@@ -25,8 +25,11 @@ angular.module('myApp.controllers', [])
 .controller('DashboardCtrl', function ($scope, $rootScope, zoinAPIService) {
     $scope.init = function() {
         $scope.missions = zoinAPIService.Mission.query();
-        $scope.matches = zoinAPIService.Match.query({"heroId": $rootScope.heroId});
-        $scope.left = 0;
+        $scope.matches = zoinAPIService.Match.query({"heroId": $rootScope.heroId}, function() {
+            $scope.matches[0].mission.isActive = true;
+        });
+        $scope.left = 180;
+        
     }
     
     $scope.init();    
