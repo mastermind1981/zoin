@@ -112,13 +112,22 @@
 }
 
 .avatar {
-    img {
+    img:first-child {
       display: inline-block;
       border-radius: 50%;
       border: 2px solid white;
       width: 100px;
       margin-right: 20px;
       vertical-align: top;
+    }
+    img.zoinIcon {
+      display: inline-block;
+      width: 40px;
+      vertical-align: top;
+    }
+    img.zoinIcon + h3 {
+      display: inline-block;
+      margin-top: 5px;
     }
     .avatar-text {
       display: inline-block;
@@ -267,10 +276,15 @@
   }
 }
 
+.missionCard, .matchCard {
+  box-shadow: 10px 10px 5px -2px rgba(0, 0, 0, 0.6);
+}
+
 .isActive {
   transform: rotate(360deg);
   width: 550px;
   height: 500px;
+  border: 2px solid #ef8229;
 }
 
 .carousel {
@@ -289,7 +303,34 @@
   -moz-user-select: none;
 
   &.missionCarousel {
+    height: 550px;
+  }
+
+  &.matchesCarousel {
     height: 500px;
+
+    .matchCard {
+      background: #FFFFFF;
+      height: 450px;
+      width: 400px;
+
+      overflow: hidden;
+
+      .matchCardTitle {
+        background: #4284A8;
+
+        img {
+          display: inline-block;
+        }
+
+        h2 {
+          display: inline-block;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+      }
+    }
   }
 }
 
