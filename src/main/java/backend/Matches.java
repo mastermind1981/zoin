@@ -19,6 +19,7 @@ import jpa.Hero;
 import jpa.Mission;
 import jpa.Want;
 import objects.Match;
+import objects.Score;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -66,10 +67,12 @@ public class Matches {
 		final Mission mission = getMission(missionId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Hero hero : heroes) {
-			int zoins = getZoins(hero, mission);
-			matches.add(new Match(
-					scoring.computeScoreForMission(mission, hero, zoins), mission,
-					hero, zoins));
+			final int zoins = getZoins(hero, mission);
+			final Score score = scoring.computeScoreForMission(mission,
+					hero, zoins);
+			if (score.getSkillScore() > 0) {
+				matches.add(new Match(score, mission, hero, zoins));
+			}
 		}
 		sortMatches(matches);
 		return matches;
@@ -80,20 +83,23 @@ public class Matches {
 		final Hero hero = getHero(heroId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Mission mission : missions) {
-			int zoins = getZoins(hero, mission);
-			matches.add(new Match(scoring.computeScoreForHero(hero, mission, zoins),
-					mission, hero, zoins));
+			final int zoins = getZoins(hero, mission);
+			final Score score = scoring.computeScoreForHero(hero, mission,
+					zoins);
+			if (score.getSkillScore() > 0) {
+				matches.add(new Match(score, mission, hero, zoins));
+			}
 		}
 		sortMatches(matches);
 		return matches;
 	}
 
 	private int getZoins(Hero hero, Mission mission) {
-		List<Want> wants = em.createQuery(
+		final List<Want> wants = em.createQuery(
 				"SELECT x FROM Want x WHERE hero_id='" + hero.getId()
 						+ "' AND mission_id='" + mission.getId() + "'",
 				Want.class).getResultList();
-		if (wants.isEmpty()){
+		if (wants.isEmpty()) {
 			return 0;
 		}
 		return wants.get(0).getZoins();
