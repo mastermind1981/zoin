@@ -55,6 +55,7 @@
     margin: 20px;
     overflow: hidden;
     background: #F3F3F3;
+    vertical-align: middle;
     .missionCardTitle{
         background-color: #69A786;
         color: #FFFFFF;
@@ -65,11 +66,33 @@
     .missionRole{
         text-align: center;
     }
+    
+    button {
+        background-color: #ef8229;
+        border: medium none;
+        height: 44px;
+        width: 49%;   
+        
+        &.joinButton {
+            margin-left:3px;
+        }
+    }
+    
+    h3 {
+        text-align: center;
+        width:100%;  
+    }
+    
+    p {
+        text-align: center; 
+    }
+    
+    
 }
 .isActive {
-    /*transform: scale(2);*/
-    width: 400px;
-    height: 400px;
+    transform: rotate(360deg);
+    width: 550px;
+    height: 500px;
 }
 .carousel {
     white-space: nowrap;
@@ -82,7 +105,6 @@
     width: 1500px;
     overflow: hidden;
     height: 600px;
-    padding-top: 150px;
 }
 .leftArrow {
     position: absolute;
@@ -118,4 +140,12 @@
     margin-left: auto;
     margin-right: auto;
     height: 150px;
+}
+
+.invisible {
+    display: none;   
+}
+
+.matchingSkills {
+    text-align: center;
 }
