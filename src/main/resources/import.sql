@@ -68,3 +68,14 @@ INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10003', 'Archit
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10003', 'UnitTesting');
 INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `description`, `role`, `lcu_id`, `skillSet_id`) VALUES ('10003', 'Swisscom', 'Senior Java Developer', 'Erfahrener Developer für die outgesourcten Teams in Schlieren.', 'SeniorSoftwareEngineer', '1', '10003');
 
+//Medals
+INSERT INTO `Medal` (`id`, `comment`, `imagePath`) VALUES ('1', 'SQL Expert', 'img/sql.png');
+INSERT INTO `Medal` (`id`, `comment`, `imagePath`) VALUES ('2', 'Social Expert', 'img/social.png');
+INSERT INTO `Medal` (`id`, `comment`, `imagePath`) VALUES ('3', 'Other stuff', 'img/other.png');
+
+//Medals to Heroes
+INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('100', '1');
+INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('100', '2');
+INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('100', '3');
+INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('931', '1');
+
