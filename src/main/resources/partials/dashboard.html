@@ -14,7 +14,7 @@
                 <div class="missionDetails">
                     <h3>Projektbeschreibung</h3>
                     <p>{{match.mission.description}}</p>
-                     <p><span ng-repeat="(skill, show) in match.score.skillMatches" ng-class="{noSkill: show}"><span>{{skill}}</span>{{$last ? '' : ','}} </span></p>
+                     <p><span ng-repeat="(skill, show) in match.score.skillMatches" ng-class="{noSkill: !show}"><span>{{skill}}</span>{{$last ? '' : ','}} </span></p>
                     <br ng-if="match.zoins == null"/>
                     <hr ng-if="match.zoins == null"/>
                     <button ng-if="match.zoins == null" class="joinButton" ng-click="join(match.mission, 0)">Join</button>
