@@ -160,25 +160,27 @@ public class IntegrationTest {
 	}
 
 	@Test
-	public void setAndReadEducationTarget() throws ClientProtocolException, IOException {
+	public void setAndReadEducationTarget() throws ClientProtocolException,
+			IOException {
 		HttpPost request = new HttpPost(getHeroesUrl());
 
 		request.setEntity(new StringEntity("{\"heroId\":\"" + HERO_FLORIAN_ID
-				+ "\",\"educationSkill\":\"Architektur\"}", ContentType.create("application/json")));
-		
+				+ "\",\"educationSkill\":\"Architektur\"}", ContentType
+				.create("application/json")));
+
 		HttpResponse r = HttpClientBuilder.create().build().execute(request);
 		assertEquals(HttpStatus.SC_NO_CONTENT, r.getStatusLine()
 				.getStatusCode());
 
 		HttpResponse httpResponse = getRequest(getHeroesUrl() + "/"
 				+ HERO_FLORIAN_ID);
-		
+
 		final Hero hero = retrieveResourceFromResponse(httpResponse, Hero.class);
 		assertEquals("Florian", hero.getFirstName());
 		assertEquals("Besser", hero.getLastName());
 		assertEquals(Role.JuniorSoftwareEngineer, hero.getRole());
 		assertEquals(Skill.Architektur, hero.getEducationTarget());
-		
+
 	}
 
 	private String getWantsUrl() {
@@ -201,10 +203,10 @@ public class IntegrationTest {
 	public void setAndReadWantJSON() throws ClientProtocolException,
 			IOException {
 		final int zoins = 2;
-		
+
 		HttpPost request = new HttpPost(getWantsUrl());
 
-		request.setEntity(new StringEntity("{\"heroId\":\"" + HERO_FLORIAN_ID
+		request.setEntity(new StringEntity("{\"heroId\":\"" + HERO_FRANK_ID
 				+ "\",\"missionId\":\"" + MISSION_JUNIOR_JAVA_DEVELOPER_ID
 				+ "\",\"zoins\":\"" + zoins + "\"}", ContentType
 				.create("application/json")));
@@ -214,15 +216,17 @@ public class IntegrationTest {
 				.getStatusCode());
 
 		HttpResponse httpResponse = getRequest(getMatchesUrl() + "?heroId="
-				+ HERO_FLORIAN_ID);
+				+ HERO_FRANK_ID);
 
 		List<Match> list = retrieve(httpResponse,
 				new TypeReference<List<Match>>() {
 				});
 		boolean contains = false;
 		for (Match match : list) {
-			if (MISSION_JUNIOR_JAVA_DEVELOPER_ID.equals(match.getMission().getId())) {
+			if (MISSION_JUNIOR_JAVA_DEVELOPER_ID.equals(match.getMission()
+					.getId())) {
 				assertEquals(zoins, match.getZoins());
+				assertEquals(3 + zoins, match.getScore().getTotalScore());
 				contains = true;
 			}
 		}

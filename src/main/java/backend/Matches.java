@@ -66,9 +66,10 @@ public class Matches {
 		final Mission mission = getMission(missionId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Hero hero : heroes) {
+			int zoins = getZoins(hero, mission);
 			matches.add(new Match(
-					scoring.computeScoreForMission(mission, hero), mission,
-					hero, getZoins(hero, mission)));
+					scoring.computeScoreForMission(mission, hero, zoins), mission,
+					hero, zoins));
 		}
 		sortMatches(matches);
 		return matches;
@@ -79,8 +80,9 @@ public class Matches {
 		final Hero hero = getHero(heroId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Mission mission : missions) {
-			matches.add(new Match(scoring.computeScoreForHero(hero, mission),
-					mission, hero, getZoins(hero, mission)));
+			int zoins = getZoins(hero, mission);
+			matches.add(new Match(scoring.computeScoreForHero(hero, mission, zoins),
+					mission, hero, zoins));
 		}
 		sortMatches(matches);
 		return matches;
