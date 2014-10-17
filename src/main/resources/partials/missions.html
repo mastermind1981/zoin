@@ -46,7 +46,7 @@
     <div class="carousel" style="transform:translateX({{left}}px);">
         <div ng-repeat="match in matches" ng-click="showMission(match.mission)" class="matchCard" ng-class="{isActive: match.mission.isActive, joined: match.zoins != null, noRoleMatch: !match.score.roleMatching}">
             <div class="matchCardTitle avatar">
-                 <img ng-src="{{match.hero.picturePath}}" />
+                 <img class="avatar2" ng-src="{{match.hero.picturePath}}" />
                 <h2>{{match.hero.firstName}} {{match.hero.lastName}}</h2>
             </div>
             <div>
