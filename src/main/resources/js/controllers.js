@@ -52,8 +52,7 @@ angular.module('myApp.controllers', [])
             "missionId": mission.id,
             "heroId": $rootScope.heroId,
             "zoins": zoinValue
-        });
-        $scope.init();
+        }, function(){$scope.init();});        
     }
 
     $scope.showMission = function (mission) {
