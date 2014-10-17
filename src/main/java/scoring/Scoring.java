@@ -11,25 +11,24 @@ import objects.Score;
 
 public class Scoring {
 	private static final int SCORE_FOR_MATCHING_SKILL = 1;
+	private static final int SCORE_FOR_MATCHING_EDUCATION_TARGET = 2;
 	private static final int SCORE_FOR_MATCHING_ROLE = 10;
 
 	public Score computeScoreForHero(Hero hero, Mission mission, int zoins) {
-		return computeScore(hero.getSkillSet().getSkills(), mission
-				.getSkillSet().getSkills(),
-				hero.getRole().equals(mission.getRole()), zoins);
+		return computeScore(mission.getSkillSet().getSkills(), hero.getSkillSet().getSkills(),
+				hero.getEducationTarget(), hero.getRole().equals(mission.getRole()), zoins);
 	}
 
 	public Score computeScoreForMission(Mission mission, Hero hero, int zoins) {
-		return computeScore(mission.getSkillSet().getSkills(), hero
-				.getSkillSet().getSkills(),
-				hero.getRole().equals(mission.getRole()), zoins);
+		return computeScore(hero.getSkillSet().getSkills(), mission.getSkillSet().getSkills(),
+				hero.getEducationTarget(), hero.getRole().equals(mission.getRole()), zoins);
 	}
 
 	private Score computeScore(final Set<Skill> requestedSkills,
-			final Set<Skill> availableSkills, final boolean roleMatching,
-			int zoins) {
+			final Set<Skill> availableSkills, Skill educationTarget,
+			final boolean roleMatching, int zoins) {
 		int compureScoreBySkills = compureScoreBySkills(requestedSkills,
-				availableSkills);
+				availableSkills, educationTarget);
 		return new Score(computeTotalScore(roleMatching, compureScoreBySkills,
 				zoins), roleMatching, computeSkillMatches(requestedSkills,
 				availableSkills), compureScoreBySkills);
@@ -52,11 +51,14 @@ public class Scoring {
 	}
 
 	private int compureScoreBySkills(Set<Skill> requestedSkills,
-			Set<Skill> availableSkills) {
+			Set<Skill> availableSkills, Skill educationTarget) {
 		int score = 0;
 		for (Skill requestedSkill : requestedSkills) {
 			if (availableSkills.contains(requestedSkill)) {
 				score += SCORE_FOR_MATCHING_SKILL;
+			}
+			if (educationTarget.equals(requestedSkill)) {
+				score += SCORE_FOR_MATCHING_EDUCATION_TARGET;
 			}
 		}
 		return score;
