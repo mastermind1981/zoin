@@ -78,4 +78,6 @@ INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('100', '1');
 INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('100', '2');
 INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('100', '3');
 INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('931', '1');
+INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('102', '1');
+INSERT INTO `Hero_Medal` (`Hero_id`, `medals_id`) VALUES ('102', '2');
 
