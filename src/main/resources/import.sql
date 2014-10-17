@@ -67,5 +67,5 @@ INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10003', 'Java')
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10003', 'Ant');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10003', 'Architektur');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('10003', 'UnitTesting');
-INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `description`, `role`, `lcu_id`, `skillSet_id`) VALUES ('10003', 'Swisscom', 'Senior Java Developer', 'Wir suchen einen erfahrenen Developer für die outgesourcten Teams in Schlieren.', 'SeniorSoftwareEngineer', '1', '10003');
+INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `description`, `role`, `lcu_id`, `skillSet_id`) VALUES ('10003', 'Swisscom', 'Senior Java Developer', 'Erfahrener Developer für die outgesourcten Teams in Schlieren.', 'SeniorSoftwareEngineer', '1', '10003');
 
