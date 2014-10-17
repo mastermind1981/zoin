@@ -86,4 +86,8 @@ public class Hero {
 	public Integer getZoins() {
 		return zoins;
 	}
+
+	public void removeZoins(int zoins) {
+		this.zoins -= zoins; 
+	}
 }
