@@ -67,8 +67,8 @@ public class Main {
 		String shortName = nameGenerator.getName();
 		String description = UUID.randomUUID().toString();
 		Role role = getRandomRole();
-		buffer.append("INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `description`, `role`, `skillSet_id`) VALUES " +
-				"('" + missionId + "', '" + companyName + "', '" + shortName + "', '" + description + "', '" + role + "', '" + missionId + "');" + NEWLINE);
+		buffer.append("INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `description`, `role`, `lcu_id`, `skillSet_id`) VALUES " +
+				"('" + missionId + "', '" + companyName + "', '" + shortName + "', '" + description + "', '" + role + "', '3', '" + missionId + "');" + NEWLINE);
 	}
 
 	private static void appendSkills(StringBuffer buffer, int heroId,
