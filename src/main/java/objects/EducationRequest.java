@@ -5,7 +5,7 @@ import jpa.Skill;
 public class EducationRequest {
 
 	private int heroId;
-	private Skill skill;
+	private Skill educationSkill;
 	
 	public EducationRequest() {
 		
@@ -15,7 +15,7 @@ public class EducationRequest {
 		return heroId;
 	}
 
-	public Skill getSkill() {
-		return skill;
+	public Skill getEducationSkill() {
+		return educationSkill;
 	}
 }

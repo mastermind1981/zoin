@@ -183,7 +183,7 @@ public class IntegrationTest {
 		HttpPost request = new HttpPost(getHeroesUrl());
 
 		request.setEntity(new StringEntity("{\"heroId\":\"" + HERO_FLORIAN_ID
-				+ "\",\"skill\":\"Architektur\"}", ContentType.create("application/json")));
+				+ "\",\"educationSkill\":\"Architektur\"}", ContentType.create("application/json")));
 		
 		HttpResponse r = HttpClientBuilder.create().build().execute(request);
 		assertEquals(HttpStatus.SC_NO_CONTENT, r.getStatusLine()
