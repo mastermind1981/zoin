@@ -46,9 +46,8 @@
   }
 
   .subHeader {
-    background-color: rgba(33, 33, 33, 1);
+    background-color: rgba(33, 33, 33, 0.96);
     height: 30px;
-    opacity: 0.95;
     overflow: hidden;
     position: absolute;
     transition: height 0.5s ease 0s;
@@ -160,12 +159,23 @@
     font-weight: bold;
     padding: 20px 15px;
     margin-bottom: 10px;
-
-    h2 {
-      margin: 0 0px 10px 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      
+    .matchCardTitleText{
+        h2 {
+            margin: 0 0px 10px 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
+    .zoinCounter{
+        height: 60px;
+        max-width: 60px;
+        background-image: url('../img/zoin.png');
+        background-size: 100%, 100%;
+        background-repeat: no-repeat;        
+    }
+
+    
   }
   .matchRole {
     text-align: center;

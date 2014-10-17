@@ -7,8 +7,12 @@
     </div>
     <div class="carousel" style="transform:translateX({{left}}px);">
         <div ng-repeat="match in matches" ng-click="showMission(match.mission)" class="matchCard" ng-class="{isActive: match.mission.isActive, joined: match.zoins != null, noRoleMatch: !match.score.roleMatching}">
-            <div class="matchCardTitle">
-                <h2>{{match.mission.shortName}}</h2><span>{{match.mission.companyName}}</span>
+            <div class="matchCardTitle row">
+                <div class="matchCardTitleText col-sm-10">
+                    <h2>{{match.mission.shortName}}</h2>
+                    <span>{{match.mission.companyName}}</span>
+                </div>
+                <div class="zoinCounter col-sm-2" ng-show="match.zoins > 0"></div>
             </div>
             <div>
                 <div class="matchRole">{{match.mission.role}}</div>
