@@ -159,6 +159,28 @@ public class IntegrationTest {
 		assertTrue(contains);
 	}
 
+	@Test
+	public void setAndReadEducationTarget() throws ClientProtocolException, IOException {
+		HttpPost request = new HttpPost(getHeroesUrl());
+
+		request.setEntity(new StringEntity("{\"heroId\":\"" + HERO_FLORIAN_ID
+				+ "\",\"skill\":\"Architektur\"}", ContentType.create("application/json")));
+		
+		HttpResponse r = HttpClientBuilder.create().build().execute(request);
+		assertEquals(HttpStatus.SC_NO_CONTENT, r.getStatusLine()
+				.getStatusCode());
+
+		HttpResponse httpResponse = getRequest(getHeroesUrl() + "/"
+				+ HERO_FLORIAN_ID);
+		
+		final Hero hero = retrieveResourceFromResponse(httpResponse, Hero.class);
+		assertEquals("Florian", hero.getFirstName());
+		assertEquals("Besser", hero.getLastName());
+		assertEquals(Role.JuniorSoftwareEngineer, hero.getRole());
+		assertEquals(Skill.Architektur, hero.getEducationTarget());
+		
+	}
+
 	private String getWantsUrl() {
 		return REST_PREFIX + "wants";
 	}
