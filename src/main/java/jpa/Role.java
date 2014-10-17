@@ -24,7 +24,7 @@ public enum Role {
 	public static Role create(String val) {
 		Role[] values = Role.values();
 		for (Role value : values) {
-			if (value.stringRep().equals(val)) {
+			if (value.stringRep().equals(val) || value.toString().equals(val)) {
 				return value;
 			}
 		}
