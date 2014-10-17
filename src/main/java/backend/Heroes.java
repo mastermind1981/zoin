@@ -50,7 +50,7 @@ public class Heroes {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces("application/json;charset=" + encoding)
 	@Path("")
-	public void postMission(EducationRequest request) throws JsonGenerationException, JsonMappingException, IOException {
+	public void postEducationRequest(EducationRequest request) throws JsonGenerationException, JsonMappingException, IOException {
 		TypedQuery<Hero> q1 = em.createQuery("SELECT x FROM Hero x WHERE id='"+request.getHeroId()+"'",
 				Hero.class);
 		Hero hero = q1.getSingleResult();
