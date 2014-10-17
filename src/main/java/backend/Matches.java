@@ -17,6 +17,7 @@ import javax.ws.rs.QueryParam;
 
 import jpa.Hero;
 import jpa.Mission;
+import jpa.Want;
 import objects.Match;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -67,7 +68,7 @@ public class Matches {
 		for (Hero hero : heroes) {
 			matches.add(new Match(
 					scoring.computeScoreForMission(mission, hero), mission,
-					hero, isWanted(hero, mission)));
+					hero, getZoins(hero, mission)));
 		}
 		sortMatches(matches);
 		return matches;
@@ -79,18 +80,21 @@ public class Matches {
 		final List<Match> matches = new ArrayList<Match>();
 		for (Mission mission : missions) {
 			matches.add(new Match(scoring.computeScoreForHero(hero, mission),
-					mission, hero, isWanted(hero, mission)));
+					mission, hero, getZoins(hero, mission)));
 		}
 		sortMatches(matches);
 		return matches;
 	}
 
-	private boolean isWanted(Hero hero, Mission mission) {
-		int q1 = ((Long) em.createQuery(
-				"SELECT count(*) FROM Want x WHERE hero_id='" + hero.getId()
-						+ "' AND mission_id='" + mission.getId() + "'")
-				.getSingleResult()).intValue();
-		return q1 > 0;
+	private int getZoins(Hero hero, Mission mission) {
+		List<Want> wants = em.createQuery(
+				"SELECT x FROM Want x WHERE hero_id='" + hero.getId()
+						+ "' AND mission_id='" + mission.getId() + "'",
+				Want.class).getResultList();
+		if (wants.isEmpty()){
+			return 0;
+		}
+		return wants.get(0).getZoins();
 	}
 
 	private void sortMatches(final List<Match> matches) {

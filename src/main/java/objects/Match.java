@@ -10,16 +10,16 @@ public class Match {
 	private Mission mission;
 	private Hero hero;
 	private Score score;
-	private boolean wanted;
+	private int zoins;
 
 	public Match() {
 	}
 
-	public Match(Score score, Mission mission, Hero hero, boolean wanted) {
+	public Match(Score score, Mission mission, Hero hero, int zoins) {
 		this.score = score;
 		this.mission = mission;
 		this.hero = hero;
-		this.wanted = wanted;
+		this.zoins = zoins;
 	}
 
 	public Score getScore() {
@@ -33,11 +33,11 @@ public class Match {
 	public Hero getHero() {
 		return hero;
 	}
-	
-	public boolean isWanted() {
-		return wanted;
-	}
 
+	public int getZoins() {
+		return zoins;
+	}
+	
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this,

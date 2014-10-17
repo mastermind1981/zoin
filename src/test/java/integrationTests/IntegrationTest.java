@@ -159,25 +159,6 @@ public class IntegrationTest {
 		assertTrue(contains);
 	}
 
-	@Test
-	public void setAndReadWant() throws ClientProtocolException, IOException {
-		postRequest(getWantsUrl() + "/" + HERO_FLORIAN_ID + "/"
-				+ MISSION_JUNIOR_JAVA_DEVELOPER_ID);
-		HttpResponse httpResponse = getRequest(getWantsUrl() + "/"
-				+ HERO_FLORIAN_ID);
-
-		List<Long> list = retrieve(httpResponse,
-				new TypeReference<List<Long>>() {
-				});
-		boolean contains = false;
-		for (Long match : list) {
-			if (MISSION_JUNIOR_JAVA_DEVELOPER_ID.equals(match)) {
-				contains = true;
-			}
-		}
-		assertTrue(contains);
-	}
-
 	private String getWantsUrl() {
 		return REST_PREFIX + "wants";
 	}
@@ -197,25 +178,29 @@ public class IntegrationTest {
 	@Test
 	public void setAndReadWantJSON() throws ClientProtocolException,
 			IOException {
+		final int zoins = 2;
+		
 		HttpPost request = new HttpPost(getWantsUrl());
 
 		request.setEntity(new StringEntity("{\"heroId\":\"" + HERO_FLORIAN_ID
 				+ "\",\"missionId\":\"" + MISSION_JUNIOR_JAVA_DEVELOPER_ID
-				+ "\"}", ContentType.create("application/json")));
+				+ "\",\"zoins\":\"" + zoins + "\"}", ContentType
+				.create("application/json")));
 
 		HttpResponse r = HttpClientBuilder.create().build().execute(request);
 		assertEquals(HttpStatus.SC_NO_CONTENT, r.getStatusLine()
 				.getStatusCode());
 
-		HttpResponse httpResponse = getRequest(getWantsUrl() + "/"
+		HttpResponse httpResponse = getRequest(getMatchesUrl() + "?heroId="
 				+ HERO_FLORIAN_ID);
 
-		List<Long> list = retrieve(httpResponse,
-				new TypeReference<List<Long>>() {
+		List<Match> list = retrieve(httpResponse,
+				new TypeReference<List<Match>>() {
 				});
 		boolean contains = false;
-		for (Long match : list) {
-			if (MISSION_JUNIOR_JAVA_DEVELOPER_ID.equals(match)) {
+		for (Match match : list) {
+			if (MISSION_JUNIOR_JAVA_DEVELOPER_ID.equals(match.getMission().getId())) {
+				assertEquals(zoins, match.getZoins());
 				contains = true;
 			}
 		}
@@ -236,17 +221,6 @@ public class IntegrationTest {
 				.getMimeType();
 		assertEquals(jsonMimeType, mimeType);
 		return httpResponse;
-	}
-
-	private void postRequest(String uri) throws IOException,
-			ClientProtocolException {
-		HttpUriRequest request = new HttpPost(uri);
-
-		HttpResponse httpResponse = HttpClientBuilder.create().build()
-				.execute(request);
-
-		assertEquals(HttpStatus.SC_NO_CONTENT, httpResponse.getStatusLine()
-				.getStatusCode());
 	}
 
 	private static <T> T retrieve(HttpResponse httpResponse,
