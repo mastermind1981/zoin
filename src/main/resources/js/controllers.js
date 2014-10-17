@@ -35,6 +35,7 @@ angular.module('myApp.controllers', [])
             "heroId": $rootScope.heroId
         }, function () {
             if ($scope.matches.length > 0) {
+                selectedMission = $scope.blaMission;
                 if (selectedMission){
                     $scope.matches.forEach(function (element) {
                         if (element.mission.id == selectedMission.id){
@@ -62,7 +63,8 @@ angular.module('myApp.controllers', [])
             "heroId": $rootScope.heroId,
             "zoins": zoinValue
         }, function(){
-            $scope.init();
+            //$scope.init(mission);
+            $scope.blaMission = mission;
             var id = $rootScope.heroId;
             $rootScope.heroId = undefined;
         });       
