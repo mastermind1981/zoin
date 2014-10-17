@@ -198,7 +198,7 @@
   display: inline-block;
   border: 1px black solid;
   transition: width 0.5s ease, height 0.5s ease;
-  height: 400px;
+  height: 450px;
   width: 500px;
   margin: 20px;
   overflow: hidden;
@@ -219,6 +219,12 @@
 
   .missionDetails, .missionRole {
     background-color: #FFF;
+    padding: 5px;
+
+    h3 {
+      border-bottom: 1px solid grey;
+      text-align: left;
+    }
   }
 
   .missionCardDescription {
@@ -271,6 +277,10 @@
   margin-top: 30px;
   height: 600px;
   -moz-user-select: none;
+
+  &.missionCarousel {
+    height: 500px;
+  }
 }
 
 .leftArrow, .rightArrow {
