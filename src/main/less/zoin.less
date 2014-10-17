@@ -30,16 +30,11 @@
       }
   }
 
-  .avatarDetails{
-      
+  .avatarDetails{      
       color: #FFFFFF;
-      text-align:center;
       font-size: 30px;
           .title{
               font-size: larger;
-          }
-          .item{
-              font-style: italic;
           }
       .avatarMedals{              
           span img{
@@ -57,7 +52,17 @@
     > div {
       transition: transform 0.5s ease;
       transform: translateY(100%);
+      border-right: 1px solid #ffffff;
+      height:90%;
+      padding: 0 180px;
+        &:last-of-type{
+            border-right: none;
+        }
+      ul{
+          margin-left: 10px;
+      }
     }
+    
 
     a.expandIcon {
       position: absolute;
@@ -72,7 +77,7 @@
       font-size: 24px;
 
       transform: rotate(0deg);
-      transition: transform 0.5s ease;
+      transition: transform 0.5s ease 0.5s;
 
       &:link, &:visited, &:active {
         outline: none;
@@ -80,7 +85,7 @@
     }
 
     &.open {
-      height: 500px;
+      height: 300px;
 
       > div {
         transform: translateY(0%);
@@ -103,6 +108,15 @@
 }
 
 .missionCard {
+    
+    &.joined {
+        border: solid 4px #ef8229;
+    }
+    
+    &.noRoleMatch {
+        opacity: 0.5;
+    }
+    
     display: inline-block;
     border: 1px black solid;
     transition: width 0.5s ease, height 0.5s ease;
@@ -116,8 +130,11 @@
         background-color: #69A786;
         color: #FFFFFF;
         font-weight: bold;        
-        padding: 10px;
+        padding: 20px 15px;
         margin-bottom: 10px;
+        h2{
+            margin: 0 0px 10px 0;
+        }
     }
     .missionRole{
         text-align: center;
@@ -161,6 +178,7 @@
     width: 1500px;
     overflow: hidden;
     height: 600px;
+    -moz-user-select: none;
 }
 .leftArrow {
     position: absolute;
@@ -207,3 +225,12 @@
 .matchingSkills {
     text-align: center;
 }
+
+
+
+.noSkill span{
+    color:grey;
+    text-decoration: line-through;
+}
+
+
