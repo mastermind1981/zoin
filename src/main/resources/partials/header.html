@@ -1,35 +1,43 @@
 <div class="container-fluid header">
-    <div class="col-sm-8 avatar">
-        <img src="{{hero.picturePath}}" />
-        <div class="avatar-text">
-            <h2>{{hero.firstName}} {{hero.lastName}}</h2>
-            <h3>{{hero.role}}</h3>
+    <div class="row">
+        <div class="col-sm-8 avatar">
+            <img src="{{hero.picturePath}}" />
+            <div class="avatar-text">
+                <h2>{{hero.firstName}} {{hero.lastName}}</h2>
+                <h3>{{hero.role}}</h3>
+            </div>
+        </div>
+
+        <div class="col-sm-4 hidden-xs logo">
+            <img class="pull-right" src="img/logo.png" />
         </div>
     </div>
 
-    <div class="col-sm-4 hidden-xs logo">
-        <img class="pull-right" src="img/logo.png" />
-    </div>
-    <div class="row avatarDetails">
-        <div class="col-sm-6">
-            Skills:<br />
+    <div class="row avatarDetails subHeader">
+        <div class="col-sm-4">
+            <span class="title">Skills</span><br />
             <ul>
                 <li ng-repeat="skill in hero.skillSet.skills">
-                    {{skill}}
+                    <span class="item">{{skill}}</span>                    
                 </li>
             </ul>
         </div>
-        <div class="col-sm-6">
-            Ziel:<br />
+        <div class="col-sm-4">
+            <span class="title">Ziel</span><br />
              <ul>
                 <li>
-                    {{hero.educationSkill}}
+                    <span class="item"> {{hero.educationTarget}}</span>               
                 </li>
             </ul>
+        </div>
+        <div class="col-sm-4">
+            <span class="title">Achievements</span><br />
             <div class="avatarMedals">
-            <span ng-repeat="medal in hero.medals"><img src={{medal.imagePath}} alt={{medal.comment}} /></span> 
+            <span ng-repeat="medal in hero.medals"><img src={{medal.imagePath}} alt={{medal.comment}} title={{medal.comment}} /></span> 
             </div>
         </div>
+        <a href="#" class="expandIcon" ng-click="toggleSubHeader(this, $event)">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+        </a>
     </div>
-    <a href="#" class="expandIcon">&nbsp;</a>
 </div>

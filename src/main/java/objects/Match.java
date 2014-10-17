@@ -10,12 +10,12 @@ public class Match {
 	private Mission mission;
 	private Hero hero;
 	private Score score;
-	private int zoins;
+	private Integer zoins;
 
 	public Match() {
 	}
 
-	public Match(Score score, Mission mission, Hero hero, int zoins) {
+	public Match(Score score, Mission mission, Hero hero, Integer zoins) {
 		this.score = score;
 		this.mission = mission;
 		this.hero = hero;
@@ -34,7 +34,7 @@ public class Match {
 		return hero;
 	}
 
-	public int getZoins() {
+	public Integer getZoins() {
 		return zoins;
 	}
 	

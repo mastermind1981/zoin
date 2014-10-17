@@ -20,6 +20,10 @@ angular.module('myApp.directives', [])
                 $scope.hero = zoinAPIService.Hero.get({"heroId": $scope.heroId});
             }
 
+            $scope.toggleSubHeader = function(element, $event) {
+                $($event.target).parents('.subHeader').toggleClass('open');
+            }
+
             $scope.init();
             $scope.$watch('heroId', function() {
                 $scope.init();
