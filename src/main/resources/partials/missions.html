@@ -31,3 +31,38 @@
         <div style="height:500px;"></div>
     </div>
 </div>
+
+
+<div class="viewport" style="user-select:none;">
+    <div class="leftArrow" ng-click="moveLeftHero();">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </div>
+    <div class="rightArrow" ng-click="moveRightHero();">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </div>
+    <div class="carousel" style="transform:translateX({{leftHero}}px);">
+        <div ng-repeat="match in matches" class="missionCard">
+            <div class="missionCardTitle">
+                <h2>{{match.hero.name}}</h2><span></span>
+            </div>
+            <div>
+                <div class="missionRole">{{heroe.role}}</div>
+            </div>
+            <div>
+                <div class="missionDetails">
+                    <h3>Bevorzugte Skills</h3>
+                    <ul>
+                        <li ng-repeat="skill in mission.skillSet.skills">
+                            {{skill}}
+                        </li>
+                    </ul>
+                    <hr />
+                    <p>
+                        {{heroe.description}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div style="height:500px;"></div>
+    </div>
+</div>
