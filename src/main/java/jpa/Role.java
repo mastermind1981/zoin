@@ -16,7 +16,8 @@ public enum Role {
 	}
 
 	@JsonValue
-	public String stringRep() {
+	@Override
+	public String toString() {
 		return name;
 	}
 	
@@ -24,7 +25,7 @@ public enum Role {
 	public static Role create(String val) {
 		Role[] values = Role.values();
 		for (Role value : values) {
-			if (value.stringRep().equals(val) || value.toString().equals(val)) {
+			if (value.toString().equals(val)) {
 				return value;
 			}
 		}

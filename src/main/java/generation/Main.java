@@ -51,7 +51,7 @@ public class Main {
 		Role role = getRandomRole();
 		String picturePath = getRandomImagePath();
 		buffer.append("INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`) VALUES " +
-				"('" + heroId + "', '" + firstname + "', '" + lastname + "', '" + picturePath + "', '" + role + "', '" + heroId + "');" + NEWLINE);
+				"('" + heroId + "', '" + firstname + "', '" + lastname + "', '" + picturePath + "', '" + role.name() + "', '" + heroId + "');" + NEWLINE);
 	}
 
 	private static void appendMission(StringBuffer buffer, int missionId) {
@@ -68,13 +68,13 @@ public class Main {
 		String description = UUID.randomUUID().toString();
 		Role role = getRandomRole();
 		buffer.append("INSERT INTO `Mission` (`id`, `companyName`, `shortName`, `description`, `role`, `lcu_id`, `skillSet_id`) VALUES " +
-				"('" + missionId + "', '" + companyName + "', '" + shortName + "', '" + description + "', '" + role + "', '3', '" + missionId + "');" + NEWLINE);
+				"('" + missionId + "', '" + companyName + "', '" + shortName + "', '" + description + "', '" + role.name() + "', '3', '" + missionId + "');" + NEWLINE);
 	}
 
 	private static void appendSkills(StringBuffer buffer, int heroId,
 			Skill skill) {
 		buffer.append("INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES " +
-				"('" + heroId + "', '" + skill + "');" + NEWLINE);
+				"('" + heroId + "', '" + skill.name() + "');" + NEWLINE);
 	}
 
 	private static void appendSkillSet(StringBuffer buffer, int heroId) {

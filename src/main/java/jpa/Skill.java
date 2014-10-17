@@ -16,7 +16,8 @@ public enum Skill {
 	}
 
 	@JsonValue
-	public String stringRep() {
+	@Override
+	public String toString() {
 		return name;
 	}
 
@@ -24,7 +25,7 @@ public enum Skill {
 	public static Skill create(String val) {
 		Skill[] values = Skill.values();
 		for (Skill value : values) {
-			if (value.stringRep().equals(val) || value.toString().equals(val)) {
+			if (value.toString().equals(val)) {
 				return value;
 			}
 		}
