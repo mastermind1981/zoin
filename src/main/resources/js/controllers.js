@@ -45,11 +45,11 @@ angular.module('myApp.controllers', [])
     }
     
     $scope.moveLeft = function() {
-        $scope.left = $scope.left - 200;
+        $scope.left = $scope.left + 200;
     }
     
     $scope.moveRight = function() {
-        $scope.left = $scope.left + 200;
+        $scope.left = $scope.left - 200;
     }
 })
 

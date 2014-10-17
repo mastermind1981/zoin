@@ -67,7 +67,6 @@
 }
 .viewport {
     position: relative;
-    border: 1px solid black;
     width: 1500px;
     overflow: hidden;
     height: 600px;
@@ -75,21 +74,30 @@
 }
 .leftArrow {
     position: absolute;
-    background: blue;
-    width: 50px;
+    width: 100px;
     left: 0;
     top: 0;
     bottom: 0;
     z-index: 1;
+    background-image: url('../img/arrowleft.png');
+    background-size: 60px 200px;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center;
+
 }
 .rightArrow {
     position: absolute;
-    background: green;
-    width: 50px;
+    width: 100px;
     right: 0;
     top: 0;
     bottom: 0;
     z-index: 1;
+    background-image: url('../img/arrowright.png');
+    background-size: 60px 200px;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 
