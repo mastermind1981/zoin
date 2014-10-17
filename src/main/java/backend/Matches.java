@@ -17,6 +17,7 @@ import javax.ws.rs.QueryParam;
 
 import jpa.Hero;
 import jpa.Mission;
+import jpa.Want;
 import objects.Match;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -65,9 +66,10 @@ public class Matches {
 		final Mission mission = getMission(missionId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Hero hero : heroes) {
+			int zoins = getZoins(hero, mission);
 			matches.add(new Match(
-					scoring.computeScoreForMission(mission, hero), mission,
-					hero, isWanted(hero, mission)));
+					scoring.computeScoreForMission(mission, hero, zoins), mission,
+					hero, zoins));
 		}
 		sortMatches(matches);
 		return matches;
@@ -78,19 +80,23 @@ public class Matches {
 		final Hero hero = getHero(heroId);
 		final List<Match> matches = new ArrayList<Match>();
 		for (Mission mission : missions) {
-			matches.add(new Match(scoring.computeScoreForHero(hero, mission),
-					mission, hero, isWanted(hero, mission)));
+			int zoins = getZoins(hero, mission);
+			matches.add(new Match(scoring.computeScoreForHero(hero, mission, zoins),
+					mission, hero, zoins));
 		}
 		sortMatches(matches);
 		return matches;
 	}
 
-	private boolean isWanted(Hero hero, Mission mission) {
-		int q1 = ((Long) em.createQuery(
-				"SELECT count(*) FROM Want x WHERE hero_id='" + hero.getId()
-						+ "' AND mission_id='" + mission.getId() + "'")
-				.getSingleResult()).intValue();
-		return q1 > 0;
+	private int getZoins(Hero hero, Mission mission) {
+		List<Want> wants = em.createQuery(
+				"SELECT x FROM Want x WHERE hero_id='" + hero.getId()
+						+ "' AND mission_id='" + mission.getId() + "'",
+				Want.class).getResultList();
+		if (wants.isEmpty()){
+			return 0;
+		}
+		return wants.get(0).getZoins();
 	}
 
 	private void sortMatches(final List<Match> matches) {

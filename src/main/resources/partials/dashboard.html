@@ -17,7 +17,8 @@
                      <br />Skills: <span ng-repeat="skill in match.score.skillMatches">{{skill}}{{$last ? '' : ', '}}</span>
                 <br />
                 <hr />
-                <button ng-click="join(match.mission)">Join</button>
+                <button ng-click="join(match.mission, 0)">Join</button>
+                <button ng-click="join(match.mission, 1)">1 Zoin</button>
                 </div>
             </div>
         </div>
