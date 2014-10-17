@@ -24,6 +24,8 @@ public class Mission {
 	private Role role;
 	@ManyToOne
 	private SkillSet skillSet;
+	@ManyToOne
+	private LCU lcu;
 	
 	public Mission(){
 	}
@@ -58,5 +60,8 @@ public class Mission {
 	
 	public SkillSet getSkillSet() {
 		return skillSet;
+	}
+	public LCU getLcu() {
+		return lcu;
 	}
 }

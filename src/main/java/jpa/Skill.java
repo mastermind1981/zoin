@@ -16,6 +16,7 @@ public enum Skill {
 	}
 
 	@JsonValue
+	@Override
 	public String toString() {
 		return name;
 	}
