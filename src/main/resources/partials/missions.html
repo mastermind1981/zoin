@@ -43,7 +43,7 @@
         <div class="rightArrow" ng-click="moveRightHero();">
             <span class="glyphicon glyphicon-chevron-right"></span>
         </div>
-        <div class="carousel" style="transform:translateX({{left}}px);">
+        <div class="carousel" style="transform:translateX({{leftHero}}px);">
             <div ng-repeat="match in matches" ng-click="showMission(match.mission)" class="matchCard" ng-class="{isActive: match.mission.isActive, joined: match.zoins != null, noRoleMatch: !match.score.roleMatching}">
                 <div class="matchCardTitle avatar">
                      <img ng-src="{{match.hero.picturePath}}" />
