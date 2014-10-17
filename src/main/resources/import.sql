@@ -22,7 +22,7 @@ INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'DotNet')
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'UnitTesting');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'Architektur');
 INSERT INTO `SkillSet_skills` (`SkillSet_id`, `skills`) VALUES ('101', 'SQL');
-INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`) VALUES ('101', 'Matthias', 'Baader', 'img/Head7.png', 'LeadSoftwareArchitect', '101', 'Java');
+INSERT INTO `Hero` (`id`, `firstName`, `lastName`, `picturePath`, `role`, `skillSet_id`, `educationTarget`) VALUES ('101', 'Matthias', 'Baader', 'img/Head7.png', 'LeadSoftwareArchitect', '101', 'UITesting');
 
 //Missions
 INSERT INTO `SkillSet` (`id`) VALUES ('10001');
