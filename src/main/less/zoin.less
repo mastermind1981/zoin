@@ -291,6 +291,33 @@
   &.missionCarousel {
     height: 500px;
   }
+
+  &.matchesCarousel {
+    height: 500px;
+
+    .matchCard {
+      background: #FFFFFF;
+      height: 450px;
+      width: 400px;
+
+      overflow: hidden;
+
+      .matchCardTitle {
+        background: #4284A8;
+
+        img {
+          display: inline-block;
+        }
+
+        h2 {
+          display: inline-block;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+      }
+    }
+  }
 }
 
 .leftArrow, .rightArrow {
