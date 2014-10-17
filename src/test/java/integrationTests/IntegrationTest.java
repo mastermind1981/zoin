@@ -165,7 +165,7 @@ public class IntegrationTest {
 		HttpPost request = new HttpPost(getHeroesUrl());
 
 		request.setEntity(new StringEntity("{\"heroId\":\"" + HERO_FLORIAN_ID
-				+ "\",\"educationSkill\":\"Architektur\"}", ContentType
+				+ "\",\"educationSkill\":\"Maven\"}", ContentType
 				.create("application/json")));
 
 		HttpResponse r = HttpClientBuilder.create().build().execute(request);
@@ -179,7 +179,7 @@ public class IntegrationTest {
 		assertEquals("Florian", hero.getFirstName());
 		assertEquals("Besser", hero.getLastName());
 		assertEquals(Role.JuniorSoftwareEngineer, hero.getRole());
-		assertEquals(Skill.Architektur, hero.getEducationTarget());
+		assertEquals(Skill.Maven, hero.getEducationTarget());
 
 	}
 
