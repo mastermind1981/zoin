@@ -1,5 +1,6 @@
 package jpa;
 
+import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonValue;
 
 public enum Role {
@@ -17,5 +18,16 @@ public enum Role {
 	@JsonValue
 	public String toString() {
 		return name;
+	}
+	
+	@JsonCreator
+	public static Role create(String val) {
+		Role[] values = Role.values();
+		for (Role value : values) {
+			if (value.toString().equals(val)) {
+				return value;
+			}
+		}
+		throw new IllegalArgumentException("Unknown role '" + val + "'!");
 	}
 }
