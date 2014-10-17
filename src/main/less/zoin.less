@@ -1,28 +1,30 @@
 .header {
-    background-color: rgba(33, 33, 33, 0.96);
-    .avatar, .logo {
-        padding: 20px 5px;
-    }
-    .avatar {
-        img {
-            display: inline-block;
-            border-radius: 50%;
-            border: 2px solid white;
-            width: 100px;
-            margin-right: 20px;
-            vertical-align: top;
-        }
-        .avatar-text {
-            display: inline-block;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            h2, h3 {
-                margin-top: 10px;
-                color: white;
-            }
-        }
-    }
+  background-color: rgba(33, 33, 33, 0.96);
+
+  .avatar, .logo {
+      padding: 20px 5px;
+  }
+
+  .avatar {
+      img {
+          display: inline-block;
+          border-radius: 50%;
+          border: 2px solid white;
+          width: 100px;
+          margin-right: 20px;
+          vertical-align: top;
+      }
+      .avatar-text {
+          display: inline-block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          h2, h3 {
+              margin-top: 10px;
+              color: white;
+          }
+      }
+  }
 
   .logo {
     display: inline-block;
@@ -30,6 +32,35 @@
 
     img {
       width: 100px;
+    }
+  }
+}
+
+.subHeader {
+  position: relative;
+  height: 20px;
+  transition: height 0.5s ease;
+
+  a.expandIcon {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    text-align: center;
+    color: white;
+
+    transform: rotate(0deg);
+    transition: transform 0.5s ease;
+  }
+
+  &.open {
+    height: 500px;
+
+    a.expandIcon {
+      transform: rotate(180deg);
     }
   }
 }

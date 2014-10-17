@@ -1,22 +1,27 @@
 <div class="container-fluid header">
-    <div class="col-sm-8 avatar">
-        <img src="{{hero.picturePath}}" />
-        <div class="avatar-text">
-            <h2>{{hero.firstName}} {{hero.lastName}}</h2>
-            <h3>{{hero.role}}</h3>
+    <div class="row">
+        <div class="col-sm-8 avatar">
+            <img src="{{hero.picturePath}}" />
+            <div class="avatar-text">
+                <h2>{{hero.firstName}} {{hero.lastName}}</h2>
+                <h3>{{hero.role}}</h3>
+            </div>
+        </div>
+
+        <div class="col-sm-4 hidden-xs logo">
+            <img class="pull-right" src="img/logo.png" />
         </div>
     </div>
 
-    <div class="col-sm-4 hidden-xs logo">
-        <img class="pull-right" src="img/logo.png" />
-    </div>
-    <div class="row">
+    <div class="row subHeader">
         <div class="col-sm-6">
             &nbsp;
         </div>
         <div class="col-sm-6">
             &nbsp;
         </div>
+        <a href="#" class="expandIcon" ng-click="toggleSubHeader(this, $event)">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+        </a>
     </div>
-    <a href="#" class="expandIcon">&nbsp;</a>
 </div>
